@@ -24,7 +24,9 @@ const initIO = (server: http.Server) => {
     socket.on("APP:CREATE_GAME", () => createGame(socket));
     socket.on("APP:START_GAME", () => startGame(socket));
 
-    socket.on("PLAYER:JOIN_GAME", () => joinGame(socket));
+    socket.on("PLAYER:JOIN_GAME", ({ roomCode }: { roomCode: string }) =>
+      joinGame(socket, roomCode)
+    );
 
     socket.on(SocketEvent.DISCONNECT, () => {
       console.log("disconnect");

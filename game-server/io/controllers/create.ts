@@ -6,26 +6,28 @@ import { dispatchUpdateRoom } from "../events";
 
 export function createGame(socket: Socket) {
   console.log("Creating new game");
-
-  const newGameCode = generateGameCode();
-
-  const gameMaster = createUser(socket, newGameCode);
-
+  const newRoomCode = generateGameCode();
+  const gameMaster = createUser(socket, newRoomCode);
   const newGame = {
-    roomCode: newGameCode,
+    roomCode: newRoomCode,
     players: [],
     gameMaster: gameMaster,
     started: false,
   };
-
-  games[newGameCode] = newGame;
-
-  console.log("Dispatching update room");
-  dispatchUpdateRoom(newGameCode);
+  games[newRoomCode] = newGame;
+  dispatchUpdateRoom(newRoomCode);
 }
 
-export function joinGame(socket: Socket) {
-  const user = createUser(socket, socket.rooms[0]);
+export function joinGame(socket: Socket, roomCode: string) {
+  const game = games[roomCode];
+  if (!game) {
+    console.log("Game not found", roomCode);
+    return;
+  }
+  console.log("Joining game", roomCode);
+  const user = createUser(socket, roomCode);
+  game.players.push(user);
+  dispatchUpdateRoom(roomCode);
 }
 
 export function startGame(socket: Socket) {
