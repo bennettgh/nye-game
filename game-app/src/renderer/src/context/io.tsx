@@ -9,6 +9,7 @@ const openNewSocketConnection = (): Socket => io(config.backendURL)
 type EventsContextType = {
   createGame: () => void
   startGame: () => void
+  endPhase: () => void
 }
 
 const EventsContext = createContext<EventsContextType>({} as EventsContextType)
@@ -42,6 +43,11 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
     socket.emit('APP:START_GAME')
   }
 
+  const endPhase = () => {
+    if (!socket) return
+    socket.emit('APP:END_PHASE')
+  }
+
   useEffect(() => {
     if (!socket) return
 
@@ -52,7 +58,8 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
 
   const value: EventsContextType = {
     createGame,
-    startGame
+    startGame,
+    endPhase
   }
 
   return <EventsContext.Provider value={value}>{children}</EventsContext.Provider>

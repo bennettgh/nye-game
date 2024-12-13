@@ -7,7 +7,8 @@ import { useGameContext } from "./game";
 const openNewSocketConnection = () => io(config.backendURL);
 
 type EventsContextType = {
-  joinGame: (payload: any) => void;
+  joinGame: (payload: { roomCode: string; nickname: string }) => void;
+  submitAnswer: (payload: { answer: string }) => void;
 };
 
 const EventsContext = createContext({} as EventsContextType);
@@ -32,6 +33,11 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const submitAnswer = (payload: { answer: string }) => {
+    if (!socket) return;
+    socket.emit("PLAYER:SUBMIT_ANSWER", payload);
+  };
+
   useEffect(() => {
     if (!socket) return;
 
@@ -43,6 +49,7 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
 
   const value: EventsContextType = {
     joinGame,
+    submitAnswer,
   };
 
   return (

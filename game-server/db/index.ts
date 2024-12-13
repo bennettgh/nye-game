@@ -6,18 +6,34 @@ export type User = {
   roomCode: string;
 };
 
-type Game = {
+export type Answer = {
+  userId: string;
+  answer: string;
+};
+
+export enum RoundPhase {
+  INTRO = "intro",
+  ANSWER = "answer",
+  RESULTS = "results",
+}
+
+export type Round = {
+  roundNumber: number;
+  phase: RoundPhase;
+  prompt: string;
+  answers: Answer[];
+};
+
+export type Game = {
   roomCode: string;
   players: Player[];
   gameMaster: User;
   started: boolean;
+  gameOver: boolean;
+  rounds: Round[];
+  scores: { [key: string]: number };
 };
 
 export const games: { [key: string]: Game } = {};
-
-let userId = 1;
-export function getNewUserId() {
-  return (userId++).toString();
-}
 
 export const users: { [key: string]: User } = {};

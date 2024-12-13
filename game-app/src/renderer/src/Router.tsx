@@ -1,5 +1,6 @@
 import { useGameContext } from './context/game'
-import { Game } from './pages/Game'
+import { GameComponent as Game } from './pages/Game'
+import { GameOver } from './pages/GameOver'
 import { Lobby } from './pages/Lobby'
 import { Menu } from './pages/Menu'
 
@@ -7,6 +8,10 @@ export function Router(): JSX.Element {
   const { gameState } = useGameContext()
 
   const renderView = (): JSX.Element => {
+    if (gameState.gameOver) {
+      return <GameOver />
+    }
+
     if (!gameState?.roomCode) {
       return <Menu />
     }

@@ -1,6 +1,12 @@
 import * as http from "http";
 import { Server, Socket } from "socket.io";
-import { createGame, joinGame, startGame } from "./controllers/create";
+import {
+  createGame,
+  joinGame,
+  nextPhase,
+  startGame,
+  submitAnswer,
+} from "./controllers/create";
 import { SocketEvent } from "./types";
 
 let io: Server | null = null;
@@ -13,6 +19,7 @@ const config = {
       "http://localhost:5173",
       "http://localhost:5174",
     ],
+    methods: ["GET", "POST"],
   },
 };
 
@@ -23,6 +30,11 @@ const initIO = (server: http.Server) => {
     console.log("connection");
     socket.on("APP:CREATE_GAME", () => createGame(socket));
     socket.on("APP:START_GAME", () => startGame(socket));
+    socket.on("APP:END_PHASE", () => nextPhase(socket));
+
+    socket.on("PLAYER:SUBMIT_ANSWER", ({ answer }: { answer: string }) =>
+      submitAnswer(socket, answer)
+    );
 
     socket.on(
       "PLAYER:JOIN_GAME",
