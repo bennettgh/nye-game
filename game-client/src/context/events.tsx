@@ -22,7 +22,7 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     cb && cb(newSocket);
   };
 
-  const joinGame = (payload: any) => {
+  const joinGame = (payload: { roomCode: string; nickname: string }) => {
     if (!socket) {
       openSocketConnection((newSocket: Socket) =>
         newSocket.emit("PLAYER:JOIN_GAME", payload)

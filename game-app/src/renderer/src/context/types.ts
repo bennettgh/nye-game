@@ -4,9 +4,13 @@ export type User = {
   roomCode: string
 }
 
+export type Player = User & {
+  nickname: string
+}
+
 export type Game = {
   roomCode: string
-  players: User[]
+  players: Player[]
   gameMaster: User
   started: boolean
 }

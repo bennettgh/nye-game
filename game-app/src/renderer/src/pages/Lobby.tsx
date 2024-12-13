@@ -12,6 +12,9 @@ export function Lobby(): JSX.Element {
   return (
     <div>
       <p>{gameState?.roomCode}</p>
+      {gameState.players.map((player) => (
+        <p>{player.nickname}</p>
+      ))}
       <button onClick={handleStartGame}>Start Game</button>
     </div>
   )

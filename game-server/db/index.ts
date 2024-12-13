@@ -1,4 +1,6 @@
-type User = {
+import { Player } from "../io/types";
+
+export type User = {
   userId: string;
   socketId: string;
   roomCode: string;
@@ -6,7 +8,7 @@ type User = {
 
 type Game = {
   roomCode: string;
-  players: User[];
+  players: Player[];
   gameMaster: User;
   started: boolean;
 };
