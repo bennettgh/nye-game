@@ -4,6 +4,7 @@ import { Game, games, RoundPhase } from "../../db";
 import { createUser, getUserBySocketId } from "../../db/user";
 import { generateNewRoomCode } from "../../utils";
 import { dispatchUpdateRoom } from "../events";
+import { prompts } from "../../config/prompt";
 
 export function createGame(socket: Socket) {
   console.log("Creating new game");
@@ -65,7 +66,7 @@ function createRound(game: Game) {
   const round = {
     roundNumber,
     phase: RoundPhase.INTRO,
-    prompt: getNewPrompt(roundNumber - 1),
+    prompt: getNewPrompt(),
     answers: [],
   };
   return round;
@@ -89,13 +90,9 @@ function handleEndGame(game: Game) {
   game.gameOver = true;
 }
 
-function getNewPrompt(roundNumber: number) {
-  const prompts = [
-    "What is the capital of France?",
-    "What is the capital of Germany?",
-    "What is the capital of Italy?",
-  ];
-  return prompts[roundNumber];
+function getNewPrompt() {
+  const randomIndex = Math.floor(Math.random() * prompts.length);
+  return prompts[randomIndex];
 }
 
 export function submitAnswer(socket: Socket, answer: string) {
