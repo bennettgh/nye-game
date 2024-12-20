@@ -102,25 +102,31 @@ function ResultsPhase(): JSX.Element {
 }
 
 function VotingPhase({ gameState }: { gameState: GameType }): JSX.Element {
+  const [voteSubmitted, setVoteSubmitted] = useState(false);
   const { submitVote } = useEventsContext();
   const answers = gameState.rounds[gameState.rounds.length - 1].answers;
 
   const handleSubmitVote = (answer: AnswerType) => {
     console.log("submitVote", answer);
     submitVote({ userId: answer.userId });
+    setVoteSubmitted(true);
   };
 
   return (
     <GradientBackground>
       <Container>
         <p>Phase: {RoundPhase.VOTING}</p>
-        <AnswersContainer>
-          {answers.map((answer, index) => (
-            <Answer key={index} onClick={() => handleSubmitVote(answer)}>
-              <p>{answer.answer}</p>
-            </Answer>
-          ))}
-        </AnswersContainer>
+        {voteSubmitted ? (
+          <p>Vote submitted</p>
+        ) : (
+          <AnswersContainer>
+            {answers.map((answer, index) => (
+              <Answer key={index} onClick={() => handleSubmitVote(answer)}>
+                <p>{answer.answer}</p>
+              </Answer>
+            ))}
+          </AnswersContainer>
+        )}
       </Container>
     </GradientBackground>
   );
