@@ -7,7 +7,13 @@ export const useHandleEvent = () => {
   const handleEvent = (event: EventType) => {
     switch (event) {
       case EventType.PLAYER_JOINED:
+        playSound('yap')
+      case EventType.PLAYER_LEFT:
         playSound('sfxCrow1')
+      case EventType.PLAYER_VOTED:
+        playSound('pop')
+      case EventType.PLAYER_ANSWERED:
+        playSound('pop')
     }
   }
 

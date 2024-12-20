@@ -4,6 +4,8 @@ import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited l
 import MusicStartGame from '../assets/music/start-game-screen.mp3'
 import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
+import Yap from '../assets/sfx/yap-sfx.mp3'
+import Pop from '../assets/sfx/pop.mp3'
 
 const sounds = {
   musicStartGame: new Howl({
@@ -24,6 +26,12 @@ const sounds = {
   sfxCrow1: new Howl({
     volume: 0.3,
     src: [SfxCrow1]
+  }),
+  yap: new Howl({
+    src: [Yap]
+  }),
+  pop: new Howl({
+    src: [Pop]
   })
 }
 
