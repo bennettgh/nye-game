@@ -82,17 +82,22 @@ function IntroPhase(): JSX.Element {
 
 function QuestionPhase(): JSX.Element {
   const { submitAnswer } = useEventsContext();
+  const { gameState } = useGameContext();
   const [answer, setAnswer] = useState("");
+
+  const handleSubmit = () => {
+    submitAnswer({ answer });
+    setAnswer(""); // Clear the input after submission
+  };
 
   return (
     <GradientBackground>
-      <Question />
-      <input
-        type="text"
-        placeholder="Enter your answer"
-        onChange={(e) => setAnswer(e.target.value)}
+      <Question
+        gameState={gameState}
+        answer={answer}
+        setAnswer={setAnswer}
+        onSubmit={handleSubmit}
       />
-      <button onClick={() => submitAnswer({ answer })}>Submit</button>
     </GradientBackground>
   );
 }
