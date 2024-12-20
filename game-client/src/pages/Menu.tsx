@@ -1,7 +1,14 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { Button } from "../components/Button";
 import { GradientBackground } from "../components/GradientBackground";
+import { Input } from "../components/Input";
 import { useEventsContext } from "../context/events";
+
+const StyledButton = styled(Button)`
+  width: 100%;
+  padding: 6px 20px;
+`;
 
 export function Menu(): JSX.Element {
   const { joinGame } = useEventsContext();
@@ -18,19 +25,19 @@ export function Menu(): JSX.Element {
   return (
     <GradientBackground>
       <form onSubmit={handleSubmit}>
-        <input
+        <Input
           type="text"
           value={roomCode}
           onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
           placeholder="Enter room code"
         />
-        <input
+        <Input
           type="text"
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
           placeholder="Enter nickname"
         />
-        <Button onClick={handleSubmit}>Join Game</Button>
+        <StyledButton onClick={handleSubmit}>Join Game</StyledButton>
       </form>
     </GradientBackground>
   );

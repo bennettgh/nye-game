@@ -14,9 +14,15 @@ const ButtonContainer = styled.button`
 export const Button = ({
   children,
   onClick,
+  ...props
 }: {
   children: React.ReactNode;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  props?: any;
 }) => {
-  return <ButtonContainer onClick={onClick}>{children}</ButtonContainer>;
+  return (
+    <ButtonContainer onClick={onClick} {...props}>
+      {children}
+    </ButtonContainer>
+  );
 };
