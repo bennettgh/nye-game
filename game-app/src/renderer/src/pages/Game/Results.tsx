@@ -2,7 +2,6 @@ import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Game } from '@renderer/context/types'
 import styled from 'styled-components'
-import { Answer } from './ResultsPage'
 
 const AnswersContainer = styled.div`
   max-width: 1200px;
@@ -19,6 +18,12 @@ const Container = styled.div`
 `
 
 const AnswerContainer = styled.div`
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+`
+
+const Answer = styled.div`
   background-color: white;
   padding: 10px;
   border-radius: 10px;

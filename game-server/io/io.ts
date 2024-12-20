@@ -39,13 +39,13 @@ const initIO = (server: http.Server) => {
       forwardMessage(socket, message)
     );
 
-    socket.on("PLAYER:SUBMIT_ANSWER", ({ answer }: { answer: string }) =>
-      submitAnswer(socket, answer)
-    );
     socket.on("PLAYER:SET_AVATAR", ({ avatarId }: { avatarId: string }) =>
       setAvatar(socket, avatarId)
     );
-    socket.on("PLAYER:VOTE_ANSWER", ({ userId }: { userId: string }) =>
+    socket.on("PLAYER:SUBMIT_ANSWER", ({ answer }: { answer: string }) =>
+      submitAnswer(socket, answer)
+    );
+    socket.on("PLAYER:SUBMIT_VOTE", ({ userId }: { userId: string }) =>
       submitVote(socket, userId)
     );
 
