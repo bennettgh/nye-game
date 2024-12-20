@@ -3,23 +3,22 @@ import styled from "styled-components";
 import { GradientBackground } from "../../components/GradientBackground";
 import { useEventsContext } from "../../context/events";
 import { useGameContext } from "../../context/game";
-import { Answer, RoundPhase } from "../../types";
+import { Answer } from "../../types";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 20px;
 `;
 
 const AnswersContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid red;
-  width: 100%;
+  width: 90%;
   gap: 12px;
+  max-width: 500px;
 `;
 
 const AnswerCard = styled.div`
@@ -27,10 +26,18 @@ const AnswerCard = styled.div`
   padding: 20px;
   border-radius: 10px;
   border: 2px solid black;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: bold;
   width: 100%;
   text-align: center;
+  font-family: "Arvo";
+`;
+
+const Title = styled.h2`
+  font-family: "Arvo";
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
 `;
 
 export function Voting(): JSX.Element {
@@ -48,7 +55,7 @@ export function Voting(): JSX.Element {
   return (
     <GradientBackground>
       <Container>
-        <p>Phase: {RoundPhase.VOTING}</p>
+        <Title>Vote for the best answer:</Title>
         {voteSubmitted ? (
           <p>Vote submitted</p>
         ) : (
