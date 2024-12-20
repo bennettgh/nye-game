@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Game } from "../../types";
+import { GradientBackground } from "../../components/GradientBackground";
+import { useEventsContext } from "../../context/events";
+import { useGameContext } from "../../context/game";
 
 const Container = styled.div`
   display: flex;
@@ -51,42 +53,38 @@ const Text = styled.p`
   text-align: center;
 `;
 
-export const Question = ({
-  gameState,
-  answer,
-  setAnswer,
-  onSubmit,
-}: {
-  gameState: Game;
-  answer: string;
-  setAnswer: (value: string) => void;
-  onSubmit: () => void;
-}) => {
+export const Question = () => {
+  const { gameState } = useGameContext();
+  const [answer, setAnswer] = useState("");
+  const { submitAnswer } = useEventsContext();
+
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
   const currentPrompt = gameState.rounds[gameState.rounds.length - 1].prompt;
 
   const handleSubmit = () => {
     setAnswerSubmitted(true);
-    onSubmit();
+    submitAnswer({ answer });
   };
 
   return (
-    <Container>
-      {answerSubmitted ? (
-        <Text>Answer submitted</Text>
-      ) : (
-        <>
-          <Prompt>{currentPrompt}</Prompt>
-          <H2>Enter your answer:</H2>
-          <Input
-            type="text"
-            placeholder="Start typin', poodle..."
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value.toUpperCase())}
-          />
-          <Button onClick={handleSubmit}>Submit</Button>
-        </>
-      )}
-    </Container>
+    <GradientBackground>
+      <Container>
+        {answerSubmitted ? (
+          <Text>Answer submitted</Text>
+        ) : (
+          <>
+            <Prompt>{currentPrompt}</Prompt>
+            <H2>Enter your answer:</H2>
+            <Input
+              type="text"
+              placeholder="Start typin', poodle..."
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value.toUpperCase())}
+            />
+            <Button onClick={handleSubmit}>Submit</Button>
+          </>
+        )}
+      </Container>
+    </GradientBackground>
   );
 };
