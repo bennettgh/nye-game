@@ -4,6 +4,8 @@ import { GradientBackground } from "../../components/GradientBackground";
 import { useEventsContext } from "../../context/events";
 import { useGameContext } from "../../context/game";
 import { RoundPhase } from "../../types";
+import { Intro } from "../Intro";
+import { Question } from "./Question";
 
 const Header = styled.h1`
   position: absolute;
@@ -39,7 +41,11 @@ export function Game(): JSX.Element {
 }
 
 function IntroPhase(): JSX.Element {
-  return <p>Phase: {RoundPhase.INTRO}</p>;
+  return (
+    <GradientBackground>
+      <Intro />
+    </GradientBackground>
+  );
 }
 
 function QuestionPhase(): JSX.Element {
@@ -48,7 +54,7 @@ function QuestionPhase(): JSX.Element {
 
   return (
     <GradientBackground>
-      <h2>Question Phase</h2>
+      <Question />
       <input
         type="text"
         placeholder="Enter your answer"
