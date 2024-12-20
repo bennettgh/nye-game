@@ -16,7 +16,7 @@ const Container = styled.div`
 const AnswersContainer = styled.div`
   max-width: 1200px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
   text-align: center;
   margin-bottom: 20px;
@@ -46,6 +46,11 @@ const TitleContainer = styled(motion.div)`
   margin-bottom: 40px;
 `
 
+const ResultText = styled(motion.p)`
+  font-size: 1.2rem;
+  font-weight: bold;
+`
+
 export const Outro = ({
   gameState,
   handleEndPhase
@@ -54,12 +59,21 @@ export const Outro = ({
   handleEndPhase: () => void
 }) => {
   const votes = gameState.rounds[gameState.rounds.length - 1].answers.map((answer) => answer.votes)
+  const maxVotes = Math.max(...votes.map((vote) => vote.length))
 
-  const winningAnswer = gameState.rounds[gameState.rounds.length - 1].answers.find(
-    (answer) => answer.votes.length === Math.max(...votes.map((vote) => vote.length))
+  // Find all answers with the maximum number of votes
+  const winningAnswers = gameState.rounds[gameState.rounds.length - 1].answers.filter(
+    (answer) => answer.votes.length === maxVotes
   )
 
-  const winningPlayer = gameState.players.find((player) => player.userId === winningAnswer?.userId)
+  const winningPlayers = winningAnswers.map((answer) =>
+    gameState.players.find((player) => player.userId === answer.userId)
+  )
+  const isTie = winningPlayers.length > 1
+
+  // Calculate when the last answer finishes animating
+  const lastAnswerDelay = 2 + (gameState.rounds[gameState.rounds.length - 1].answers.length - 1) * 3
+  const resultTextDelay = lastAnswerDelay + 1.5 // Add 0.5s after last answer
 
   return (
     <GradientBackground>
@@ -78,7 +92,7 @@ export const Outro = ({
                 type: 'spring',
                 stiffness: 260,
                 damping: 20,
-                delay: 2 + index * 3 // 2 second initial delay, then 2 seconds between each answer
+                delay: 2 + index * 3 // 2 second initial delay, then 3 seconds between each answer
               }}
             >
               {answer.answer}
@@ -91,12 +105,23 @@ export const Outro = ({
             </Answer>
           ))}
         </AnswersContainer>
-        {winningPlayer && winningAnswer && (
-          <p>
-            The winner is {winningPlayer.nickname} with {winningAnswer.votes.length} votes
-          </p>
-        )}
-        {!winningPlayer && !winningAnswer && <p>No winner</p>}
+        <ResultText
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: resultTextDelay }}
+        >
+          {isTie ? (
+            <>
+              It's a tie! {winningAnswers[0].votes.length} vote
+              {winningAnswers[0].votes.length > 1 ? 's' : ''} each!
+            </>
+          ) : (
+            <>
+              The winner is {winningPlayers[0]?.nickname} with {winningAnswers[0]?.votes.length}{' '}
+              votes
+            </>
+          )}
+        </ResultText>
       </Container>
       <DevButton onClick={handleEndPhase}>End phase</DevButton>
     </GradientBackground>
