@@ -1,11 +1,11 @@
 import { useGameContext } from '@renderer/context/game'
 import { useEvents } from '@renderer/context/io'
 import { RoundPhase } from '@renderer/context/types'
-import { IntroPage } from './IntroPage'
-import { OutroPage } from './OutroPage'
-import { QuestionPage } from './QuestionPage'
-import { ResultsPage } from './ResultsPage'
-import { VotingPage } from './VotingPage'
+import { Intro } from './Intro'
+import { Outro } from './Outro'
+import { Question } from './Question'
+import { Results } from './Results'
+import { Voting } from './Voting'
 
 export function GameComponent(): JSX.Element {
   const { gameState } = useGameContext()
@@ -17,18 +17,16 @@ export function GameComponent(): JSX.Element {
 
   const phase = gameState.rounds[gameState.rounds.length - 1].phase
 
-  console.log('phase', phase)
-
   if (phase === RoundPhase.INTRO) {
-    return <IntroPage gameState={gameState} handleEndPhase={handleEndPhase} />
-  } else if (phase === RoundPhase.ANSWER) {
-    return <QuestionPage gameState={gameState} handleEndPhase={handleEndPhase} />
+    return <Intro gameState={gameState} handleEndPhase={handleEndPhase} />
+  } else if (phase === RoundPhase.QUESTION) {
+    return <Question gameState={gameState} handleEndPhase={handleEndPhase} />
   } else if (phase === RoundPhase.RESULTS) {
-    return <ResultsPage gameState={gameState} handleEndPhase={handleEndPhase} />
+    return <Results gameState={gameState} handleEndPhase={handleEndPhase} />
   } else if (phase === RoundPhase.VOTING) {
-    return <VotingPage gameState={gameState} handleEndPhase={handleEndPhase} />
+    return <Voting gameState={gameState} handleEndPhase={handleEndPhase} />
   } else if (phase === RoundPhase.OUTRO) {
-    return <OutroPage gameState={gameState} handleEndPhase={handleEndPhase} />
+    return <Outro gameState={gameState} handleEndPhase={handleEndPhase} />
   }
 
   return <div>Unknown phase</div>

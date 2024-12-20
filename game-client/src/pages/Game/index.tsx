@@ -30,7 +30,7 @@ export function Game(): JSX.Element {
     <div>
       <Header>Roflballs</Header>
       {phase === RoundPhase.INTRO && <IntroPhase />}
-      {phase === RoundPhase.ANSWER && <AnswerPhase />}
+      {phase === RoundPhase.QUESTION && <QuestionPhase />}
       {phase === RoundPhase.RESULTS && <ResultsPhase />}
       {phase === RoundPhase.VOTING && <VotingPhase />}
       {phase === RoundPhase.OUTRO && <OutroPhase />}
@@ -42,13 +42,13 @@ function IntroPhase(): JSX.Element {
   return <p>Phase: {RoundPhase.INTRO}</p>;
 }
 
-function AnswerPhase(): JSX.Element {
+function QuestionPhase(): JSX.Element {
   const { submitAnswer } = useEventsContext();
   const [answer, setAnswer] = useState("");
 
   return (
     <GradientBackground>
-      <h2>Answer Phase</h2>
+      <h2>Question Phase</h2>
       <input
         type="text"
         placeholder="Enter your answer"
