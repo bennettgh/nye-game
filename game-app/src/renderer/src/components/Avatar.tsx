@@ -11,8 +11,18 @@ const avatars = [
   { id: '8', avatar: '👩‍🦲' }
 ]
 
-const StyledAvatar = styled.p<{ opacity?: number }>`
+const StyledAvatar = styled.div<{ opacity?: number }>`
   opacity: ${({ opacity }) => opacity || 1};
+`
+
+const Image = styled.p`
+  font-size: 42px;
+  text-align: center;
+`
+
+const Nickname = styled.p`
+  font-size: 16px;
+  text-align: center;
 `
 
 export const Avatar = ({
@@ -25,5 +35,10 @@ export const Avatar = ({
   opacity?: number
 }) => {
   const avatar = avatars.find((avatar) => avatar.id === avatarId)?.avatar || ''
-  return <StyledAvatar opacity={opacity}>{`${nickname} ${avatar}`}</StyledAvatar>
+  return (
+    <StyledAvatar opacity={opacity}>
+      <Image>{avatar}</Image>
+      <Nickname>{nickname}</Nickname>
+    </StyledAvatar>
+  )
 }

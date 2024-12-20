@@ -1,4 +1,4 @@
-import { Avatar } from '@renderer/components/Avatar'
+import { AvatarRow } from '@renderer/components/AvatarRow'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Title } from '@renderer/components/Title'
@@ -42,19 +42,7 @@ export const Voting = ({
     <GradientBackground>
       <Container>
         <Title>Vote For Your Favorite Answer</Title>
-        <AvatarsContainer>
-          {gameState.players.map((user) => {
-            const opacity = voted.includes(user) ? 1 : 0.5
-            return (
-              <Avatar
-                avatarId={user.avatarId}
-                nickname={user.nickname}
-                opacity={opacity}
-                key={user.userId}
-              />
-            )
-          })}
-        </AvatarsContainer>
+        <AvatarRow active={voted} />
       </Container>
       <DevButton onClick={handleEndPhase}>End phase</DevButton>
     </GradientBackground>

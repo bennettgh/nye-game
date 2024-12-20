@@ -1,4 +1,4 @@
-import { Avatar } from '@renderer/components/Avatar'
+import { AvatarRow } from '@renderer/components/AvatarRow'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Question as QuestionComponent } from '@renderer/components/Question'
@@ -49,12 +49,7 @@ export const Question = ({
         <QuestionContainer>
           <QuestionComponent text={gameState.rounds[gameState.rounds.length - 1].prompt} />
         </QuestionContainer>
-        <AvatarsContainer>
-          {gameState.players.map((user) => {
-            const opacity = answered.includes(user) ? 1 : 0.5
-            return <Avatar avatarId={user.avatarId} nickname={user.nickname} opacity={opacity} />
-          })}
-        </AvatarsContainer>
+        <AvatarRow active={answered} />
       </Container>
       <DevButton onClick={handleEndPhase}>End phase</DevButton>
     </GradientBackground>
