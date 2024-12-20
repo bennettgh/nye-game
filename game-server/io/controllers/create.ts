@@ -6,6 +6,22 @@ import { generateNewRoomCode } from "../../utils";
 import { dispatchUpdateRoom } from "../events";
 import { prompts } from "../../config/prompt";
 
+let savedPrompts: string[] = [];
+
+function selectPrompts() {
+  const randomIndices = new Set<number>();
+  while (randomIndices.size < 3) {
+    const randomIndex = Math.floor(Math.random() * prompts.length);
+    randomIndices.add(randomIndex);
+  }
+  savedPrompts = Array.from(randomIndices).map((index) => prompts[index]);
+  console.log("saved prompts: ", savedPrompts);
+}
+
+function getNewPrompt(roundNumber: number) {
+  return savedPrompts[roundNumber - 1];
+}
+
 export function createGame(socket: Socket) {
   console.log("Creating new game");
   const newRoomCode = generateNewRoomCode();
@@ -20,6 +36,9 @@ export function createGame(socket: Socket) {
     scores: {},
   };
   games[newRoomCode] = newGame;
+
+  selectPrompts();
+
   dispatchUpdateRoom(newRoomCode);
 }
 
@@ -66,7 +85,7 @@ function createRound(game: Game) {
   const round = {
     roundNumber,
     phase: RoundPhase.INTRO,
-    prompt: getNewPrompt(),
+    prompt: getNewPrompt(roundNumber),
     answers: [],
   };
   return round;
@@ -88,11 +107,6 @@ function handleResultsPhaseOver(game: Game) {
 
 function handleEndGame(game: Game) {
   game.gameOver = true;
-}
-
-function getNewPrompt() {
-  const randomIndex = Math.floor(Math.random() * prompts.length);
-  return prompts[randomIndex];
 }
 
 export function submitAnswer(socket: Socket, answer: string) {

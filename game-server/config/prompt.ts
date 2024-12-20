@@ -4,4 +4,6 @@ export const prompts: string[] = [
   "The person closest to the TV got you a gift - it's a _______",
   "Knock knock knock, ______ is at the door",
   "Frog had a rough day at Sobotec, and ordered _______ on UberEats",
+  "Clap clap clap on a poodles fat ass _____",
+  "You ordered a burger and accidentally got this as a condiment",
 ];
