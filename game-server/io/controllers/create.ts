@@ -81,8 +81,8 @@ export function nextPhase(socket: Socket) {
     handleIntroPhaseOver(game);
   } else if (currentPhase === RoundPhase.QUESTION) {
     handleQuestionPhaseOver(game);
-  } else if (currentPhase === RoundPhase.RESULTS) {
-    handleResultsPhaseOver(game);
+  } else if (currentPhase === RoundPhase.ANSWERS) {
+    handleAnswersPhaseOver(game);
   } else if (currentPhase === RoundPhase.VOTING) {
     handleVotingPhaseOver(game);
   } else if (currentPhase === RoundPhase.OUTRO) {
@@ -109,10 +109,10 @@ function handleIntroPhaseOver(game: Game) {
 
 function handleQuestionPhaseOver(game: Game) {
   const round = game.rounds[game.rounds.length - 1];
-  round.phase = RoundPhase.RESULTS;
+  round.phase = RoundPhase.ANSWERS;
 }
 
-function handleResultsPhaseOver(game: Game) {
+function handleAnswersPhaseOver(game: Game) {
   const round = game.rounds[game.rounds.length - 1];
   round.phase = RoundPhase.VOTING;
 }

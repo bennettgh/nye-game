@@ -1,4 +1,4 @@
-import { Avatar } from '@renderer/components/Avatar'
+import { AvatarRow } from '@renderer/components/AvatarRow'
 import { Button } from '@renderer/components/Button'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { useGameContext } from '@renderer/context/game'
@@ -22,7 +22,8 @@ const RoomCode = styled.p`
   font-style: normal;
   font-size: 42px;
   text-align: center;
-  margin: 40px 0;
+  margin-top: 80px;
+  margin-bottom: 40px;
 `
 
 const Container = styled.div`
@@ -33,13 +34,8 @@ const Container = styled.div`
   height: 100%;
 `
 
-const PlayersContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
+const StyledButton = styled(Button)`
+  margin-top: 40px;
 `
 
 export function Lobby(): JSX.Element {
@@ -54,13 +50,11 @@ export function Lobby(): JSX.Element {
     <GradientBackground>
       <Container>
         <RoomCode>{gameState?.roomCode}</RoomCode>
-        <PlayersContainer>
-          {gameState.players.map((player, index) => (
-            <Avatar key={index} avatarId={player.avatarId} nickname={player.nickname} />
-          ))}
-        </PlayersContainer>
-        {gameState.players.length > 0 && <Button onClick={handleStartGame}>Start Game</Button>}
+        <AvatarRow active={gameState.players} />
         {!gameState.players.length && <p>Waiting for players...</p>}
+        {gameState.players.length > 0 && (
+          <StyledButton onClick={handleStartGame}>Start Game</StyledButton>
+        )}
       </Container>
     </GradientBackground>
   )

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ResultsText = styled.p`
+const AnswersText = styled.p`
   color: #fff;
   font-family: "Arvo";
   font-size: 30px;
@@ -9,10 +9,10 @@ const ResultsText = styled.p`
   margin: 0 20px;
 `;
 
-export const Results = () => {
+export const Answers = () => {
   return (
-    <ResultsText>
+    <AnswersText>
       Results are in - time to clap clap clap on a poodles fat ass
-    </ResultsText>
+    </AnswersText>
   );
 };

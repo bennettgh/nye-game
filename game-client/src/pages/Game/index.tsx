@@ -9,8 +9,8 @@ import {
   RoundPhase,
 } from "../../types";
 import { Intro } from "../Intro";
+import { Answers } from "./Answers";
 import { Question } from "./Question";
-import { Results } from "../Results";
 
 const Header = styled.h1`
   position: absolute;
@@ -66,7 +66,7 @@ export function Game(): JSX.Element {
       <Header>Roflballs</Header>
       {phase === RoundPhase.INTRO && <IntroPhase />}
       {phase === RoundPhase.QUESTION && <QuestionPhase />}
-      {phase === RoundPhase.RESULTS && <ResultsPhase />}
+      {phase === RoundPhase.ANSWERS && <AnswersPhase />}
       {phase === RoundPhase.VOTING && <VotingPhase gameState={gameState} />}
       {phase === RoundPhase.OUTRO && <OutroPhase />}
     </div>
@@ -103,10 +103,10 @@ function QuestionPhase(): JSX.Element {
   );
 }
 
-function ResultsPhase(): JSX.Element {
+function AnswersPhase(): JSX.Element {
   return (
     <GradientBackground>
-      <Results />
+      <Answers />
     </GradientBackground>
   );
 }

@@ -27,7 +27,7 @@ const Answer = styled.div`
   font-weight: bold;
 `
 
-export const Results = ({
+export const Answers = ({
   gameState,
   handleEndPhase
 }: {
