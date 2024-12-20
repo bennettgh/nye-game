@@ -20,13 +20,25 @@ const RoomCode = styled.p`
   font-weight: 800;
   font-style: normal;
   font-size: 42px;
-  display: block;
+  text-align: center;
+  margin: 40px 0;
 `
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`
+
+const PlayersContainer = styled.div`
+  display: flex;
+  flex-direction: row;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
 `
 
 export function Lobby(): JSX.Element {
@@ -41,14 +53,17 @@ export function Lobby(): JSX.Element {
     <GradientBackground>
       <Container>
         <RoomCode>{gameState?.roomCode}</RoomCode>
-        {gameState.players.map((player) => (
-          <div>
-            <p>
-              {player.nickname} {avatars.find((avatar) => avatar.id === player.avatarId)?.avatar}
-            </p>
-          </div>
-        ))}
-        <Button onClick={handleStartGame}>Start Game</Button>
+        <PlayersContainer>
+          {gameState.players.map((player) => (
+            <div key={player.id}>
+              <p>
+                {player.nickname} {avatars.find((avatar) => avatar.id === player.avatarId)?.avatar}
+              </p>
+            </div>
+          ))}
+        </PlayersContainer>
+        {gameState.players.length > 1 && <Button onClick={handleStartGame}>Start Game</Button>}
+        {!gameState.players.length && <p>Waiting for players...</p>}
       </Container>
     </GradientBackground>
   )
