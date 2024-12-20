@@ -1,7 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { Game } from "../../types";
-import { useState } from "react";
-import { useEventsContext } from "../../context/events";
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +45,12 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Text = styled.p`
+  font-family: "Arvo";
+  color: #fff;
+  text-align: center;
+`;
+
 export const Question = ({
   gameState,
   answer,
@@ -57,19 +62,31 @@ export const Question = ({
   setAnswer: (value: string) => void;
   onSubmit: () => void;
 }) => {
+  const [answerSubmitted, setAnswerSubmitted] = useState(false);
   const currentPrompt = gameState.rounds[gameState.rounds.length - 1].prompt;
+
+  const handleSubmit = () => {
+    setAnswerSubmitted(true);
+    onSubmit();
+  };
 
   return (
     <Container>
-      <Prompt>{currentPrompt}</Prompt>
-      <H2>Enter your answer:</H2>
-      <Input
-        type="text"
-        placeholder="Start typin', poodle..."
-        value={answer}
-        onChange={(e) => setAnswer(e.target.value.toUpperCase())}
-      />
-      <Button onClick={onSubmit}>Submit</Button>
+      {answerSubmitted ? (
+        <Text>Answer submitted</Text>
+      ) : (
+        <>
+          <Prompt>{currentPrompt}</Prompt>
+          <H2>Enter your answer:</H2>
+          <Input
+            type="text"
+            placeholder="Start typin', poodle..."
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value.toUpperCase())}
+          />
+          <Button onClick={handleSubmit}>Submit</Button>
+        </>
+      )}
     </Container>
   );
 };
