@@ -18,6 +18,9 @@ export const useHandleEvent = () => {
       case EventType.PLAYER_ANSWERED:
         playSound('pop')
         break
+      case EventType.PLAYER_SET_AVATAR:
+        playSound('yap')
+        break
     }
   }
 

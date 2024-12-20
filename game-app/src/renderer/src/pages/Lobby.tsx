@@ -60,6 +60,7 @@ export function Lobby(): JSX.Element {
   }, [])
 
   const handleStartGame = () => {
+    playSound('yap')
     startGame()
   }
 

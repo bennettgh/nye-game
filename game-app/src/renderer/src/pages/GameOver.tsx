@@ -1,7 +1,9 @@
 import { Avatar } from '@renderer/components/Avatar'
+import { useEffect } from 'react'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Title } from '@renderer/components/Title'
 import { useGameContext } from '@renderer/context/game'
+import { useSoundContext } from '@renderer/context/sound'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
@@ -90,6 +92,15 @@ const Points = styled.p`
 
 export function GameOver(): JSX.Element {
   const { gameState } = useGameContext()
+  const { playSound } = useSoundContext()
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      playSound('sfxWinning')
+    }, 1500)
+
+    return () => clearTimeout(timer) // Cleanup the timer on component unmount
+  }, [playSound])
 
   // Calculate total votes for each player
   const totalVotes = gameState.players.reduce(

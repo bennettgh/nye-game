@@ -6,6 +6,8 @@ import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
 import Yap from '../assets/sfx/yap-sfx.mp3'
 import Pop from '../assets/sfx/pop.mp3'
+import Ribbet from '../assets/sfx/ribbet-sfx.mp3'
+import SfxWinning from '../assets/sfx/win-sound.mp3'
 
 const sounds = {
   musicStartGame: new Howl({
@@ -32,6 +34,12 @@ const sounds = {
   }),
   pop: new Howl({
     src: [Pop]
+  }),
+  ribbet: new Howl({
+    src: [Ribbet]
+  }),
+  sfxWinning: new Howl({
+    src: [SfxWinning]
   })
 }
 
