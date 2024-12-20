@@ -1,9 +1,14 @@
 import { Howler } from 'howler'
 import React, { ReactNode, createContext, useContext, useState } from 'react'
 import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited loop.mp3'
+import MusicStartGame from '../assets/music/start-game-screen.mp3'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
 
 const sounds = {
+  musicStartGame: new Howl({
+    src: [MusicStartGame],
+    loop: true
+  }),
   musicLobby: new Howl({
     src: [MusicLobby],
     loop: true

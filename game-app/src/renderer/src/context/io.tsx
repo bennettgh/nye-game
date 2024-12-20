@@ -53,6 +53,8 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
 
     socket.on('SERVER:UPDATE_ROOM', (game: Game) => {
       setGameState(game)
+      // const previousGameState = gameState
+      // processGameUpdateForSoundEffects(previousGameState, game)
     })
   }, [socket])
 
@@ -68,3 +70,15 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
 const useEvents = () => useContext(EventsContext)
 
 export { SocketProvider, useEvents }
+
+// function processGameUpdateForSoundEffects(prevGameState: Game, game: Game) {
+//   const playerJoined = game.players.length > prevGameState.players.length
+//   const playerLeft = game.players.length < prevGameState.players.length
+//   const playerAnswered = game.rounds[game.rounds.length - 1].answers.length > prevGameState.rounds[game.rounds.length - 1].answers.length
+
+//   const total
+
+//   const currentRound = game.rounds[game.rounds.length - 1]
+//   const currentRoundAnswers = currentRound.answers
+//   return currentRoundAnswers
+// }

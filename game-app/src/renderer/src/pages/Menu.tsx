@@ -1,11 +1,10 @@
-import styled from 'styled-components'
 import { Button } from '@renderer/components/Button'
 import { GradientBackground } from '@renderer/components/GradientBackground'
+import { useSoundContext } from '@renderer/context/sound'
 import { useEffect } from 'react'
-import { useEvents } from '../context/io'
-import { Howl } from 'howler'
-import music from '../assets/music/start-game-screen.mp3'
+import styled from 'styled-components'
 import frog from '../assets/gifs/dancing-frog.gif'
+import { useEvents } from '../context/io'
 
 const Container = styled.div`
   display: flex;
@@ -18,18 +17,13 @@ const Gif = styled.img``
 
 export function Menu(): JSX.Element {
   const { createGame } = useEvents()
+  const { playSound, stopSound } = useSoundContext()
 
   useEffect(() => {
-    const sound = new Howl({
-      src: music,
-      loop: true,
-      volume: 1
-    })
-
-    sound.play()
+    playSound('musicStartGame')
 
     return () => {
-      sound.stop()
+      stopSound('musicStartGame')
     }
   }, [])
 
