@@ -167,7 +167,9 @@ export function submitVote(socket: Socket, votedForUserId: string) {
   const votedFor = games[roomCode].players.find(
     (player) => player.userId === votedForUserId
   );
+
   const round = games[roomCode].rounds[games[roomCode].rounds.length - 1];
+
   const answer = round.answers.find(
     (answer) => answer.userId === votedForUserId
   );
@@ -179,5 +181,17 @@ export function submitVote(socket: Socket, votedForUserId: string) {
       userId: self.userId,
     });
   }
-  dispatchUpdateRoom(roomCode);
+
+  const votesSum = round.answers.reduce(
+    (sum, answer) => sum + answer.votes.length,
+    0
+  );
+
+  const allVotesAreIn = votesSum === games[roomCode].players.length;
+
+  if (allVotesAreIn) {
+    nextPhase(socket);
+  } else {
+    dispatchUpdateRoom(roomCode);
+  }
 }
