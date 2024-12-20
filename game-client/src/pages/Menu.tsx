@@ -66,7 +66,7 @@ export function Menu(): JSX.Element {
         <Input
           type="text"
           value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
+          onChange={(e) => setNickname(e.target.value.toUpperCase())}
           maxLength={maxNicknameLength}
           placeholder="Enter nickname"
         />

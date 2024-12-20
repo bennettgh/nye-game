@@ -67,7 +67,7 @@ export const Question = ({
         type="text"
         placeholder="Start typin', poodle..."
         value={answer}
-        onChange={(e) => setAnswer(e.target.value)}
+        onChange={(e) => setAnswer(e.target.value.toUpperCase())}
       />
       <Button onClick={onSubmit}>Submit</Button>
     </Container>
