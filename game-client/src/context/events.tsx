@@ -9,6 +9,7 @@ const openNewSocketConnection = () => io(config.backendURL);
 type EventsContextType = {
   joinGame: (payload: { roomCode: string; nickname: string }) => void;
   submitAnswer: (payload: { answer: string }) => void;
+  selectAvatar: (payload: { avatarId: string }) => void;
 };
 
 const EventsContext = createContext({} as EventsContextType);
@@ -38,6 +39,11 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     socket.emit("PLAYER:SUBMIT_ANSWER", payload);
   };
 
+  const selectAvatar = (payload: { avatarId: string }) => {
+    if (!socket) return;
+    socket.emit("PLAYER:SET_AVATAR", payload);
+  };
+
   useEffect(() => {
     if (!socket) return;
 
@@ -50,6 +56,7 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
   const value: EventsContextType = {
     joinGame,
     submitAnswer,
+    selectAvatar,
   };
 
   return (

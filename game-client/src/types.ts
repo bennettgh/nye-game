@@ -6,6 +6,7 @@ export type User = {
 
 export type Player = User & {
   nickname: string;
+  avatarId?: string;
 };
 
 export type Answer = {
