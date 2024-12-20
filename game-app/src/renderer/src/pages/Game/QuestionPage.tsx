@@ -1,4 +1,5 @@
 import { GradientBackground } from '@renderer/components/GradientBackground'
+import { Question } from '@renderer/components/Question'
 import { Game } from '@renderer/context/types'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -14,11 +15,9 @@ const Timer = styled.div`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 `
 
-const Question = styled.p`
-  font-size: 42px;
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+const QuestionContainer = styled.div`
+  max-width: 700px;
+  width: 100%;
 `
 
 export const QuestionPage = ({
@@ -28,7 +27,7 @@ export const QuestionPage = ({
   gameState: Game
   handleEndPhase: () => void
 }): JSX.Element => {
-  const [timeLeft, setTimeLeft] = useState(30)
+  const [timeLeft, setTimeLeft] = useState(10)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,7 +46,9 @@ export const QuestionPage = ({
   return (
     <GradientBackground>
       <Timer>{timeLeft}s</Timer>
-      <Question>{gameState.rounds[gameState.rounds.length - 1].prompt}</Question>
+      <QuestionContainer>
+        <Question text={gameState.rounds[gameState.rounds.length - 1].prompt} />
+      </QuestionContainer>
     </GradientBackground>
   )
 }

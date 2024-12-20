@@ -17,7 +17,9 @@ export type Answer = {
 export enum RoundPhase {
   INTRO = 'intro',
   ANSWER = 'answer',
-  RESULTS = 'results'
+  RESULTS = 'results',
+  VOTING = 'voting',
+  OUTRO = 'outro'
 }
 
 export type Round = {

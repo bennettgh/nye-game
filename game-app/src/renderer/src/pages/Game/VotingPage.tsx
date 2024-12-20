@@ -2,7 +2,7 @@ import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Game } from '@renderer/context/types'
 import { useEffect, useState } from 'react'
 
-export const IntroPage = ({
+export const VotingPage = ({
   gameState,
   handleEndPhase
 }: {
@@ -27,8 +27,8 @@ export const IntroPage = ({
 
   return (
     <GradientBackground>
-      <p>Intro</p>
       <p>Time remaining: {timeLeft}s</p>
+      <p>Voting</p>
     </GradientBackground>
   )
 }

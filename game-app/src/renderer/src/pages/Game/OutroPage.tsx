@@ -2,7 +2,7 @@ import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Game } from '@renderer/context/types'
 import { useEffect, useState } from 'react'
 
-export const IntroPage = ({
+export const OutroPage = ({
   gameState,
   handleEndPhase
 }: {
@@ -15,6 +15,7 @@ export const IntroPage = ({
     const interval = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
+          console.log('outro ended')
           handleEndPhase()
           return 0
         }
@@ -27,7 +28,7 @@ export const IntroPage = ({
 
   return (
     <GradientBackground>
-      <p>Intro</p>
+      <p>Outro</p>
       <p>Time remaining: {timeLeft}s</p>
     </GradientBackground>
   )
