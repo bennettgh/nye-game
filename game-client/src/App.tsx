@@ -1,4 +1,3 @@
-import "./App.css";
 import { EventsProvider } from "./context/events";
 import { GameProvider } from "./context/game";
 import { Router } from "./Router";
