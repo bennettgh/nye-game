@@ -61,7 +61,7 @@ export function startGame(socket: Socket) {
   const game = games[roomCode];
   game.started = true;
   game.rounds.push(createRound(game));
-  dispatchUpdateRoom(game.roomCode, EventType.PLAYER_JOINED);
+  dispatchUpdateRoom(game.roomCode);
 }
 
 export function nextPhase(socket: Socket) {
