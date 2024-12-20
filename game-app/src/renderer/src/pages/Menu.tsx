@@ -1,19 +1,37 @@
+import styled from 'styled-components'
 import { Button } from '@renderer/components/Button'
 import { GradientBackground } from '@renderer/components/GradientBackground'
-import { useSoundContext } from '@renderer/context/sound'
 import { useEffect } from 'react'
 import { useEvents } from '../context/io'
+import { Howl } from 'howler'
+import music from '../assets/music/start-game-screen.mp3'
+import frog from '../assets/gifs/dancing-frog.gif'
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const Gif = styled.img``
 
 export function Menu(): JSX.Element {
   const { createGame } = useEvents()
-  const { playSound, stopSound } = useSoundContext()
 
   useEffect(() => {
-    // playSound('musicLobby')
+    const sound = new Howl({
+      src: music,
+      loop: true,
+      volume: 1
+    })
+
+    sound.play()
+
     return () => {
-      stopSound('musicLobby')
+      sound.stop()
     }
-  }, [playSound, stopSound])
+  }, [])
 
   const handleCreateRoom = () => {
     createGame()
@@ -21,7 +39,10 @@ export function Menu(): JSX.Element {
 
   return (
     <GradientBackground>
-      <Button onClick={handleCreateRoom}>Create Room</Button>
+      <Container>
+        <Button onClick={handleCreateRoom}>Create Room</Button>
+        <Gif src={frog} />
+      </Container>
     </GradientBackground>
   )
 }
