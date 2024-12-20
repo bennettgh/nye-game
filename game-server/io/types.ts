@@ -7,4 +7,5 @@ export enum SocketEvent {
 
 export type Player = User & {
   nickname: string;
+  avatarId?: string;
 };

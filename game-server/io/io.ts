@@ -4,6 +4,7 @@ import {
   createGame,
   joinGame,
   nextPhase,
+  setAvatar,
   startGame,
   submitAnswer,
 } from "./controllers/create";
@@ -34,6 +35,9 @@ const initIO = (server: http.Server) => {
 
     socket.on("PLAYER:SUBMIT_ANSWER", ({ answer }: { answer: string }) =>
       submitAnswer(socket, answer)
+    );
+    socket.on("PLAYER:SET_AVATAR", ({ avatarId }: { avatarId: string }) =>
+      setAvatar(socket, avatarId)
     );
 
     socket.on(

@@ -114,3 +114,13 @@ export function submitAnswer(socket: Socket, answer: string) {
     dispatchUpdateRoom(game.roomCode);
   }
 }
+
+export function setAvatar(socket: Socket, avatarId: string) {
+  const { roomCode, userId } = getUserBySocketId(socket.id);
+  const game = games[roomCode];
+  const player = game.players.find((player) => player.userId === userId);
+  if (player) {
+    player.avatarId = avatarId;
+  }
+  dispatchUpdateRoom(game.roomCode);
+}
