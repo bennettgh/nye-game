@@ -16,6 +16,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `
 
 const Answer = styled.div`
@@ -25,6 +26,11 @@ const Answer = styled.div`
   border: 2px solid black;
   font-size: 1rem;
   font-weight: bold;
+`
+
+const TitleContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
 `
 
 export const Answers = ({
@@ -39,7 +45,9 @@ export const Answers = ({
   return (
     <GradientBackground>
       <Container>
-        <Title>Let's see those answers!</Title>
+        <TitleContainer>
+          <Title fontSize="2rem">{gameState.rounds[gameState.rounds.length - 1].prompt}</Title>
+        </TitleContainer>
         <AnswersContainer>
           {currentRoundAnswers.map((answer, index) => (
             <Answer key={index}>{answer.answer}</Answer>

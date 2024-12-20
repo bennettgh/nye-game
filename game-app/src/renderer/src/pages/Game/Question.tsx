@@ -14,18 +14,10 @@ const Container = styled.div`
 `
 
 const QuestionContainer = styled.div`
-  max-width: 700px;
+  max-width: 1200px;
   width: 100%;
   margin-top: 80px;
   margin-bottom: 40px;
-`
-
-const AvatarsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
 `
 
 export const Question = ({

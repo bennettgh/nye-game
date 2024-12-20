@@ -21,7 +21,6 @@ const Image = styled.p`
 `
 
 const Nickname = styled.p`
-  font-size: 16px;
   text-align: center;
 `
 

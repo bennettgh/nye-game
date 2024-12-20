@@ -4,6 +4,7 @@ const ButtonContainer = styled.button`
   font-family: 'Arvo';
   font-weight: 800;
   font-style: normal;
+  font-size: 1rem;
   display: block;
   border-radius: 6px;
   border: unset;

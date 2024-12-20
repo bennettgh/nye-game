@@ -20,7 +20,7 @@ const RoomCode = styled.p`
   font-family: 'Arvo';
   font-weight: 800;
   font-style: normal;
-  font-size: 42px;
+  font-size: 4rem;
   text-align: center;
   margin-top: 80px;
   margin-bottom: 40px;
