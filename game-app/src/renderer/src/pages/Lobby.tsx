@@ -1,3 +1,4 @@
+import { Button } from '@renderer/components/Button'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { useGameContext } from '@renderer/context/game'
 import { useEvents } from '@renderer/context/io'
@@ -20,16 +21,6 @@ const RoomCode = styled.p`
   font-style: normal;
   font-size: 42px;
   display: block;
-`
-
-const Button = styled.button`
-  font-family: 'Arvo';
-  font-weight: 800;
-  font-style: normal;
-  display: block;
-  border-radius: 6px;
-  border: unset;
-  border: 1px solid #000;
 `
 
 const Container = styled.div`

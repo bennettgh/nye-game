@@ -10,6 +10,12 @@ const ButtonContainer = styled.button`
   border: 1px solid #000;
 `
 
-export const Button = ({ children }: { children: React.ReactNode }) => {
-  return <ButtonContainer>{children}</ButtonContainer>
+export const Button = ({
+  children,
+  onClick
+}: {
+  children: React.ReactNode
+  onClick: () => void
+}) => {
+  return <ButtonContainer onClick={onClick}>{children}</ButtonContainer>
 }
