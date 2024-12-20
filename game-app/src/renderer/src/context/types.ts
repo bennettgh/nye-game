@@ -15,7 +15,7 @@ export type Vote = {
 export type Answer = {
   userId: string
   answer: string
-  votes: string[]
+  votes: Vote[]
 }
 
 export enum RoundPhase {
