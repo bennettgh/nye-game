@@ -10,6 +10,7 @@ type EventsContextType = {
   joinGame: (payload: { roomCode: string; nickname: string }) => void;
   submitAnswer: (payload: { answer: string }) => void;
   selectAvatar: (payload: { avatarId: string }) => void;
+  submitVote: (payload: { userId: string }) => void;
 };
 
 const EventsContext = createContext({} as EventsContextType);
@@ -39,6 +40,11 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     socket.emit("PLAYER:SUBMIT_ANSWER", payload);
   };
 
+  const submitVote = (payload: { userId: string }) => {
+    if (!socket) return;
+    socket.emit("PLAYER:SUBMIT_VOTE", payload);
+  };
+
   const selectAvatar = (payload: { avatarId: string }) => {
     if (!socket) return;
     socket.emit("PLAYER:SET_AVATAR", payload);
@@ -57,6 +63,7 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
     joinGame,
     submitAnswer,
     selectAvatar,
+    submitVote,
   };
 
   return (

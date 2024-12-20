@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { GradientBackground } from "../../components/GradientBackground";
 import { useEventsContext } from "../../context/events";
 import { useGameContext } from "../../context/game";
-import { RoundPhase } from "../../types";
+import {
+  Answer as AnswerType,
+  Game as GameType,
+  RoundPhase,
+} from "../../types";
 import { Intro } from "../Intro";
 import { Question } from "./Question";
 
@@ -23,6 +27,34 @@ const Header = styled.h1`
   top: 0;
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+`;
+
+const AnswersContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid red;
+  width: 100%;
+  gap: 12px;
+`;
+
+const Answer = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+`;
+
 export function Game(): JSX.Element {
   const { gameState } = useGameContext();
 
@@ -34,7 +66,7 @@ export function Game(): JSX.Element {
       {phase === RoundPhase.INTRO && <IntroPhase />}
       {phase === RoundPhase.QUESTION && <QuestionPhase />}
       {phase === RoundPhase.RESULTS && <ResultsPhase />}
-      {phase === RoundPhase.VOTING && <VotingPhase />}
+      {phase === RoundPhase.VOTING && <VotingPhase gameState={gameState} />}
       {phase === RoundPhase.OUTRO && <OutroPhase />}
     </div>
   );
@@ -69,8 +101,29 @@ function ResultsPhase(): JSX.Element {
   return <p>Phase: {RoundPhase.RESULTS}</p>;
 }
 
-function VotingPhase(): JSX.Element {
-  return <p>Phase: {RoundPhase.VOTING}</p>;
+function VotingPhase({ gameState }: { gameState: GameType }): JSX.Element {
+  const { submitVote } = useEventsContext();
+  const answers = gameState.rounds[gameState.rounds.length - 1].answers;
+
+  const handleSubmitVote = (answer: AnswerType) => {
+    console.log("submitVote", answer);
+    submitVote({ userId: answer.userId });
+  };
+
+  return (
+    <GradientBackground>
+      <Container>
+        <p>Phase: {RoundPhase.VOTING}</p>
+        <AnswersContainer>
+          {answers.map((answer, index) => (
+            <Answer key={index} onClick={() => handleSubmitVote(answer)}>
+              <p>{answer.answer}</p>
+            </Answer>
+          ))}
+        </AnswersContainer>
+      </Container>
+    </GradientBackground>
+  );
 }
 
 function OutroPhase(): JSX.Element {

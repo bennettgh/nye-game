@@ -160,11 +160,12 @@ export function setAvatar(socket: Socket, avatarId: string) {
 }
 
 export function submitVote(socket: Socket, userId: string) {
-  const { roomCode, userId: voterId } = getUserBySocketId(socket.id);
+  const { roomCode } = getUserBySocketId(socket.id);
   const game = games[roomCode];
   const round = game.rounds[game.rounds.length - 1];
   const answer = round.answers.find((answer) => answer.userId === userId);
   const user = game.players.find((player) => player.userId === userId);
+  console.log("Submitting vote for user", user?.nickname);
   if (answer && user) {
     answer.votes.push(user?.nickname);
   }
