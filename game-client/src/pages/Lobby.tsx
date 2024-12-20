@@ -1,3 +1,4 @@
+import { GradientBackground } from "../components/GradientBackground";
 import { useEventsContext } from "../context/events";
 
 const avatars = [
@@ -15,7 +16,7 @@ export function Lobby(): JSX.Element {
   const { selectAvatar } = useEventsContext();
 
   return (
-    <div>
+    <GradientBackground>
       <h1>Lobby</h1>
       {avatars.map((avatar) => (
         <button
@@ -25,6 +26,6 @@ export function Lobby(): JSX.Element {
           {avatar.avatar}
         </button>
       ))}
-    </div>
+    </GradientBackground>
   );
 }

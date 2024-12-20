@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useEventsContext } from "../context/events";
-import { useGameContext } from "../context/game";
-import { RoundPhase } from "../types";
+import { GradientBackground } from "../../components/GradientBackground";
+import { useEventsContext } from "../../context/events";
+import { useGameContext } from "../../context/game";
+import { RoundPhase } from "../../types";
 
 export function Game(): JSX.Element {
   const { gameState } = useGameContext();
@@ -23,7 +24,7 @@ function AnswerPhase(): JSX.Element {
   const [answer, setAnswer] = useState("");
 
   return (
-    <div>
+    <GradientBackground>
       <h2>Answer Phase</h2>
       <input
         type="text"
@@ -31,6 +32,6 @@ function AnswerPhase(): JSX.Element {
         onChange={(e) => setAnswer(e.target.value)}
       />
       <button onClick={() => submitAnswer({ answer })}>Submit</button>
-    </div>
+    </GradientBackground>
   );
 }

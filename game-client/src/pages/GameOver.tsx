@@ -1,7 +1,9 @@
+import { GradientBackground } from "../components/GradientBackground";
+
 export function GameOver(): JSX.Element {
   return (
-    <div>
+    <GradientBackground>
       <p>Game Over</p>
-    </div>
-  )
+    </GradientBackground>
+  );
 }

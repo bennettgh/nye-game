@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button } from "../components/Button";
+import { GradientBackground } from "../components/GradientBackground";
 import { useEventsContext } from "../context/events";
 
 export function Menu(): JSX.Element {
@@ -14,7 +16,7 @@ export function Menu(): JSX.Element {
   };
 
   return (
-    <div>
+    <GradientBackground>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -28,8 +30,8 @@ export function Menu(): JSX.Element {
           onChange={(e) => setNickname(e.target.value)}
           placeholder="Enter nickname"
         />
-        <button type="submit">Join Game</button>
+        <Button onClick={handleSubmit}>Join Game</Button>
       </form>
-    </div>
+    </GradientBackground>
   );
 }

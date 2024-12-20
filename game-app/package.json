@@ -6,7 +6,7 @@
   "author": "example.com",
   "homepage": "https://electron-vite.org",
   "resolutions": {
-    "styled-components": "^5"
+    "styled-components": "^6.1.13"
   },
   "scripts": {
     "format": "prettier --write .",
