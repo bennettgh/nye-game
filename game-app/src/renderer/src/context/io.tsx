@@ -2,8 +2,8 @@ import { config } from '@renderer/config'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Socket, io } from 'socket.io-client'
 import { useGameContext } from './game'
-import { useSoundContext } from './sound'
 import { EventType, Game } from './types'
+import { useHandleEvent } from './useHandleEvent'
 
 const openNewSocketConnection = (): Socket => io(config.backendURL)
 
@@ -69,17 +69,3 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
 const useEvents = () => useContext(EventsContext)
 
 export { SocketProvider, useEvents }
-
-const useHandleEvent = () => {
-  const { playSound } = useSoundContext()
-
-  const handleEvent = (event: EventType) => {
-    console.log('handleEvent', event)
-    switch (event) {
-      case EventType.PLAYER_JOINED:
-        playSound('sfxCrow1')
-    }
-  }
-
-  return handleEvent
-}
