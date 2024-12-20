@@ -1,8 +1,25 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { GradientBackground } from "../../components/GradientBackground";
 import { useEventsContext } from "../../context/events";
 import { useGameContext } from "../../context/game";
 import { RoundPhase } from "../../types";
+
+const Header = styled.h1`
+  position: absolute;
+  background-color: #00000022;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  font-family: "Arvo";
+  font-weight: 700;
+  font-style: italic;
+  color: #fff;
+  top: 0;
+`;
 
 export function Game(): JSX.Element {
   const { gameState } = useGameContext();
@@ -11,6 +28,7 @@ export function Game(): JSX.Element {
 
   return (
     <div>
+      <Header>Roflballs</Header>
       {phase === RoundPhase.INTRO && <p>Phase: {phase}</p>}
       {phase === RoundPhase.ANSWER && <AnswerPhase />}
       {phase === RoundPhase.RESULTS && <p>Phase: {phase}</p>}
