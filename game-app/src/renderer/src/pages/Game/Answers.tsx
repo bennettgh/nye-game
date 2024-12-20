@@ -68,7 +68,7 @@ export const Answers = ({
                 type: 'spring',
                 stiffness: 260,
                 damping: 20,
-                delay: 2 + index * 2 // 2 second initial delay, then 2 seconds between each answer
+                delay: 4 + index * 3 // 2 second initial delay, then 2 seconds between each answer
               }}
             >
               {answer.answer}
