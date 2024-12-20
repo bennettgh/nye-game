@@ -2,6 +2,7 @@ import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Title } from '@renderer/components/Title'
 import { Game } from '@renderer/context/types'
+import { motion } from 'motion/react'
 import styled from 'styled-components'
 
 const AnswersContainer = styled.div`
@@ -19,7 +20,7 @@ const Container = styled.div`
   width: 100%;
 `
 
-const Answer = styled.div`
+const Answer = styled(motion.div)`
   background-color: white;
   padding: 10px 20px;
   border-radius: 10px;
@@ -28,9 +29,10 @@ const Answer = styled.div`
   font-weight: bold;
 `
 
-const TitleContainer = styled.div`
+const TitleContainer = styled(motion.div)`
   width: 100%;
   max-width: 1200px;
+  margin-bottom: 40px;
 `
 
 export const Answers = ({
@@ -45,16 +47,36 @@ export const Answers = ({
   return (
     <GradientBackground>
       <Container>
-        <TitleContainer>
+        <TitleContainer
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            type: 'spring',
+            stiffness: 260,
+            damping: 20
+          }}
+        >
           <Title fontSize="2rem">{gameState.rounds[gameState.rounds.length - 1].prompt}</Title>
         </TitleContainer>
         <AnswersContainer>
           {currentRoundAnswers.map((answer, index) => (
-            <Answer key={index}>{answer.answer}</Answer>
+            <Answer
+              key={index}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 2 + index * 2 // 2 second initial delay, then 2 seconds between each answer
+              }}
+            >
+              {answer.answer}
+            </Answer>
           ))}
         </AnswersContainer>
       </Container>
-      <DevButton onClick={handleEndPhase}>End phase</DevButton>
+      <DevButton onClick={handleEndPhase}>Endd phase</DevButton>
     </GradientBackground>
   )
 }

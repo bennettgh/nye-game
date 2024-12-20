@@ -29,6 +29,7 @@
     "@types/howler": "^2.2.12",
     "electron-updater": "^6.1.7",
     "howler": "^2.2.4",
+    "motion": "^11.15.0",
     "socket.io-client": "^4.8.1",
     "styled-components": "^6.1.13"
   },
