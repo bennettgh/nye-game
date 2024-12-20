@@ -18,9 +18,11 @@ const sounds = {
   }),
   musicLobby: new Howl({
     src: [MusicLobby],
+    volume: 0.5,
     loop: true
   }),
   sfxCrow1: new Howl({
+    volume: 0.3,
     src: [SfxCrow1]
   })
 }

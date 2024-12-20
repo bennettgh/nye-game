@@ -35,6 +35,7 @@ const gradients = [
 const Container = styled.div<{ background: string }>`
   background: ${(props) => props.background};
   min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
