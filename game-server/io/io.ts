@@ -2,7 +2,6 @@ import * as http from "http";
 import { Server, Socket } from "socket.io";
 import {
   createGame,
-  forwardMessage,
   joinGame,
   nextPhase,
   setAvatar,
@@ -34,10 +33,6 @@ const initIO = (server: http.Server) => {
     socket.on("APP:CREATE_GAME", () => createGame(socket));
     socket.on("APP:START_GAME", () => startGame(socket));
     socket.on("APP:END_PHASE", () => nextPhase(socket));
-
-    socket.on("APP:FORWARD_MESSAGE", ({ message }: { message: string }) =>
-      forwardMessage(socket, message)
-    );
 
     socket.on("PLAYER:SET_AVATAR", ({ avatarId }: { avatarId: string }) =>
       setAvatar(socket, avatarId)

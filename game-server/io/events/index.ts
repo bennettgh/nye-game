@@ -1,16 +1,18 @@
 import { games } from "../../db";
 import { io } from "../io";
 
-export const dispatchUpdateRoom = (roomCode: string) => {
+export enum EventType {
+  PLAYER_JOINED = "PLAYER_JOINED",
+  PLAYER_LEFT = "PLAYER_LEFT",
+  PLAYER_VOTED = "PLAYER_VOTED",
+  PLAYER_ANSWERED = "PLAYER_ANSWERED",
+}
+
+export const dispatchUpdateRoom = (roomCode: string, event?: EventType) => {
   if (!io) return;
   console.log("Dispatching update room", roomCode);
   io.to(roomCode).emit("SERVER:UPDATE_ROOM", {
     game: games[roomCode],
+    event,
   });
-};
-
-export const dispatchForwardMessage = (roomCode: string, message: string) => {
-  if (!io) return;
-  console.log("Forwarding message to room", roomCode);
-  io.to(roomCode).emit("SERVER:FORWARD_MESSAGE", message);
 };

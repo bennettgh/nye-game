@@ -4,14 +4,9 @@ import { prompts } from "../../config/prompt";
 import { Game, games, RoundPhase } from "../../db";
 import { createUser, getUserBySocketId } from "../../db/user";
 import { generateNewRoomCode } from "../../utils";
-import { dispatchForwardMessage, dispatchUpdateRoom } from "../events";
+import { dispatchUpdateRoom, EventType } from "../events";
 
 let savedPrompts: string[] = [];
-
-export function forwardMessage(socket: Socket, message: string) {
-  const { roomCode } = getUserBySocketId(socket.id);
-  dispatchForwardMessage(roomCode, message);
-}
 
 function selectPrompts() {
   const randomIndices = new Set<number>();
@@ -58,7 +53,7 @@ export function joinGame(
   }
   const user = createUser(socket, data.roomCode);
   game.players.push({ ...user, nickname: data.nickname });
-  dispatchUpdateRoom(data.roomCode);
+  dispatchUpdateRoom(data.roomCode, EventType.PLAYER_JOINED);
 }
 
 export function startGame(socket: Socket) {

@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { Socket, io } from 'socket.io-client'
 import { useGameContext } from './game'
 import { useSoundContext } from './sound'
-import { Game } from './types'
+import { EventType, Game } from './types'
 
 const openNewSocketConnection = (): Socket => io(config.backendURL)
 
@@ -17,7 +17,7 @@ const EventsContext = createContext<EventsContextType>({} as EventsContextType)
 
 const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const { gameState, setGameState } = useGameContext()
-  const { playSound } = useSoundContext()
+  const handleEvent = useHandleEvent()
 
   const [socket, setSocket] = useState<Socket>()
 
@@ -51,8 +51,9 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
   useEffect(() => {
     if (!socket) return
 
-    socket.on('SERVER:UPDATE_ROOM', ({ game }: { game: Game }) => {
+    socket.on('SERVER:UPDATE_ROOM', ({ game, event }: { game: Game; event: EventType }) => {
       setGameState(game)
+      handleEvent(event)
     })
   }, [socket, gameState])
 
@@ -68,3 +69,17 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
 const useEvents = () => useContext(EventsContext)
 
 export { SocketProvider, useEvents }
+
+const useHandleEvent = () => {
+  const { playSound } = useSoundContext()
+
+  const handleEvent = (event: EventType) => {
+    console.log('handleEvent', event)
+    switch (event) {
+      case EventType.PLAYER_JOINED:
+        playSound('sfxCrow1')
+    }
+  }
+
+  return handleEvent
+}

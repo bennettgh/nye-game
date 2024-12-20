@@ -42,3 +42,10 @@ export type Game = {
   rounds: Round[]
   scores: { [key: string]: number }
 }
+
+export enum EventType {
+  PLAYER_JOINED = 'PLAYER_JOINED',
+  PLAYER_LEFT = 'PLAYER_LEFT',
+  PLAYER_VOTED = 'PLAYER_VOTED',
+  PLAYER_ANSWERED = 'PLAYER_ANSWERED'
+}
