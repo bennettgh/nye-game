@@ -17,7 +17,6 @@ export function Menu(): JSX.Element {
 
   return (
     <GradientBackground>
-      <P>Everyone</P>
       <button onClick={handleCreateRoom}>Create Room</button>
     </GradientBackground>
   )
