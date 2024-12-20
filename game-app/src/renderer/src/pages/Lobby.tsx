@@ -1,9 +1,11 @@
+import { useEffect } from 'react'
 import { AvatarRow } from '@renderer/components/AvatarRow'
 import { Button } from '@renderer/components/Button'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { useGameContext } from '@renderer/context/game'
 import { useEvents } from '@renderer/context/io'
 import styled from 'styled-components'
+import { useSoundContext } from '@renderer/context/sound'
 
 const avatars = [
   { id: '1', avatar: '👨‍🦰' },
@@ -41,6 +43,15 @@ const StyledButton = styled(Button)`
 export function Lobby(): JSX.Element {
   const { gameState } = useGameContext()
   const { startGame } = useEvents()
+  const { playSound, stopSound } = useSoundContext()
+
+  useEffect(() => {
+    playSound('musicWaitingForPlayers')
+
+    return () => {
+      stopSound('musicWaitingForPlayers')
+    }
+  }, [])
 
   const handleStartGame = () => {
     startGame()
