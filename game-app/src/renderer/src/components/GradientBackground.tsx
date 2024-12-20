@@ -26,7 +26,6 @@ const gradients = [
   'linear-gradient(90deg, rgba(0, 255, 127, 1) 0%, rgba(0, 255, 127, 0.8) 100%)', // Spring Green
   'linear-gradient(90deg, rgba(218, 112, 214, 1) 0%, rgba(218, 112, 214, 0.8) 100%)', // Orchid
   'linear-gradient(90deg, rgba(32, 178, 170, 1) 0%, rgba(32, 178, 170, 0.8) 100%)', // Light Sea Green
-  'linear-gradient(90deg, rgba(255, 160, 122, 1) 0%, rgba(255, 160, 122, 0.8) 100%)', // Light Salmon
   'linear-gradient(90deg, rgba(106, 90, 205, 1) 0%, rgba(106, 90, 205, 0.8) 100%)', // Slate Blue
   'linear-gradient(90deg, rgba(135, 206, 250, 1) 0%, rgba(135, 206, 250, 0.8) 100%)', // Light Sky Blue
   'linear-gradient(90deg, rgba(221, 160, 221, 1) 0%, rgba(221, 160, 221, 0.8) 100%)', // Plum

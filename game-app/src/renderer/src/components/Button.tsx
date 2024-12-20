@@ -9,6 +9,7 @@ const ButtonContainer = styled.button`
   border: unset;
   border: 1px solid #000;
   padding: 3px 20px;
+  background: #fff;
 `
 
 export const Button = ({
