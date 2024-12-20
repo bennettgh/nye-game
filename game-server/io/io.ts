@@ -2,11 +2,13 @@ import * as http from "http";
 import { Server, Socket } from "socket.io";
 import {
   createGame,
+  forwardMessage,
   joinGame,
   nextPhase,
   setAvatar,
   startGame,
   submitAnswer,
+  submitVote,
 } from "./controllers/create";
 import { SocketEvent } from "./types";
 
@@ -33,11 +35,18 @@ const initIO = (server: http.Server) => {
     socket.on("APP:START_GAME", () => startGame(socket));
     socket.on("APP:END_PHASE", () => nextPhase(socket));
 
+    socket.on("APP:FORWARD_MESSAGE", ({ message }: { message: string }) =>
+      forwardMessage(socket, message)
+    );
+
     socket.on("PLAYER:SUBMIT_ANSWER", ({ answer }: { answer: string }) =>
       submitAnswer(socket, answer)
     );
     socket.on("PLAYER:SET_AVATAR", ({ avatarId }: { avatarId: string }) =>
       setAvatar(socket, avatarId)
+    );
+    socket.on("PLAYER:VOTE_ANSWER", ({ userId }: { userId: string }) =>
+      submitVote(socket, userId)
     );
 
     socket.on(

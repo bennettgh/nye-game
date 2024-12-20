@@ -18,6 +18,8 @@ export enum RoundPhase {
   INTRO = "intro",
   ANSWER = "answer",
   RESULTS = "results",
+  VOTING = "voting",
+  OUTRO = "outro",
 }
 
 export type Round = {

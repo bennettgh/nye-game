@@ -1,12 +1,17 @@
 import { Socket } from "socket.io";
 
+import { prompts } from "../../config/prompt";
 import { Game, games, RoundPhase } from "../../db";
 import { createUser, getUserBySocketId } from "../../db/user";
 import { generateNewRoomCode } from "../../utils";
-import { dispatchUpdateRoom } from "../events";
-import { prompts } from "../../config/prompt";
+import { dispatchForwardMessage, dispatchUpdateRoom } from "../events";
 
 let savedPrompts: string[] = [];
+
+export function forwardMessage(socket: Socket, message: string) {
+  const { roomCode } = getUserBySocketId(socket.id);
+  dispatchForwardMessage(roomCode, message);
+}
 
 function selectPrompts() {
   const randomIndices = new Set<number>();
@@ -68,7 +73,10 @@ export function nextPhase(socket: Socket) {
   const { roomCode } = getUserBySocketId(socket.id);
   const game = games[roomCode];
   const currentPhase = game.rounds[game.rounds.length - 1].phase;
-  if (game.rounds.length === 3 && currentPhase === RoundPhase.RESULTS) {
+
+  console.log("current phase", currentPhase);
+
+  if (game.rounds.length === 3 && currentPhase === RoundPhase.OUTRO) {
     handleEndGame(game);
   } else if (currentPhase === RoundPhase.INTRO) {
     handleIntroPhaseOver(game);
@@ -76,6 +84,10 @@ export function nextPhase(socket: Socket) {
     handleAnswerPhaseOver(game);
   } else if (currentPhase === RoundPhase.RESULTS) {
     handleResultsPhaseOver(game);
+  } else if (currentPhase === RoundPhase.VOTING) {
+    handleVotingPhaseOver(game);
+  } else if (currentPhase === RoundPhase.OUTRO) {
+    handleOutroPhaseOver(game);
   }
   dispatchUpdateRoom(game.roomCode);
 }
@@ -102,6 +114,16 @@ function handleAnswerPhaseOver(game: Game) {
 }
 
 function handleResultsPhaseOver(game: Game) {
+  const round = game.rounds[game.rounds.length - 1];
+  round.phase = RoundPhase.VOTING;
+}
+
+function handleVotingPhaseOver(game: Game) {
+  const round = game.rounds[game.rounds.length - 1];
+  round.phase = RoundPhase.OUTRO;
+}
+
+function handleOutroPhaseOver(game: Game) {
   game.rounds.push(createRound(game));
 }
 
@@ -116,6 +138,7 @@ export function submitAnswer(socket: Socket, answer: string) {
   game.rounds[game.rounds.length - 1].answers.push({
     answer,
     userId,
+    votes: [],
   });
   if (
     game.rounds[game.rounds.length - 1].answers.length === game.players.length
@@ -132,6 +155,17 @@ export function setAvatar(socket: Socket, avatarId: string) {
   const player = game.players.find((player) => player.userId === userId);
   if (player) {
     player.avatarId = avatarId;
+  }
+  dispatchUpdateRoom(game.roomCode);
+}
+
+export function submitVote(socket: Socket, userId: string) {
+  const { roomCode, userId: voterId } = getUserBySocketId(socket.id);
+  const game = games[roomCode];
+  const round = game.rounds[game.rounds.length - 1];
+  const answer = round.answers.find((answer) => answer.userId === userId);
+  if (answer) {
+    answer.votes.push(voterId);
   }
   dispatchUpdateRoom(game.roomCode);
 }

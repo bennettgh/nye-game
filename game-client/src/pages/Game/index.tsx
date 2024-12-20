@@ -29,11 +29,17 @@ export function Game(): JSX.Element {
   return (
     <div>
       <Header>Roflballs</Header>
-      {phase === RoundPhase.INTRO && <p>Phase: {phase}</p>}
+      {phase === RoundPhase.INTRO && <IntroPhase />}
       {phase === RoundPhase.ANSWER && <AnswerPhase />}
-      {phase === RoundPhase.RESULTS && <p>Phase: {phase}</p>}
+      {phase === RoundPhase.RESULTS && <ResultsPhase />}
+      {phase === RoundPhase.VOTING && <VotingPhase />}
+      {phase === RoundPhase.OUTRO && <OutroPhase />}
     </div>
   );
+}
+
+function IntroPhase(): JSX.Element {
+  return <p>Phase: {RoundPhase.INTRO}</p>;
 }
 
 function AnswerPhase(): JSX.Element {
@@ -51,4 +57,16 @@ function AnswerPhase(): JSX.Element {
       <button onClick={() => submitAnswer({ answer })}>Submit</button>
     </GradientBackground>
   );
+}
+
+function ResultsPhase(): JSX.Element {
+  return <p>Phase: {RoundPhase.RESULTS}</p>;
+}
+
+function VotingPhase(): JSX.Element {
+  return <p>Phase: {RoundPhase.VOTING}</p>;
+}
+
+function OutroPhase(): JSX.Element {
+  return <p>Phase: {RoundPhase.OUTRO}</p>;
 }
