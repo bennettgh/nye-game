@@ -19,34 +19,31 @@ const StyledAvatar = styled.div<{ opacity?: number }>`
   opacity: ${({ opacity }) => opacity || 1};
 `
 
-const Image = styled.p`
-  font-size: 42px;
-  text-align: center;
-`
-
 const Nickname = styled.p`
   text-align: center;
 `
 
-const StyledImage = styled.img`
-  width: 80px;
-  height: 80px;
+const StyledImage = styled.img<{ size?: number }>`
+  width: ${({ size }) => size || 80}px;
+  height: ${({ size }) => size || 80}px;
   margin: auto;
 `
 
 export const Avatar = ({
   avatarId,
   nickname,
-  opacity
+  opacity,
+  size
 }: {
   avatarId?: string
-  nickname: string
+  nickname?: string
   opacity?: number
+  size?: number
 }) => {
   const avatar = avatars.find((avatar) => avatar.id === avatarId)?.avatar || null
   return (
     <StyledAvatar opacity={opacity}>
-      {avatar && <StyledImage src={avatar} alt={nickname} />}
+      {avatar && <StyledImage src={avatar} alt={nickname} size={size} />}
       <Nickname>{nickname}</Nickname>
     </StyledAvatar>
   )

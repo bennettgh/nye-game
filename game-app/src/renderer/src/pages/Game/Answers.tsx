@@ -5,19 +5,19 @@ import { Game } from '@renderer/context/types'
 import { motion } from 'motion/react'
 import styled from 'styled-components'
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`
+
 const AnswersContainer = styled.div`
   max-width: 1200px;
   width: 100%;
   display: flex;
   flex-direction: row;
   gap: 10px;
-`
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
 `
 
 const Answer = styled(motion.div)`
@@ -68,7 +68,7 @@ export const Answers = ({
                 type: 'spring',
                 stiffness: 260,
                 damping: 20,
-                delay: 4 + index * 3 // 2 second initial delay, then 2 seconds between each answer
+                delay: 2 + index * 3 // 2 second initial delay, then 2 seconds between each answer
               }}
             >
               {answer.answer}
@@ -76,7 +76,7 @@ export const Answers = ({
           ))}
         </AnswersContainer>
       </Container>
-      <DevButton onClick={handleEndPhase}>Endd phase</DevButton>
+      <DevButton onClick={handleEndPhase}>End phase</DevButton>
     </GradientBackground>
   )
 }
