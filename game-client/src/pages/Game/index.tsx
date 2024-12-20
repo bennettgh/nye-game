@@ -10,6 +10,7 @@ import {
 } from "../../types";
 import { Intro } from "../Intro";
 import { Question } from "./Question";
+import { Results } from "../Results";
 
 const Header = styled.h1`
   position: absolute;
@@ -103,7 +104,11 @@ function QuestionPhase(): JSX.Element {
 }
 
 function ResultsPhase(): JSX.Element {
-  return <p>Phase: {RoundPhase.RESULTS}</p>;
+  return (
+    <GradientBackground>
+      <Results />
+    </GradientBackground>
+  );
 }
 
 function VotingPhase({ gameState }: { gameState: GameType }): JSX.Element {
