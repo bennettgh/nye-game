@@ -53,9 +53,9 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on("SERVER:UPDATE_ROOM", (gameState: Game) => {
-      console.log("SERVER:UPDATE_ROOM", gameState);
-      setGameState(gameState);
+    socket.on("SERVER:UPDATE_ROOM", ({ game }: { game: Game }) => {
+      console.log("SERVER:UPDATE_ROOM", game);
+      setGameState(game);
     });
   }, [socket]);
 

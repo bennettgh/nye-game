@@ -18,7 +18,7 @@ const sounds = {
   })
 }
 
-type SoundKey = keyof typeof sounds
+export type SoundKey = keyof typeof sounds
 
 interface SoundContextType {
   isMuted: boolean

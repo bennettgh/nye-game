@@ -5,13 +5,13 @@ import { Router } from './Router'
 
 function App(): JSX.Element {
   return (
-    <GameProvider>
-      <SocketProvider>
-        <SoundProvider>
+    <SoundProvider>
+      <GameProvider>
+        <SocketProvider>
           <Router />
-        </SoundProvider>
-      </SocketProvider>
-    </GameProvider>
+        </SocketProvider>
+      </GameProvider>
+    </SoundProvider>
   )
 }
 

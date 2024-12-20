@@ -2,6 +2,7 @@ import { config } from '@renderer/config'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Socket, io } from 'socket.io-client'
 import { useGameContext } from './game'
+import { useSoundContext } from './sound'
 import { Game } from './types'
 
 const openNewSocketConnection = (): Socket => io(config.backendURL)
@@ -16,8 +17,7 @@ const EventsContext = createContext<EventsContextType>({} as EventsContextType)
 
 const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const { gameState, setGameState } = useGameContext()
-
-  console.log('gameState', gameState, setGameState)
+  const { playSound } = useSoundContext()
 
   const [socket, setSocket] = useState<Socket>()
 
@@ -51,12 +51,10 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
   useEffect(() => {
     if (!socket) return
 
-    socket.on('SERVER:UPDATE_ROOM', (game: Game) => {
+    socket.on('SERVER:UPDATE_ROOM', ({ game }: { game: Game }) => {
       setGameState(game)
-      // const previousGameState = gameState
-      // processGameUpdateForSoundEffects(previousGameState, game)
     })
-  }, [socket])
+  }, [socket, gameState])
 
   const value: EventsContextType = {
     createGame,
@@ -70,15 +68,3 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
 const useEvents = () => useContext(EventsContext)
 
 export { SocketProvider, useEvents }
-
-// function processGameUpdateForSoundEffects(prevGameState: Game, game: Game) {
-//   const playerJoined = game.players.length > prevGameState.players.length
-//   const playerLeft = game.players.length < prevGameState.players.length
-//   const playerAnswered = game.rounds[game.rounds.length - 1].answers.length > prevGameState.rounds[game.rounds.length - 1].answers.length
-
-//   const total
-
-//   const currentRound = game.rounds[game.rounds.length - 1]
-//   const currentRoundAnswers = currentRound.answers
-//   return currentRoundAnswers
-// }

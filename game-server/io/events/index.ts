@@ -4,7 +4,9 @@ import { io } from "../io";
 export const dispatchUpdateRoom = (roomCode: string) => {
   if (!io) return;
   console.log("Dispatching update room", roomCode);
-  io.to(roomCode).emit("SERVER:UPDATE_ROOM", games[roomCode]);
+  io.to(roomCode).emit("SERVER:UPDATE_ROOM", {
+    game: games[roomCode],
+  });
 };
 
 export const dispatchForwardMessage = (roomCode: string, message: string) => {

@@ -48,7 +48,6 @@ const initIO = (server: http.Server) => {
     socket.on("PLAYER:SUBMIT_VOTE", ({ userId }: { userId: string }) =>
       submitVote(socket, userId)
     );
-
     socket.on(
       "PLAYER:JOIN_GAME",
       (data: { roomCode: string; nickname: string }) => joinGame(socket, data)
