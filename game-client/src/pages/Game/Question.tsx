@@ -7,14 +7,15 @@ import { useGameContext } from "../../context/game";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
   align-items: center;
+  width: 100%;
 `;
 
 const Prompt = styled.p`
   font-family: "Arvo";
   color: #fff;
   text-align: center;
+  margin-bottom: 20px;
 `;
 
 const H2 = styled.h2`

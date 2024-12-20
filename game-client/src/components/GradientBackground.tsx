@@ -39,6 +39,7 @@ const Container = styled.div<{ background: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 `;
 
 export function GradientBackground({

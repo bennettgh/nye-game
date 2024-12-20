@@ -93,6 +93,7 @@ export function Lobby(): JSX.Element {
   return (
     <GradientBackground>
       <Container>
+        {}
         <Title>Select your avatar:</Title>
         <AvatarSelection>
           {avatars.map((avatar) => (
