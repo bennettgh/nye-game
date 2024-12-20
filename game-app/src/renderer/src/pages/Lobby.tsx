@@ -54,15 +54,15 @@ export function Lobby(): JSX.Element {
       <Container>
         <RoomCode>{gameState?.roomCode}</RoomCode>
         <PlayersContainer>
-          {gameState.players.map((player) => (
-            <div key={player.id}>
+          {gameState.players.map((player, index) => (
+            <div key={index}>
               <p>
                 {player.nickname} {avatars.find((avatar) => avatar.id === player.avatarId)?.avatar}
               </p>
             </div>
           ))}
         </PlayersContainer>
-        {gameState.players.length > 1 && <Button onClick={handleStartGame}>Start Game</Button>}
+        {gameState.players.length > 0 && <Button onClick={handleStartGame}>Start Game</Button>}
         {!gameState.players.length && <p>Waiting for players...</p>}
       </Container>
     </GradientBackground>

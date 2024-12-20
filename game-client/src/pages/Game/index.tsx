@@ -11,7 +11,6 @@ export function Game(): JSX.Element {
 
   return (
     <div>
-      <h1>Game</h1>
       {phase === RoundPhase.INTRO && <p>Phase: {phase}</p>}
       {phase === RoundPhase.ANSWER && <AnswerPhase />}
       {phase === RoundPhase.RESULTS && <p>Phase: {phase}</p>}
