@@ -47,7 +47,6 @@ export function Voting(): JSX.Element {
   const answers = gameState.rounds[gameState.rounds.length - 1].answers;
 
   const handleSubmitVote = (answer: Answer) => {
-    console.log("submitVote", answer);
     submitVote({ userId: answer.userId });
     setVoteSubmitted(true);
   };

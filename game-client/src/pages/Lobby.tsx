@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import bean1 from "../assets/avatars/bean1.png";
 import doni1 from "../assets/avatars/doni1.png";
@@ -7,6 +8,7 @@ import mobin1 from "../assets/avatars/mobin1.png";
 import pipoca1 from "../assets/avatars/pipoca1.png";
 import { GradientBackground } from "../components/GradientBackground";
 import { useEventsContext } from "../context/events";
+import { useGameContext } from "../context/game";
 
 const avatars = [
   { id: "1", avatar: doni1 },
@@ -24,31 +26,87 @@ const Container = styled.div`
 `;
 
 const AvatarSelection = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 300px;
 `;
 
-const StyledImage = styled.img`
+const AvatarContainer = styled.div`
+  position: relative;
   width: 80px;
   height: 80px;
-  margin: auto;
+`;
+
+const StyledImage = styled.img<{ isSelected?: boolean }>`
+  width: 80px;
+  height: 80px;
+  cursor: ${(props) => (props.isSelected ? "not-allowed" : "pointer")};
+  opacity: ${(props) => (props.isSelected ? 0.2 : 1)};
+`;
+
+const Checkmark = styled.div<{ selected?: boolean }>`
+  position: absolute;
+  right: -2px;
+  top: -0px;
+  width: 24px;
+  height: 24px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  display: ${(props) => (props.selected ? "flex" : "none")};
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: "✓";
+    color: white;
+    font-size: 16px;
+  }
+`;
+
+const Title = styled.h2`
+  font-family: "Arvo";
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
 `;
 
 export function Lobby(): JSX.Element {
+  const { gameState } = useGameContext();
   const { selectAvatar } = useEventsContext();
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const alreadySelectedAvatars = gameState?.players.filter(
+    (player) => player.avatarId
+  );
+
+  const handleSelectAvatar = (avatarId: string) => {
+    if (
+      alreadySelectedAvatars?.some((player) => player.avatarId === avatarId)
+    ) {
+      return;
+    }
+    setSelectedId(avatarId);
+    selectAvatar({ avatarId });
+  };
 
   return (
     <GradientBackground>
       <Container>
-        <p>Select your avatar</p>
+        <Title>Select your avatar:</Title>
         <AvatarSelection>
           {avatars.map((avatar) => (
-            <StyledImage
-              key={avatar.id}
-              src={avatar.avatar}
-              onClick={() => selectAvatar({ avatarId: avatar.id })}
-            />
+            <AvatarContainer key={avatar.id}>
+              <StyledImage
+                src={avatar.avatar}
+                onClick={() => handleSelectAvatar(avatar.id)}
+                isSelected={alreadySelectedAvatars?.some(
+                  (player) =>
+                    player.avatarId === avatar.id && avatar.id !== selectedId
+                )}
+              />
+              <Checkmark selected={selectedId === avatar.id} />
+            </AvatarContainer>
           ))}
         </AvatarSelection>
       </Container>
