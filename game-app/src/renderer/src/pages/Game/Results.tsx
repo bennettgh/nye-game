@@ -18,12 +18,6 @@ const Container = styled.div`
   align-items: center;
 `
 
-const AnswerContainer = styled.div`
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-`
-
 const Answer = styled.div`
   background-color: white;
   padding: 10px 20px;

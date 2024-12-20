@@ -9,9 +9,14 @@ export type Player = User & {
   avatarId?: string;
 };
 
+export type Vote = {
+  userId: string;
+};
+
 export type Answer = {
   userId: string;
   answer: string;
+  votes: Vote[];
 };
 
 export enum RoundPhase {

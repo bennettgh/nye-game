@@ -8,6 +8,9 @@ export type Player = User & {
   nickname: string
   avatarId?: string
 }
+export type Vote = {
+  userId: string
+}
 
 export type Answer = {
   userId: string
