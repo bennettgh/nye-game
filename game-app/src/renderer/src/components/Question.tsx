@@ -1,11 +1,8 @@
 import styled from 'styled-components'
+import { Title } from './Title'
 
-const QuestionContainer = styled.p<{ fontsize: number }>`
+const StyledQuestion = styled(Title)<{ fontsize: number }>`
   font-size: ${(props) => props.fontsize}px;
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  text-align: center;
 `
 
 export const Question = ({
@@ -27,5 +24,5 @@ export const Question = ({
     fontsize = fontsize * 0.75
   }
 
-  return <QuestionContainer fontsize={fontsize}>{text}</QuestionContainer>
+  return <StyledQuestion fontsize={fontsize}>{text}</StyledQuestion>
 }

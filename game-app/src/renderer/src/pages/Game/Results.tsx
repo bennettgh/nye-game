@@ -1,5 +1,6 @@
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
+import { Title } from '@renderer/components/Title'
 import { Game } from '@renderer/context/types'
 import styled from 'styled-components'
 
@@ -25,8 +26,11 @@ const AnswerContainer = styled.div`
 
 const Answer = styled.div`
   background-color: white;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
+  border: 2px solid black;
+  font-size: 1rem;
+  font-weight: bold;
 `
 
 export const Results = ({
@@ -40,12 +44,14 @@ export const Results = ({
 
   return (
     <GradientBackground>
-      <p>Results</p>
-      <AnswersContainer>
-        {currentRoundAnswers.map((answer, index) => (
-          <Answer key={index}>{answer.answer}</Answer>
-        ))}
-      </AnswersContainer>
+      <Container>
+        <Title>Let's see those answers!</Title>
+        <AnswersContainer>
+          {currentRoundAnswers.map((answer, index) => (
+            <Answer key={index}>{answer.answer}</Answer>
+          ))}
+        </AnswersContainer>
+      </Container>
       <DevButton onClick={handleEndPhase}>End phase</DevButton>
     </GradientBackground>
   )

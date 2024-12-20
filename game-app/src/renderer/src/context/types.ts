@@ -12,6 +12,7 @@ export type Player = User & {
 export type Answer = {
   userId: string
   answer: string
+  votes: string[]
 }
 
 export enum RoundPhase {

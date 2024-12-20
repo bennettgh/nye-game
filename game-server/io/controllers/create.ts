@@ -133,6 +133,7 @@ function handleEndGame(game: Game) {
 export function submitAnswer(socket: Socket, answer: string) {
   console.log("Submitting answer", answer);
   const { roomCode, userId } = getUserBySocketId(socket.id);
+
   const game = games[roomCode];
   game.rounds[game.rounds.length - 1].answers.push({
     answer,
@@ -163,8 +164,9 @@ export function submitVote(socket: Socket, userId: string) {
   const game = games[roomCode];
   const round = game.rounds[game.rounds.length - 1];
   const answer = round.answers.find((answer) => answer.userId === userId);
-  if (answer) {
-    answer.votes.push(voterId);
+  const user = game.players.find((player) => player.userId === userId);
+  if (answer && user) {
+    answer.votes.push(user?.nickname);
   }
   dispatchUpdateRoom(game.roomCode);
 }
