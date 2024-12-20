@@ -43,7 +43,7 @@ const NormalRoundIntro = ({
 }) => {
   return (
     <GradientBackground>
-      <p>Intro</p>
+      <p>Welcome to Beans Extremes!</p>
       <DevButton onClick={handleEndPhase}>End phase</DevButton>
     </GradientBackground>
   )
