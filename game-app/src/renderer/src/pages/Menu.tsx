@@ -13,7 +13,9 @@ const Container = styled.div`
   justify-content: center;
 `
 
-const Gif = styled.img``
+const Gif = styled.img`
+  margin-top: 20px;
+`
 
 export function Menu(): JSX.Element {
   const { createGame } = useEvents()
