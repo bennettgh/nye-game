@@ -10,9 +10,5 @@ const AnswersText = styled.p`
 `;
 
 export const Answers = () => {
-  return (
-    <AnswersText>
-      Results are in - time to clap clap clap on a poodles fat ass
-    </AnswersText>
-  );
+  return <AnswersText>Results are in - time to see what you said</AnswersText>;
 };

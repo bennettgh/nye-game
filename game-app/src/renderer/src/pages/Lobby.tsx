@@ -6,6 +6,7 @@ import { useGameContext } from '@renderer/context/game'
 import { useEvents } from '@renderer/context/io'
 import styled from 'styled-components'
 import { useSoundContext } from '@renderer/context/sound'
+import dog from '../assets/gifs/dog-walking.gif'
 
 const avatars = [
   { id: '1', avatar: '👨‍🦰' },
@@ -36,6 +37,11 @@ const Container = styled.div`
   height: 100%;
 `
 
+const Gif = styled.img`
+  height: 100px;
+  margin-bottom: -110px;
+`
+
 const StyledButton = styled(Button)`
   margin-top: 40px;
 `
@@ -60,6 +66,7 @@ export function Lobby(): JSX.Element {
   return (
     <GradientBackground>
       <Container>
+        <Gif src={dog} />
         <RoomCode>{gameState?.roomCode}</RoomCode>
         <AvatarRow active={gameState.players} />
         {!gameState.players.length && <p>Waiting for players...</p>}

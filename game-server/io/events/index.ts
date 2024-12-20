@@ -6,6 +6,7 @@ export enum EventType {
   PLAYER_LEFT = "PLAYER_LEFT",
   PLAYER_VOTED = "PLAYER_VOTED",
   PLAYER_ANSWERED = "PLAYER_ANSWERED",
+  PLAYER_SET_AVATAR = "PLAYER_SET_AVATAR",
 }
 
 export const dispatchUpdateRoom = (roomCode: string, event?: EventType) => {

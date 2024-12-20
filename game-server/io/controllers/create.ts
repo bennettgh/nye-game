@@ -61,7 +61,7 @@ export function startGame(socket: Socket) {
   const game = games[roomCode];
   game.started = true;
   game.rounds.push(createRound(game));
-  dispatchUpdateRoom(game.roomCode);
+  dispatchUpdateRoom(game.roomCode, EventType.PLAYER_JOINED);
 }
 
 export function nextPhase(socket: Socket) {
@@ -139,7 +139,7 @@ export function submitAnswer(socket: Socket, answer: string) {
   ) {
     nextPhase(socket);
   } else {
-    dispatchUpdateRoom(game.roomCode);
+    dispatchUpdateRoom(game.roomCode, EventType.PLAYER_ANSWERED);
   }
 }
 
@@ -150,7 +150,7 @@ export function setAvatar(socket: Socket, avatarId: string) {
   if (player) {
     player.avatarId = avatarId;
   }
-  dispatchUpdateRoom(game.roomCode);
+  dispatchUpdateRoom(game.roomCode, EventType.PLAYER_SET_AVATAR);
 }
 
 export function submitVote(socket: Socket, votedForUserId: string) {
@@ -186,6 +186,6 @@ export function submitVote(socket: Socket, votedForUserId: string) {
   if (allVotesAreIn) {
     nextPhase(socket);
   } else {
-    dispatchUpdateRoom(roomCode);
+    dispatchUpdateRoom(roomCode, EventType.PLAYER_VOTED);
   }
 }
