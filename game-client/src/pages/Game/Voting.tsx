@@ -41,7 +41,7 @@ const Title = styled.h2`
 `;
 
 export function Voting(): JSX.Element {
-  const { gameState } = useGameContext();
+  const { gameState, self } = useGameContext();
   const [voteSubmitted, setVoteSubmitted] = useState(false);
   const { submitVote } = useEventsContext();
   const answers = gameState.rounds[gameState.rounds.length - 1].answers;
@@ -59,11 +59,16 @@ export function Voting(): JSX.Element {
           <p>Vote submitted</p>
         ) : (
           <AnswersContainer>
-            {answers.map((answer, index) => (
-              <AnswerCard key={index} onClick={() => handleSubmitVote(answer)}>
-                <p>{answer.answer}</p>
-              </AnswerCard>
-            ))}
+            {answers
+              .filter((answer) => answer.userId !== self.userId)
+              .map((answer, index) => (
+                <AnswerCard
+                  key={index}
+                  onClick={() => handleSubmitVote(answer)}
+                >
+                  <p>{answer.answer}</p>
+                </AnswerCard>
+              ))}
           </AnswersContainer>
         )}
       </Container>

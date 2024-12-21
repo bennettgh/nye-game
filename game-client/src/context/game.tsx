@@ -1,19 +1,24 @@
 import React, { createContext, useContext, useState } from "react";
-import { Game } from "../types";
+import { Game, Player } from "../types";
 
 interface GameContextType {
   gameState: Game;
   setGameState: React.Dispatch<React.SetStateAction<Game>>;
+  self: Player;
+  setSelf: React.Dispatch<React.SetStateAction<Player>>;
 }
 
 const GameContext = createContext({} as GameContextType);
 
 const GameProvider = ({ children }: { children: React.ReactNode }) => {
+  const [self, setSelf] = useState<Player>({} as Player);
   const [gameState, setGameState] = useState<Game>({} as Game);
 
   const context = {
     gameState,
     setGameState,
+    self,
+    setSelf,
   };
 
   return (

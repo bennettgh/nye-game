@@ -1,6 +1,6 @@
 export const config = {
   backendURL:
     import.meta.env.MODE === "development"
-      ? "https://nye-game.onrender.com"
+      ? "http://localhost:8080"
       : "https://nye-game.onrender.com",
 };

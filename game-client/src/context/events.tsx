@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 import { config } from "../config";
-import { Game } from "../types";
+import { Game, Player } from "../types";
 import { useGameContext } from "./game";
 
 const openNewSocketConnection = () => io(config.backendURL);
@@ -16,7 +16,7 @@ type EventsContextType = {
 const EventsContext = createContext({} as EventsContextType);
 
 const EventsProvider = ({ children }: { children: React.ReactNode }) => {
-  const { setGameState } = useGameContext();
+  const { setGameState, setSelf } = useGameContext();
   const [socket, setSocket] = useState<Socket | null>(null);
 
   const openSocketConnection = (cb?: (socket: Socket) => void) => {
@@ -53,10 +53,15 @@ const EventsProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on("SERVER:UPDATE_ROOM", ({ game }: { game: Game }) => {
-      console.log("SERVER:UPDATE_ROOM", game);
-      setGameState(game);
-    });
+    socket.on(
+      "SERVER:UPDATE_ROOM",
+      ({ game, self }: { game: Game; self: Player }) => {
+        console.log("SERVER:UPDATE_ROOM", game);
+        setGameState(game);
+        console.log("self", self);
+        setSelf(self);
+      }
+    );
   }, [socket]);
 
   const value: EventsContextType = {
