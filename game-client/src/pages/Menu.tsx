@@ -44,6 +44,7 @@ export function Menu(): JSX.Element {
   const maxRoomCodeLength = 4;
 
   const handleSubmit = (e: React.FormEvent) => {
+    console.log("joining game");
     e.preventDefault();
     if (roomCode.trim() && nickname.trim()) {
       joinGame({ roomCode, nickname });
