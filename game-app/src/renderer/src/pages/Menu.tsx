@@ -30,7 +30,7 @@ export function Menu(): JSX.Element {
   }, [])
 
   const handleCreateRoom = () => {
-    playSound('yap')
+    playSound('whoosh')
     createGame()
   }
 

@@ -59,7 +59,7 @@ export function Lobby(): JSX.Element {
   }, [])
 
   const handleStartGame = () => {
-    playSound('pop')
+    playSound('whoosh')
     startGame()
   }
 

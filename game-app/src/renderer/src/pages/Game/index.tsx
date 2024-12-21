@@ -1,4 +1,5 @@
 import { useGameContext } from '@renderer/context/game'
+import { useSoundContext } from '@renderer/context/sound'
 import { useEvents } from '@renderer/context/io'
 import { RoundPhase } from '@renderer/context/types'
 import { Answers } from './Answers'
@@ -9,9 +10,11 @@ import { Voting } from './Voting'
 
 export function GameComponent(): JSX.Element {
   const { gameState } = useGameContext()
+  const { playSound } = useSoundContext()
   const { endPhase } = useEvents()
 
   const handleEndPhase = () => {
+    playSound('whoosh')
     endPhase()
   }
 
