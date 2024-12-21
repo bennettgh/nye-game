@@ -11,6 +11,7 @@ const ButtonContainer = styled.button`
   border: 1px solid #000;
   padding: 3px 20px;
   background: #fff;
+  cursor: pointer;
 `
 
 export const Button = ({

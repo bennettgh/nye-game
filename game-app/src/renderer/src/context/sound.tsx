@@ -13,6 +13,7 @@ import Wee from '../assets/sfx/wee.mp3'
 import Whoosh from '../assets/sfx/whoosh.mp3'
 import SfxWinning from '../assets/sfx/win-sound.mp3'
 import Yap from '../assets/sfx/yap-sfx.mp3'
+import MarioBoing from '../assets/sfx/mario-boing.mp3'
 
 const sounds = {
   musicStartGame: new Howl({
@@ -67,6 +68,10 @@ const sounds = {
   whoosh: new Howl({
     src: [Whoosh],
     volume: 0.5
+  }),
+  marioBoing: new Howl({
+    src: [MarioBoing],
+    volume: 0.4
   })
 }
 
