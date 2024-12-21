@@ -4,10 +4,10 @@ import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited l
 import MusicStartGame from '../assets/music/start-game-screen.mp3'
 import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
-import Yap from '../assets/sfx/yap-sfx.mp3'
 import Pop from '../assets/sfx/pop.mp3'
 import Ribbet from '../assets/sfx/ribbet-sfx.mp3'
 import SfxWinning from '../assets/sfx/win-sound.mp3'
+import Yap from '../assets/sfx/yap-sfx.mp3'
 
 const sounds = {
   musicStartGame: new Howl({
@@ -56,7 +56,7 @@ interface SoundContextType {
 const SoundContext = createContext<SoundContextType>({} as SoundContextType)
 
 export const SoundProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isMuted, setIsMuted] = useState(false)
+  const [isMuted, setIsMuted] = useState(true)
 
   const toggleMute = () => {
     Howler.mute(!isMuted)
