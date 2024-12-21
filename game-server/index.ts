@@ -5,7 +5,7 @@ import express, { Application } from "express";
 import * as http from "http";
 import { initIO } from "./io/io";
 
-const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
+const PORT: number = (process.env.PORT as any) || 8080;
 
 const app: Application = express();
 app.use(cors());
