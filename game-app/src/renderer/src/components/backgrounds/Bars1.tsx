@@ -25,8 +25,8 @@ export const Bars = styled.div`
       #44444455 40px,
       #44444455 80px
     );
-    background-size: 200% 100%;
-    animation: slide 10s linear infinite;
+    background-size: 300% 100%;
+    animation: slide 60s linear infinite;
   }
 
   @keyframes slide {
