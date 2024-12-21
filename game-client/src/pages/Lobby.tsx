@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import bean1 from "../assets/avatars/bean1.png";
 import doni1 from "../assets/avatars/doni1.png";
@@ -11,11 +11,11 @@ import { useEventsContext } from "../context/events";
 import { useGameContext } from "../context/game";
 
 const avatars = [
-  { id: "1", avatar: doni1 },
-  { id: "2", avatar: bean1 },
-  { id: "3", avatar: mobin1 },
-  { id: "4", avatar: gilly1 },
-  { id: "5", avatar: pipoca1 },
+  { id: "1", avatar: pipoca1 },
+  { id: "2", avatar: doni1 },
+  { id: "3", avatar: bean1 },
+  { id: "4", avatar: mobin1 },
+  { id: "5", avatar: gilly1 },
   { id: "6", avatar: frog1 },
 ];
 
@@ -80,6 +80,20 @@ export function Lobby(): JSX.Element {
   const alreadySelectedAvatars = gameState?.players.filter(
     (player) => player.avatarId
   );
+
+  const assignAvatarsToJoinedPlayers = () => {
+    const unassignedPlayers =
+      gameState?.players.filter((player) => !player.avatarId) || [];
+
+    unassignedPlayers.forEach(() => {
+      // Assign the first avatar to each unassigned player
+      selectAvatar({ avatarId: avatars[0].id });
+    });
+  };
+
+  useEffect(() => {
+    assignAvatarsToJoinedPlayers();
+  }, [gameState?.players]);
 
   const handleSelectAvatar = (avatarId: string) => {
     if (
