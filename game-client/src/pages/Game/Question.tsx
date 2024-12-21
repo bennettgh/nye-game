@@ -9,42 +9,44 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 20px;
 `;
 
 const Prompt = styled.p`
   font-family: "Arvo";
   color: #fff;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 const H2 = styled.h2`
   font-family: "Arvo";
   color: #fff;
   text-align: center;
-  margin-top: 20px;
+  margin-bottom: 10px;
 `;
 
 const Input = styled.input`
   font-family: "Arvo";
   padding: 10px;
+  font-size: 1rem;
   margin: 10px 0;
   border-radius: 5px;
   width: 100%;
-  border: 1px solid #ccc;
+  border: 2px solid #000;
 `;
 
 const Button = styled.button`
   font-family: "Arvo";
   font-style: italic;
   font-weight: 700;
+  font-size: 1rem;
   padding: 10px;
-  background-color: transparent;
-  border: 1px solid #fff;
-  color: white;
+  background-color: white;
+  border: 2px solid #000;
+  color: black;
   margin-top: 20px;
   border-radius: 6px;
-  width: 100px;
   cursor: pointer;
 `;
 

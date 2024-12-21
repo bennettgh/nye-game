@@ -9,7 +9,7 @@ const ButtonContainer = styled.button`
   border-radius: 6px;
   border: unset;
   border: 1px solid #000;
-  padding: 6px 20px;
+  padding: 10px 20px;
   background: #fff;
   font-size: 1rem;
 `;

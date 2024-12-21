@@ -39,8 +39,8 @@ const AvatarContainer = styled.div`
 `;
 
 const StyledImage = styled.img<{ isSelected?: boolean }>`
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   cursor: ${(props) => (props.isSelected ? "not-allowed" : "pointer")};
   opacity: ${(props) => (props.isSelected ? 0.2 : 1)};
 `;
@@ -69,6 +69,7 @@ const Title = styled.h2`
   color: #fff;
   text-align: center;
   margin-bottom: 40px;
+  font-size: 1.3rem;
 `;
 
 export function Lobby(): JSX.Element {

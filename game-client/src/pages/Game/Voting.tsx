@@ -54,22 +54,24 @@ export function Voting(): JSX.Element {
   return (
     <GradientBackground>
       <Container>
-        <Title>Vote for the best answer:</Title>
         {voteSubmitted ? (
-          <p>Vote submitted</p>
+          <Title>Vote submitted</Title>
         ) : (
-          <AnswersContainer>
-            {answers
-              .filter((answer) => answer.userId !== self.userId)
-              .map((answer, index) => (
-                <AnswerCard
-                  key={index}
-                  onClick={() => handleSubmitVote(answer)}
-                >
-                  <p>{answer.answer}</p>
-                </AnswerCard>
-              ))}
-          </AnswersContainer>
+          <>
+            <Title>Vote for the best answer:</Title>
+            <AnswersContainer>
+              {answers
+                .filter((answer) => answer.userId !== self.userId)
+                .map((answer, index) => (
+                  <AnswerCard
+                    key={index}
+                    onClick={() => handleSubmitVote(answer)}
+                  >
+                    <p>{answer.answer}</p>
+                  </AnswerCard>
+                ))}
+            </AnswersContainer>
+          </>
         )}
       </Container>
     </GradientBackground>
