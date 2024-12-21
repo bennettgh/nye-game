@@ -17,21 +17,21 @@ const AnswersContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 20px;
 `
 
 const Answer = styled(motion.div)`
   background-color: white;
-  padding: 10px 20px;
+  padding: 20px 40px;
   border-radius: 10px;
   border: 2px solid black;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
 `
 
 const TitleContainer = styled(motion.div)`
   width: 100%;
-  max-width: 1200px;
+  max-width: 50%;
   margin-bottom: 40px;
 `
 

@@ -40,6 +40,10 @@ const AvatarContainer = styled.div`
   gap: 0px;
 `
 
+const AnimatedAvatar = styled(motion.div)`
+  transform-origin: center;
+`
+
 const TitleContainer = styled(motion.div)`
   width: 100%;
   max-width: 1200px;
@@ -97,14 +101,29 @@ export const Outro = ({
             >
               {answer.answer}
               <AvatarContainer>
-                {answer.votes.map((vote) => {
+                {answer.votes.map((vote, voteIndex) => {
                   const player = gameState.players.find((player) => player.userId === vote.userId)
-                  return <Avatar key={vote.userId} avatarId={player?.avatarId} size={40} />
+                  return (
+                    <AnimatedAvatar
+                      key={vote.userId}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 260,
+                        damping: 20,
+                        delay: 3 + index * 3 + 0.3 * voteIndex // Base delay + 0.5s per avatar
+                      }}
+                    >
+                      <Avatar avatarId={player?.avatarId} size={40} />
+                    </AnimatedAvatar>
+                  )
                 })}
               </AvatarContainer>
             </Answer>
           ))}
         </AnswersContainer>
+
         <ResultText
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

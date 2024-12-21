@@ -1,10 +1,10 @@
 import { Avatar } from '@renderer/components/Avatar'
-import { useEffect } from 'react'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Title } from '@renderer/components/Title'
 import { useGameContext } from '@renderer/context/game'
 import { useSoundContext } from '@renderer/context/sound'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -71,7 +71,7 @@ const LabelContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  top: -20px;
+  top: -7px;
 `
 
 const Label = styled.p`

@@ -28,7 +28,6 @@ const gradients = [
   'linear-gradient(90deg, rgba(32, 178, 170, 1) 0%, rgba(32, 178, 170, 0.8) 100%)', // Light Sea Green
   'linear-gradient(90deg, rgba(106, 90, 205, 1) 0%, rgba(106, 90, 205, 0.8) 100%)', // Slate Blue
   'linear-gradient(90deg, rgba(135, 206, 250, 1) 0%, rgba(135, 206, 250, 0.8) 100%)', // Light Sky Blue
-  'linear-gradient(90deg, rgba(221, 160, 221, 1) 0%, rgba(221, 160, 221, 0.8) 100%)', // Plum
   'linear-gradient(90deg, rgba(102, 205, 170, 1) 0%, rgba(102, 205, 170, 0.8) 100%)' // Medium Aquamarine
 ]
 
