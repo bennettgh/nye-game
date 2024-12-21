@@ -69,10 +69,9 @@ export function nextPhase(socket: Socket) {
   const game = games[roomCode];
   const currentPhase = game.rounds[game.rounds.length - 1].phase;
 
-  // if (game.rounds.length === 1 && currentPhase === RoundPhase.OUTRO) {
-  //   handleEndGame(game);
-  // } else
-  if (currentPhase === RoundPhase.INTRO) {
+  if (game.rounds.length === 1 && currentPhase === RoundPhase.OUTRO) {
+    handleEndGame(game);
+  } else if (currentPhase === RoundPhase.INTRO) {
     handleIntroPhaseOver(game);
   } else if (currentPhase === RoundPhase.QUESTION) {
     handleQuestionPhaseOver(game);

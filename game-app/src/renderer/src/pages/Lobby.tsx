@@ -1,4 +1,5 @@
 import { AvatarRow } from '@renderer/components/AvatarRow'
+import { Stripes } from '@renderer/components/backgrounds/Stripes1'
 import { Button } from '@renderer/components/Button'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { useGameContext } from '@renderer/context/game'
@@ -24,10 +25,12 @@ const Container = styled.div`
   justify-content: center;
   height: 100%;
   font-size: 36px;
+  z-index: 10;
 `
 
 const Gif = styled.img`
   height: 200px;
+  z-index: 10;
 `
 
 const StyledButton = styled(Button)`
@@ -54,6 +57,7 @@ export function Lobby(): JSX.Element {
 
   return (
     <GradientBackground>
+      <Stripes />
       <Container>
         <Gif src={dog} />
         <RoomCode>{gameState?.roomCode}</RoomCode>
