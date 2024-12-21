@@ -1,23 +1,12 @@
-import { useEffect } from 'react'
 import { AvatarRow } from '@renderer/components/AvatarRow'
 import { Button } from '@renderer/components/Button'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { useGameContext } from '@renderer/context/game'
 import { useEvents } from '@renderer/context/io'
-import styled from 'styled-components'
 import { useSoundContext } from '@renderer/context/sound'
+import { useEffect } from 'react'
+import styled from 'styled-components'
 import dog from '../assets/gifs/dog-walking.gif'
-
-const avatars = [
-  { id: '1', avatar: '👨‍🦰' },
-  { id: '2', avatar: '👩‍🦰' },
-  { id: '3', avatar: '👨‍🦱' },
-  { id: '4', avatar: '👩‍🦱' },
-  { id: '5', avatar: '👨‍🦳' },
-  { id: '6', avatar: '👩‍🦳' },
-  { id: '7', avatar: '👨‍🦲' },
-  { id: '8', avatar: '👩‍🦲' }
-]
 
 const RoomCode = styled.p`
   font-family: 'Arvo';

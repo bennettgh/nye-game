@@ -26,13 +26,16 @@ const Nickname = styled.p`
   background-color: #000;
   color: #fff;
   position: relative;
+  font-size: 1.1rem;
   z-index: 10;
-  top: -4px;
+  top: -6px;
+  padding: 0px 12px;
+  border-radius: 3px;
 `
 
 const StyledImage = styled.img<{ size?: number }>`
-  width: ${({ size }) => size || 80}px;
-  height: ${({ size }) => size || 80}px;
+  width: ${({ size }) => size || 100}px;
+  height: ${({ size }) => size || 100}px;
   margin: auto;
 `
 
