@@ -16,10 +16,14 @@ let io: Server | null = null;
 const config = {
   cors: {
     origin: [
+      "https://comfy-maamoul-88a7d9.netlify.app",
       "http://localhost:3000",
       "https://roflballs.com",
       "http://localhost:5173",
       "http://localhost:5174",
+      "http://127.0.0.1:3000",
+      "http://127.0.0.1:5173",
+      "http://127.0.0.1:5174",
     ],
     methods: ["GET", "POST"],
   },
