@@ -5,6 +5,7 @@ import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited l
 import MusicStartGame from '../assets/music/start-game-screen.mp3'
 import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
 import Boo from '../assets/sfx/boo.mp3'
+import Outro from '../assets/music/outro.mp3'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
 import Pop from '../assets/sfx/pop.mp3'
 import Ribbet from '../assets/sfx/ribbet-sfx.mp3'
@@ -34,6 +35,11 @@ const sounds = {
     volume: 0.5,
     loop: true
   }),
+  outro: new Howl({
+    src: [Outro],
+    volume: 0.4,
+    loop: true
+  }),
   sfxCrow1: new Howl({
     volume: 0.3,
     src: [SfxCrow1]
@@ -43,7 +49,8 @@ const sounds = {
     volume: 0.2
   }),
   pop: new Howl({
-    src: [Pop]
+    src: [Pop],
+    volume: 0.2
   }),
   ribbet: new Howl({
     src: [Ribbet]

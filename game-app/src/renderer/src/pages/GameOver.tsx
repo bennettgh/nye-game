@@ -95,6 +95,8 @@ export function GameOver(): JSX.Element {
   const { playSound } = useSoundContext()
 
   useEffect(() => {
+    playSound('outro')
+
     const timers = [
       setTimeout(() => playSound('boo'), 1500),
       setTimeout(() => playSound('wee'), 2000),
