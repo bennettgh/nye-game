@@ -32,6 +32,17 @@ const Answer = styled(motion.div)`
   position: relative;
 `
 
+const AnswerText = styled.p`
+  font-size: 1.3rem;
+  font-weight: bold;
+`
+
+const AnswerUser = styled.p`
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #555;
+`
+
 const AvatarContainer = styled.div`
   position: absolute;
   bottom: -25px;
@@ -87,41 +98,45 @@ export const Outro = ({
         </TitleContainer>
 
         <AnswersContainer>
-          {gameState.rounds[gameState.rounds.length - 1].answers.map((answer, index) => (
-            <Answer
-              key={index}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-                delay: 2 + index * 3 // 2 second initial delay, then 3 seconds between each answer
-              }}
-            >
-              {answer.answer}
-              <AvatarContainer>
-                {answer.votes.map((vote, voteIndex) => {
-                  const player = gameState.players.find((player) => player.userId === vote.userId)
-                  return (
-                    <AnimatedAvatar
-                      key={vote.userId}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{
-                        type: 'spring',
-                        stiffness: 260,
-                        damping: 20,
-                        delay: 3 + index * 3 + 0.3 * voteIndex // Base delay + 0.5s per avatar
-                      }}
-                    >
-                      <Avatar avatarId={player?.avatarId} size={40} />
-                    </AnimatedAvatar>
-                  )
-                })}
-              </AvatarContainer>
-            </Answer>
-          ))}
+          {gameState.rounds[gameState.rounds.length - 1].answers.map((answer, index) => {
+            const user = gameState.players.find((player) => player.userId === answer.userId)
+            return (
+              <Answer
+                key={index}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 2 + index * 3 // 2 second initial delay, then 3 seconds between each answer
+                }}
+              >
+                <AnswerText>{answer.answer} </AnswerText>
+                <AnswerUser>{user?.nickname} </AnswerUser>
+                <AvatarContainer>
+                  {answer.votes.map((vote, voteIndex) => {
+                    const player = gameState.players.find((player) => player.userId === vote.userId)
+                    return (
+                      <AnimatedAvatar
+                        key={vote.userId}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 260,
+                          damping: 20,
+                          delay: 3 + index * 3 + 0.3 * voteIndex // Base delay + 0.5s per avatar
+                        }}
+                      >
+                        <Avatar avatarId={player?.avatarId} size={40} />
+                      </AnimatedAvatar>
+                    )
+                  })}
+                </AvatarContainer>
+              </Answer>
+            )
+          })}
         </AnswersContainer>
 
         <ResultText

@@ -14,7 +14,6 @@ const gradients = [
   'linear-gradient(90deg, rgba(64, 224, 208, 1) 0%, rgba(64, 224, 208, 0.8) 100%)', // Turquoise
   'linear-gradient(90deg, rgba(147, 112, 219, 1) 0%, rgba(147, 112, 219, 0.8) 100%)', // Medium Purple
   'linear-gradient(90deg, rgba(50, 205, 50, 1) 0%, rgba(50, 205, 50, 0.8) 100%)', // Lime Green
-  'linear-gradient(90deg, rgba(255, 182, 193, 1) 0%, rgba(255, 182, 193, 0.8) 100%)', // Light Pink
   'linear-gradient(90deg, rgba(70, 130, 180, 1) 0%, rgba(70, 130, 180, 0.8) 100%)', // Steel Blue
   'linear-gradient(90deg, rgba(255, 165, 0, 1) 0%, rgba(255, 165, 0, 0.8) 100%)', // Orange
   'linear-gradient(90deg, rgba(186, 85, 211, 1) 0%, rgba(186, 85, 211, 0.8) 100%)', // Medium Orchid
