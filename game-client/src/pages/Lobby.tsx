@@ -5,6 +5,9 @@ import doni1 from "../assets/avatars/doni1.png";
 import frog1 from "../assets/avatars/frog1.png";
 import gilly1 from "../assets/avatars/gilly1.png";
 import mobin1 from "../assets/avatars/mobin1.png";
+import avatar_frog from "../assets/avatars/avatar_frog.png";
+import zoonie from "../assets/avatars/avatar_zoonie.png";
+import cat_1 from "../assets/avatars/avatar_cat.png";
 import pipoca1 from "../assets/avatars/pipoca1.png";
 import { GradientBackground } from "../components/GradientBackground";
 import { useEventsContext } from "../context/events";
@@ -17,6 +20,9 @@ const avatars = [
   { id: "4", avatar: mobin1 },
   { id: "5", avatar: gilly1 },
   { id: "6", avatar: frog1 },
+  { id: "7", avatar: avatar_frog },
+  { id: "8", avatar: zoonie },
+  { id: "9", avatar: cat_1 },
 ];
 
 const Container = styled.div`
