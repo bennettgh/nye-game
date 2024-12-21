@@ -39,6 +39,7 @@ const Container = styled.div<{ background: string }>`
   align-items: center;
   padding: 40px;
   overflow: hidden;
+  z-index: -10;
 `
 
 export function GradientBackground({ children }: { children: React.ReactNode }): JSX.Element {

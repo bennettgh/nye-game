@@ -23,6 +23,11 @@ const StyledAvatar = styled.div<{ opacity?: number }>`
 
 const Nickname = styled.p`
   text-align: center;
+  background-color: #000;
+  color: #fff;
+  position: relative;
+  z-index: 10;
+  top: -4px;
 `
 
 const StyledImage = styled.img<{ size?: number }>`

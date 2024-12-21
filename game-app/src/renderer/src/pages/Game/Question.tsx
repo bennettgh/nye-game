@@ -1,4 +1,5 @@
 import { AvatarRow } from '@renderer/components/AvatarRow'
+import { Bars } from '@renderer/components/backgrounds/Bars1'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Question as QuestionComponent } from '@renderer/components/Question'
@@ -39,6 +40,7 @@ export const Question = ({
 
   return (
     <GradientBackground>
+      <Bars />
       <Container>
         <div>
           <QuestionContainer>

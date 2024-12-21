@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import { StarburstBackground } from '@renderer/components/backgrounds/Starburst1'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Title } from '@renderer/components/Title'
-import { Game } from '@renderer/context/types'
-import poodleGif from '../../assets/gifs/poodle-dancing.gif'
-import styled from 'styled-components'
+import { TriColorTitle } from '@renderer/components/titles/Tricolor'
 import { useSoundContext } from '@renderer/context/sound'
+import { Game } from '@renderer/context/types'
+import { useEffect } from 'react'
+import styled from 'styled-components'
+import poodleGif from '../../assets/gifs/poodle-dancing.gif'
 
 const TextContainer = styled.div`
   width: 70%;
@@ -100,7 +102,8 @@ const NormalRoundIntro = ({
 }) => {
   return (
     <GradientBackground>
-      <GameExplanation>Get ready for the next round of BEANS EXTREMES</GameExplanation>
+      <StarburstBackground />
+      <TriColorTitle>ROUND {gameState.rounds.length}!</TriColorTitle>
       <GifLeft src={poodleGif} style={{ transform: 'scaleX(-1)' }} />
       <GifRight src={poodleGif} />
       <DevButton onClick={handleEndPhase}>End phase</DevButton>
