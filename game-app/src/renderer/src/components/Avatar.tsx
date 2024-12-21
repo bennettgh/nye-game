@@ -7,11 +7,11 @@ import mobin1 from '../assets/avatars/mobin1.png'
 import pipoca1 from '../assets/avatars/pipoca1.png'
 
 const avatars = [
-  { id: '1', avatar: doni1 },
-  { id: '2', avatar: bean1 },
-  { id: '3', avatar: mobin1 },
-  { id: '4', avatar: gilly1 },
-  { id: '5', avatar: pipoca1 },
+  { id: '1', avatar: pipoca1 },
+  { id: '2', avatar: doni1 },
+  { id: '3', avatar: bean1 },
+  { id: '4', avatar: mobin1 },
+  { id: '5', avatar: gilly1 },
   { id: '6', avatar: frog1 }
 ]
 
