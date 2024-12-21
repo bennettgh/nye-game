@@ -5,7 +5,7 @@ import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited l
 import MusicStartGame from '../assets/music/start-game-screen.mp3'
 import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
 import Boo from '../assets/sfx/boo.mp3'
-import Outro from '../assets/music/outro.mp3'
+import Outro from '../assets/music/outro-song.mp3'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
 import Pop from '../assets/sfx/pop.mp3'
 import Ribbet from '../assets/sfx/ribbet-sfx.mp3'
