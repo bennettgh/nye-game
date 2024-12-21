@@ -26,7 +26,6 @@ const RoomCode = styled.p`
   font-size: 4rem;
   text-align: center;
   margin-bottom: 40px;
-  letter-spacing: 20px;
 `
 
 const Container = styled.div`
