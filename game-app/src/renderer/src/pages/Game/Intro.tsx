@@ -1,9 +1,11 @@
+import React, { useEffect } from 'react'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Title } from '@renderer/components/Title'
 import { Game } from '@renderer/context/types'
 import poodleGif from '../../assets/gifs/poodle-dancing.gif'
 import styled from 'styled-components'
+import { useSoundContext } from '@renderer/context/sound'
 
 const TextContainer = styled.div`
   width: 70%;
@@ -56,6 +58,15 @@ const FirstRoundIntro = ({
   gameState: Game
   handleEndPhase: () => void
 }) => {
+  const { playSound, stopSound } = useSoundContext()
+
+  useEffect(() => {
+    playSound('explanationMusic')
+
+    return () => {
+      stopSound('explanationMusic')
+    }
+  }, [])
   return (
     <GradientBackground>
       <TextContainer>

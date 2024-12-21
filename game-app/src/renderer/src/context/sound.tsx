@@ -3,6 +3,7 @@ import React, { ReactNode, createContext, useContext, useState } from 'react'
 import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited loop.mp3'
 import MusicStartGame from '../assets/music/start-game-screen.mp3'
 import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
+import ExplanationMusic from '../assets/music/game-explanation.mp3'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
 import Pop from '../assets/sfx/pop.mp3'
 import Ribbet from '../assets/sfx/ribbet-sfx.mp3'
@@ -24,6 +25,11 @@ const sounds = {
   }),
   musicLobby: new Howl({
     src: [MusicLobby],
+    volume: 0.5,
+    loop: true
+  }),
+  explanationMusic: new Howl({
+    src: [ExplanationMusic],
     volume: 0.5,
     loop: true
   }),
@@ -64,7 +70,7 @@ interface SoundContextType {
 const SoundContext = createContext<SoundContextType>({} as SoundContextType)
 
 export const SoundProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isMuted, setIsMuted] = useState(true)
+  const [isMuted, setIsMuted] = useState(false)
 
   const toggleMute = () => {
     Howler.mute(!isMuted)
