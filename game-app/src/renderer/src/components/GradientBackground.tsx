@@ -40,6 +40,7 @@ const Container = styled.div<{ background: string }>`
   justify-content: center;
   align-items: center;
   padding: 40px;
+  overflow: hidden;
 `
 
 export function GradientBackground({ children }: { children: React.ReactNode }): JSX.Element {

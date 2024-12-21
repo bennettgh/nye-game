@@ -25,8 +25,8 @@ const RoomCode = styled.p`
   font-style: normal;
   font-size: 4rem;
   text-align: center;
-  margin-top: 80px;
   margin-bottom: 40px;
+  letter-spacing: 20px;
 `
 
 const Container = styled.div`
@@ -35,11 +35,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  font-size: 36px;
 `
 
 const Gif = styled.img`
-  height: 100px;
-  margin-bottom: -110px;
+  height: 200px;
 `
 
 const StyledButton = styled(Button)`
@@ -60,7 +60,7 @@ export function Lobby(): JSX.Element {
   }, [])
 
   const handleStartGame = () => {
-    playSound('yap')
+    playSound('pop')
     startGame()
   }
 

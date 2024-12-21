@@ -7,6 +7,8 @@ import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
 import Pop from '../assets/sfx/pop.mp3'
 import Ribbet from '../assets/sfx/ribbet-sfx.mp3'
 import SfxWinning from '../assets/sfx/win-sound.mp3'
+import Wee from '../assets/sfx/wee.mp3'
+import Boo from '../assets/sfx/boo.mp3'
 import Yap from '../assets/sfx/yap-sfx.mp3'
 
 const sounds = {
@@ -40,6 +42,12 @@ const sounds = {
   }),
   sfxWinning: new Howl({
     src: [SfxWinning]
+  }),
+  wee: new Howl({
+    src: [Wee]
+  }),
+  boo: new Howl({
+    src: [Boo]
   })
 }
 

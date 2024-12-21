@@ -17,6 +17,8 @@ const avatars = [
 
 const StyledAvatar = styled.div<{ opacity?: number }>`
   opacity: ${({ opacity }) => opacity || 1};
+  display: flex;
+  flex-direction: column;
 `
 
 const Nickname = styled.p`

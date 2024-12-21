@@ -95,12 +95,14 @@ export function GameOver(): JSX.Element {
   const { playSound } = useSoundContext()
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      playSound('sfxWinning')
-    }, 1500)
+    const timers = [
+      setTimeout(() => playSound('boo'), 1500),
+      setTimeout(() => playSound('wee'), 2000),
+      setTimeout(() => playSound('sfxWinning'), 3000)
+    ]
 
-    return () => clearTimeout(timer) // Cleanup the timer on component unmount
-  }, [playSound])
+    return () => timers.forEach((timer) => clearTimeout(timer)) // Cleanup all timers on component unmount
+  }, [playSound]) // Dependency array to ensure it runs only once
 
   // Calculate total votes for each player
   const totalVotes = gameState.players.reduce(

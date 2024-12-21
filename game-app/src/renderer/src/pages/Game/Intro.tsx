@@ -11,23 +11,26 @@ const TextContainer = styled.div`
 
 const GameExplanation = styled.div`
   font-family: 'Arvo';
-  font-size: 16px;
+  font-size: 30px;
   font-weight: 700;
   text-align: center;
   color: #fff;
   margin-top: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 `
 
 const GifLeft = styled.img`
   position: absolute;
   left: 0;
-  top: 40%;
+  top: 30%;
+  height: 400px;
 `
 
 const GifRight = styled.img`
   position: absolute;
   right: 0;
-  top: 40%;
+  top: 30%;
+  height: 400px;
 `
 
 export const Intro = ({
@@ -56,7 +59,11 @@ const FirstRoundIntro = ({
   return (
     <GradientBackground>
       <TextContainer>
-        <Title>Welcome to BEANS EXTREMES</Title>
+        <Title>
+          WELCOME TO
+          <br />
+          BEANS EXTREMES
+        </Title>
         <GameExplanation>
           The game is simple:
           <br />

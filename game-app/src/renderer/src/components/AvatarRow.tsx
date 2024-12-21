@@ -8,6 +8,7 @@ const AvatarsContainer = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 40px;
+  height: 250px;
 `
 
 export const AvatarRow = ({ active }: { active: Player[] }) => {
