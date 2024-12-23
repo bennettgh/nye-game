@@ -45,6 +45,7 @@ const Answer = styled(motion.div)`
   border: 3px solid black;
   font-size: 1.2rem;
   font-weight: bold;
+  min-height: 160px;
 `
 
 const AnswerText = styled.p<{ fontSize: string }>`
