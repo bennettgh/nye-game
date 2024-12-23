@@ -5,7 +5,6 @@
 // import { Game } from '@renderer/context/types'
 // import { motion } from 'motion/react'
 // import styled from 'styled-components'
-import { mockGameState } from './mock'
 
 // const Container = styled.div`
 //   display: grid;
@@ -322,19 +321,13 @@ const AnimatedTitle = ({
   )
 }
 
-const gameState = mockGameState
-
 export const Outro = ({
-  gameState: gs,
+  gameState,
   handleEndPhase
 }: {
   gameState: Game
   handleEndPhase: () => void
 }) => {
-  useEffect(() => {
-    console.log('gameState', gameState)
-  }, [gameState])
-
   const titleRef = useRef(null)
   const [titleTargetPosition, setTitleTargetPosition] = useState({ x: 0, y: 0 })
 
@@ -371,7 +364,7 @@ export const Outro = ({
                   type: 'spring',
                   stiffness: 260,
                   damping: 20,
-                  delay: 4.5 + index * 3 + totalVotesShown * 0.2
+                  delay: 4
                 }}
               >
                 <UserText>{user?.nickname}</UserText>
@@ -391,7 +384,7 @@ export const Outro = ({
                           type: 'spring',
                           stiffness: 260,
                           damping: 20,
-                          delay: 4.5 + index * 3 + 1 + totalVotesShown * 0.2
+                          delay: 4 + (index + 1) * 1 + totalVotesShown * 0.3
                         }}
                       >
                         <Avatar avatarId={player?.avatarId} size={60} />
