@@ -26,8 +26,8 @@ export const StarburstBackground = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
-    height: 100%;
+    width: 200%;
+    height: 200%;
     background: repeating-conic-gradient(
       from 0deg,
       transparent 0deg 15deg,

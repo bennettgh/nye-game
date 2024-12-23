@@ -1,4 +1,5 @@
 import { AnimationCenter } from '@renderer/components/animation/Center'
+import { StarburstBackground } from '@renderer/components/backgrounds/Starburst1'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Game } from '@renderer/context/types'
@@ -16,6 +17,7 @@ const Container = styled.div`
   height: 100%;
   padding: 10vh 40px;
   gap: 40px;
+  z-index: 10;
   // border: 1px dashed black;
 `
 
@@ -106,9 +108,9 @@ export const Answers = ({
   handleEndPhase: () => void
 }) => {
   const titleRef = useRef(null)
-  // useEffect(() => {
-  //   console.log('gameState', gameState)
-  // }, [gameState])
+  useEffect(() => {
+    console.log('gameState', gameState)
+  }, [gameState])
 
   const [titleTargetPosition, setTitleTargetPosition] = useState({ x: 0, y: 0 })
 
@@ -122,6 +124,7 @@ export const Answers = ({
 
   return (
     <GradientBackground>
+      <StarburstBackground></StarburstBackground>
       <AnimationCenter>
         <AnimatedTitle targetPosition={titleTargetPosition}>
           {gameState.rounds[gameState.rounds.length - 1].prompt}
