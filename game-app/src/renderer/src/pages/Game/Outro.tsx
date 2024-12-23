@@ -83,6 +83,8 @@ const ResultText = styled(motion.p)`
   text-align: center;
 `
 
+const gameState = mockGameState
+
 export const Outro = ({
   gameState: gs,
   handleEndPhase
@@ -90,7 +92,6 @@ export const Outro = ({
   gameState: Game
   handleEndPhase: () => void
 }) => {
-  const gameState = mockGameState
   const votes = gameState.rounds[gameState.rounds.length - 1].answers.map((answer) => answer.votes)
   const maxVotes = Math.max(...votes.map((vote) => vote.length))
 
@@ -149,7 +150,7 @@ export const Outro = ({
                             type: 'spring',
                             stiffness: 260,
                             damping: 20,
-                            delay: 3 + index * 3 + 0.3 * voteIndex // Base delay + 0.5s per avatar
+                            delay: 4 + index * 3 + 0.4 * voteIndex // Base delay + 0.5s per avatar
                           }}
                         >
                           <Avatar avatarId={player?.avatarId} size={40} />
@@ -188,8 +189,8 @@ export const Outro = ({
 
 function getAdaptiveFontSize(text: string) {
   // Adjust these values to fine-tune the scaling
-  const baseSize = 2.5
-  const minSize = 1.2
+  const baseSize = 2
+  const minSize = 1
   const threshold = 20 // Length of text at which we start reducing font size
 
   if (text.length <= threshold) {
