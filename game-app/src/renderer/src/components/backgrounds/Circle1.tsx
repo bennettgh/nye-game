@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CircleBackground = styled.div`
+export const Circle = styled.div`
   position: absolute;
   top: 0;
   left: 0;

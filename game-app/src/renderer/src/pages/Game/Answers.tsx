@@ -25,8 +25,8 @@ const AnswersContainer = styled.div<{ numAnswers: number }>`
   display: grid;
   grid-template-columns: repeat(
     ${(props) => {
-      if (props.numAnswers >= 8) return 4
-      if (props.numAnswers >= 5) return 3
+      if (props.numAnswers >= 7) return 4
+      if (props.numAnswers >= 3) return 3
       if (props.numAnswers >= 2) return 2
       return 1
     }},
@@ -73,8 +73,6 @@ const TitleEndPosition = styled.div`
   height: 100%;
 `
 
-// const gameState = mockGameState2
-
 const AnimatedTitle = ({
   targetPosition,
   children
@@ -108,10 +106,6 @@ export const Answers = ({
   handleEndPhase: () => void
 }) => {
   const titleRef = useRef(null)
-  useEffect(() => {
-    console.log('gameState', gameState)
-  }, [gameState])
-
   const [titleTargetPosition, setTitleTargetPosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {

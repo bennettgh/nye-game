@@ -220,7 +220,7 @@ export default function Test() {
         <Container>
           <Title>The Results Are In</Title>
           <AnswersContainer>
-            {elements.map((item, index) => (
+            {elements.map((_, index) => (
               <div
                 key={index}
                 ref={elementRefs[index]}

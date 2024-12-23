@@ -1,4 +1,6 @@
-export const mockGameState: any = {
+import { Game } from '@renderer/context/types'
+
+export const mockGameState: Game = {
   roomCode: 'NPUZ',
   players: [
     {
@@ -84,7 +86,7 @@ export const mockGameState: any = {
   scores: {}
 }
 
-export const mockGameState2: any = {
+export const mockGameState2: Game = {
   roomCode: 'KPPC',
   players: [
     {
@@ -169,6 +171,65 @@ export const mockGameState2: any = {
           answer:
             "THE BIGGEST POODLE IN THE UNIVERSE, ABBY, WENT TO MOBIN'S HOUSE AND FOUND CAPER EATING HANKS LAPTOP. ITWAS A SAD SAD DAY FOR ALL OF US",
           userId: '8',
+          votes: []
+        }
+      ]
+    }
+  ],
+  scores: {}
+}
+
+export const mockGameState3: Game = {
+  roomCode: 'JLOS',
+  players: [
+    {
+      userId: '7',
+      socketId: 'MmgFKcBZ-b6-lkXkAAAN',
+      roomCode: 'JLOS',
+      nickname: 'ANDREW',
+      avatarId: '1'
+    },
+    {
+      userId: '8',
+      socketId: '1lDSaBoLDxmX5JOrAAAP',
+      roomCode: 'JLOS',
+      nickname: 'ASIODF]',
+      avatarId: '5'
+    },
+    {
+      userId: '9',
+      socketId: '5Zw4IPm6VdqaULEXAAAR',
+      roomCode: 'JLOS',
+      nickname: 'ASKDF',
+      avatarId: '9'
+    }
+  ],
+  gameMaster: {
+    userId: '6',
+    socketId: 'hOQ2TV71wRPxk424AAAL',
+    roomCode: 'JLOS'
+  },
+  started: true,
+  gameOver: false,
+  rounds: [
+    {
+      roundNumber: 1,
+      phase: 'voting',
+      prompt: "Abby switched departments at work. She's now taking care of _______",
+      answers: [
+        {
+          answer: 'POODLE',
+          userId: '7',
+          votes: []
+        },
+        {
+          answer: 'OODLES OF POODLES EVERYWHERE',
+          userId: '8',
+          votes: []
+        },
+        {
+          answer: "I CAN'T STAND POODLES I HATE THEM SO MUCH THAT I'M GOING TO DIE",
+          userId: '9',
           votes: []
         }
       ]
