@@ -5,7 +5,7 @@
 // import { Game } from '@renderer/context/types'
 // import { motion } from 'motion/react'
 // import styled from 'styled-components'
-// import { mockGameState } from './mock'
+import { mockGameState } from './mock'
 
 // const Container = styled.div`
 //   display: grid;
@@ -240,6 +240,7 @@ const AnswersContainer = styled.div<{ numAnswers: number }>`
 const Answer = styled(motion.div)`
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -251,6 +252,12 @@ const Answer = styled(motion.div)`
   font-size: 1.2rem;
   font-weight: bold;
   min-height: 160px;
+`
+
+const UserText = styled.p`
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
 `
 
 const AnswerText = styled.p<{ fontSize: string }>`
@@ -283,7 +290,7 @@ const AvatarContainer = styled(motion.div)`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 3px;
+  gap: 5px;
 `
 
 const AnimatedAvatar = styled(motion.div)`
@@ -315,13 +322,19 @@ const AnimatedTitle = ({
   )
 }
 
+const gameState = mockGameState
+
 export const Outro = ({
-  gameState,
+  gameState: gs,
   handleEndPhase
 }: {
   gameState: Game
   handleEndPhase: () => void
 }) => {
+  useEffect(() => {
+    console.log('gameState', gameState)
+  }, [gameState])
+
   const titleRef = useRef(null)
   const [titleTargetPosition, setTitleTargetPosition] = useState({ x: 0, y: 0 })
 
@@ -347,44 +360,48 @@ export const Outro = ({
       <Container>
         <TitleEndPosition ref={titleRef} />
         <AnswersContainer numAnswers={currentRoundAnswers.length}>
-          {currentRoundAnswers.map((answer, index) => (
-            <Answer
-              key={index}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-                delay: 5 + index * 4 + totalVotesShown * 0.2
-              }}
-            >
-              <AnswerText fontSize={getAdaptiveFontSize(answer.answer)}>{answer.answer}</AnswerText>
-              <AvatarContainer>
-                {answer.votes.map((vote) => {
-                  const player = gameState.players.find((player) => player.userId === vote.userId)
-
-                  totalVotesShown += 1
-
-                  return (
-                    <AnimatedAvatar
-                      key={vote.userId}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{
-                        type: 'spring',
-                        stiffness: 260,
-                        damping: 20,
-                        delay: 5 + index * 4 + 2 + totalVotesShown * 0.2
-                      }}
-                    >
-                      <Avatar avatarId={player?.avatarId} size={40} />
-                    </AnimatedAvatar>
-                  )
-                })}
-              </AvatarContainer>
-            </Answer>
-          ))}
+          {currentRoundAnswers.map((answer, index) => {
+            const user = gameState.players.find((player) => player.userId === answer.userId)
+            return (
+              <Answer
+                key={index}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 4.5 + index * 3 + totalVotesShown * 0.2
+                }}
+              >
+                <UserText>{user?.nickname}</UserText>
+                <AnswerText fontSize={getAdaptiveFontSize(answer.answer)}>
+                  {answer.answer}
+                </AnswerText>
+                <AvatarContainer>
+                  {answer.votes.map((vote) => {
+                    const player = gameState.players.find((player) => player.userId === vote.userId)
+                    totalVotesShown += 1
+                    return (
+                      <AnimatedAvatar
+                        key={vote.userId}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 260,
+                          damping: 20,
+                          delay: 4.5 + index * 3 + 1 + totalVotesShown * 0.2
+                        }}
+                      >
+                        <Avatar avatarId={player?.avatarId} size={60} />
+                      </AnimatedAvatar>
+                    )
+                  })}
+                </AvatarContainer>
+              </Answer>
+            )
+          })}
         </AnswersContainer>
       </Container>
       <DevButton onClick={handleEndPhase}>End phase</DevButton>
