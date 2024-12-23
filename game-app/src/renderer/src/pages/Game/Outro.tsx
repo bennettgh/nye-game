@@ -5,7 +5,6 @@ import { Title } from '@renderer/components/Title'
 import { Game } from '@renderer/context/types'
 import { motion } from 'motion/react'
 import styled from 'styled-components'
-import { mockGameState } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -83,10 +82,10 @@ const ResultText = styled(motion.p)`
   text-align: center;
 `
 
-const gameState = mockGameState
+// const gameState = mockGameState
 
 export const Outro = ({
-  gameState: gs,
+  gameState,
   handleEndPhase
 }: {
   gameState: Game

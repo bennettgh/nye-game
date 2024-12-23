@@ -53,6 +53,7 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
 
     socket.on('SERVER:UPDATE_ROOM', ({ game, event }: { game: Game; event: EventType }) => {
       setGameState(game)
+      console.log('SERVER:UPDATE_ROOM', event)
       handleEvent(event)
     })
   }, [socket, gameState])

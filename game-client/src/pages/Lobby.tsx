@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import cat_1 from "../assets/avatars/avatar_cat.png";
+import avatar_frog from "../assets/avatars/avatar_frog.png";
+import zoonie from "../assets/avatars/avatar_zoonie.png";
 import bean1 from "../assets/avatars/bean1.png";
 import doni1 from "../assets/avatars/doni1.png";
 import frog1 from "../assets/avatars/frog1.png";
 import gilly1 from "../assets/avatars/gilly1.png";
 import mobin1 from "../assets/avatars/mobin1.png";
-import avatar_frog from "../assets/avatars/avatar_frog.png";
-import zoonie from "../assets/avatars/avatar_zoonie.png";
-import cat_1 from "../assets/avatars/avatar_cat.png";
 import pipoca1 from "../assets/avatars/pipoca1.png";
 import { GradientBackground } from "../components/GradientBackground";
 import { useEventsContext } from "../context/events";
@@ -87,19 +87,20 @@ export function Lobby(): JSX.Element {
     (player) => player.avatarId
   );
 
-  const assignAvatarsToJoinedPlayers = () => {
-    const unassignedPlayers =
-      gameState?.players.filter((player) => !player.avatarId) || [];
+  // TODO this is causing buggy sounds (if 5 player are in the lobby, the sound will play 5 times)
+  // const assignAvatarsToJoinedPlayers = () => {
+  //   const unassignedPlayers =
+  //     gameState?.players.filter((player) => !player.avatarId) || [];
 
-    unassignedPlayers.forEach(() => {
-      // Assign the first avatar to each unassigned player
-      selectAvatar({ avatarId: avatars[0].id });
-    });
-  };
+  //   unassignedPlayers.forEach(() => {
+  //     // Assign the first avatar to each unassigned player
+  //     selectAvatar({ avatarId: avatars[0].id });
+  //   });
+  // };
 
-  useEffect(() => {
-    assignAvatarsToJoinedPlayers();
-  }, [gameState?.players]);
+  // useEffect(() => {
+  //   assignAvatarsToJoinedPlayers();
+  // }, [gameState?.players]);
 
   const handleSelectAvatar = (avatarId: string) => {
     if (

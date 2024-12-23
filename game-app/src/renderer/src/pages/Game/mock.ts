@@ -83,3 +83,96 @@ export const mockGameState: any = {
   ],
   scores: {}
 }
+
+export const mockGameState2: any = {
+  roomCode: 'KPPC',
+  players: [
+    {
+      userId: '5',
+      socketId: '0LH4LxOQ-QJ-cw-eAAAX',
+      roomCode: 'KPPC',
+      nickname: 'ANDREW',
+      avatarId: '1'
+    },
+    {
+      userId: '6',
+      socketId: '2KGBrHVodWC9xygLAAAZ',
+      roomCode: 'KPPC',
+      nickname: 'BRUNO',
+      avatarId: '3'
+    },
+    {
+      userId: '7',
+      socketId: 'yu8J7UGu_6fD6ATSAAAb',
+      roomCode: 'KPPC',
+      nickname: 'MOBIN',
+      avatarId: '6'
+    },
+    {
+      userId: '8',
+      socketId: 'MoyyDh8AdYUZ5suXAAAd',
+      roomCode: 'KPPC',
+      nickname: 'FROG',
+      avatarId: '5'
+    }
+  ],
+  gameMaster: {
+    userId: '4',
+    socketId: 'wOaSzCkFt9eUnFujAAAV',
+    roomCode: 'KPPC'
+  },
+  started: true,
+  gameOver: false,
+  rounds: [
+    {
+      roundNumber: 1,
+      phase: 'answers',
+      prompt: 'Frog had a rough day at Sobotec, and ordered _______ on UberEats',
+      answers: [
+        {
+          answer: 'POODLE',
+          userId: '7',
+          votes: []
+        },
+        {
+          answer: 'ABBY IS EATING 10 POODLES',
+          userId: '6',
+          votes: []
+        },
+        {
+          answer: 'WELL, A LONG TIME AGO IN A LAND FAR FAR AWAY THERE WAS A POODLE NAMED ZOONIE ',
+          userId: '5',
+          votes: []
+        },
+        {
+          answer:
+            "THE BIGGEST POODLE IN THE UNIVERSE, ABBY, WENT TO MOBIN'S HOUSE AND FOUND CAPER EATING HANKS LAPTOP. ITWAS A SAD SAD DAY FOR ALL OF US",
+          userId: '8',
+          votes: []
+        },
+        {
+          answer: 'POODLE',
+          userId: '7',
+          votes: []
+        },
+        {
+          answer: 'ABBY IS EATING 10 POODLES',
+          userId: '6',
+          votes: []
+        },
+        {
+          answer: 'WELL, A LONG TIME AGO IN A LAND FAR FAR AWAY THERE WAS A POODLE NAMED ZOONIE ',
+          userId: '5',
+          votes: []
+        },
+        {
+          answer:
+            "THE BIGGEST POODLE IN THE UNIVERSE, ABBY, WENT TO MOBIN'S HOUSE AND FOUND CAPER EATING HANKS LAPTOP. ITWAS A SAD SAD DAY FOR ALL OF US",
+          userId: '8',
+          votes: []
+        }
+      ]
+    }
+  ],
+  scores: {}
+}

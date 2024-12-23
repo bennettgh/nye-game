@@ -11,11 +11,12 @@ export enum EventType {
 
 export const dispatchUpdateRoom = (roomCode: string, event?: EventType) => {
   if (!io) return;
-  console.log("Dispatching update room", roomCode);
 
   const socketIds = Array.from(io.sockets.adapter.rooms.get(roomCode) || []);
 
   socketIds.forEach((socketId) => {
+    console.log("Dispatching update room 11", event, socketId);
+
     io!.to(socketId).emit("SERVER:UPDATE_ROOM", {
       game: games[roomCode],
       event,

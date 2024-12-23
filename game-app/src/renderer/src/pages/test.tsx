@@ -43,6 +43,16 @@ const Title = styled.h1`
   font-weight: bold;
 `
 
+const AnswerCard = styled(motion.div)`
+  position: absolute;
+  width: 350px;
+  height: 200px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 20px;
+`
+
 type VariantParams = {
   targetPosition: { x: number; y: number }
   delay?: number
@@ -82,6 +92,10 @@ const calculateTargetPosition = (elementRef) => {
   return { x: 0, y: 0 }
 }
 
+const calculateDelay = (cardIndex: number, voteIndex: number) => {
+  return cardIndex * 1 + voteIndex * 0.4
+}
+
 function GameElement({
   targetPosition,
   children,
@@ -92,27 +106,22 @@ function GameElement({
   delay?: number
 }) {
   return (
-    <motion.div
+    <AnswerCard
       initial="hidden"
       animate="visible"
       variants={variants}
       custom={{ targetPosition, delay }}
-      style={{
-        position: 'absolute',
-        width: '100px',
-        border: '1px solid red'
-      }}
     >
       {children}
-    </motion.div>
+    </AnswerCard>
   )
 }
 
 // Main game component
 export default function Test() {
-  useEffect(() => {
-    console.log('Test')
-  }, [])
+  // useEffect(() => {
+  //   console.log('Test')
+  // }, [])
 
   // Store refs for multiple elements
   const elementRefs = [
@@ -150,19 +159,61 @@ export default function Test() {
     '🔥 Fire'
   ]
 
+  const votes = [
+    [{ userId: 1 }, { userId: 2 }, { userId: 3 }, { userId: 4 }],
+    [
+      { userId: 1 },
+      { userId: 2 },
+      { userId: 3 },
+      { userId: 4 },
+      { userId: 5 },
+      { userId: 6 },
+      { userId: 7 },
+      { userId: 8 },
+      { userId: 9 },
+      { userId: 10 }
+    ],
+    [],
+    [],
+    [],
+    [{ userId: 1 }, { userId: 2 }, { userId: 3 }, { userId: 4 }],
+    [{ userId: 1 }, { userId: 2 }, { userId: 3 }, { userId: 4 }],
+    [],
+    [],
+    [],
+    [
+      { userId: 1 },
+      { userId: 2 },
+      { userId: 3 },
+      { userId: 4 },
+      { userId: 5 },
+      { userId: 6 },
+      { userId: 7 },
+      { userId: 8 },
+      { userId: 9 },
+      { userId: 10 }
+    ]
+  ]
+
+  let totalVotesShown = 0
+
   return (
     <div style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
       <GradientBackground>
         <StagingCenter>
-          {elements.map((item, index) => (
-            <GameElement
-              key={index}
-              targetPosition={targetPositions[index] || { x: 0, y: 0 }}
-              delay={index * 0.5}
-            >
-              {item}
-            </GameElement>
-          ))}
+          {elements.map((item, index) => {
+            totalVotesShown = index === 0 ? 0 : votes[index - 1].length + totalVotesShown
+
+            return (
+              <GameElement
+                key={index}
+                targetPosition={targetPositions[index] || { x: 0, y: 0 }}
+                delay={calculateDelay(index, totalVotesShown)}
+              >
+                {item}
+              </GameElement>
+            )
+          })}
         </StagingCenter>
 
         {/* Final Layout Positions */}
@@ -177,14 +228,11 @@ export default function Test() {
                   position: 'relative',
                   width: '350px',
                   height: '200px',
-                  backgroundColor: '#eeeeee55',
                   padding: '20px',
                   borderRadius: '8px',
-                  border: '1px solid red'
+                  border: '1px dashed blue'
                 }}
-              >
-                {item} Final
-              </div>
+              ></div>
             ))}
           </AnswersContainer>
         </Container>
