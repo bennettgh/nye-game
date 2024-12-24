@@ -90,7 +90,6 @@ const FirstRoundIntro = ({
     <GradientBackground>
       <Bars>
         <Container>
-          {/* <TextContainer> */}
           <AnimatingTitle
             animate={{
               opacity: [0, 1],
@@ -114,9 +113,8 @@ const FirstRoundIntro = ({
               delay: 1.5
             }}
           >
-            Answer the prompt, vote for your favourite
+            Answer the prompt, vote for your favourite answer
           </AnimatingTitle>
-          {/* </TextContainer> */}
           <GifLeft src={poodleGif} style={{ transform: 'scaleX(-1)' }} />
           <GifRight src={poodleGif} />
         </Container>
