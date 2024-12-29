@@ -38,7 +38,6 @@ const Container = styled.div<{ background: string }>`
   justify-content: center;
   align-items: center;
   padding: 40px;
-  overflow: hidden;
   z-index: -100;
   overflow: hidden;
 `

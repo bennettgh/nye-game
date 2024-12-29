@@ -88,7 +88,7 @@ interface SoundContextType {
 const SoundContext = createContext<SoundContextType>({} as SoundContextType)
 
 export const SoundProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isMuted, setIsMuted] = useState(true)
+  const [isMuted, setIsMuted] = useState(false)
 
   const toggleMute = () => {
     Howler.mute(!isMuted)

@@ -208,6 +208,7 @@ import { calculateTargetPosition, getAdaptiveFontSize } from '@renderer/utils'
 import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
+import { mockGameState4 } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -245,7 +246,7 @@ const Answer = styled(motion.div)`
   width: 100%;
   height: 100%;
   background-color: white;
-  padding: 16px 30px;
+  padding: 30px 16px 20px 16px;
   border-radius: 10px;
   border: 3px solid black;
   font-size: 1.2rem;
@@ -279,6 +280,7 @@ const AnimatingTitle = styled(motion.div)`
 const TitleEndPosition = styled.div`
   width: 100%;
   height: 100%;
+  border: 1px dashed black;
 `
 
 const AvatarContainer = styled(motion.div)`
@@ -294,6 +296,30 @@ const AvatarContainer = styled(motion.div)`
 
 const AnimatedAvatar = styled(motion.div)`
   transform-origin: center;
+`
+
+const PointsContainer = styled.div`
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  background-color: black;
+`
+
+const PointsText = styled.p`
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 `
 
 const AnimatedTitle = ({
@@ -321,13 +347,23 @@ const AnimatedTitle = ({
   )
 }
 
+const gameState = mockGameState4
+
 export const Outro = ({
-  gameState,
+  gameState: gs,
   handleEndPhase
 }: {
   gameState: Game
   handleEndPhase: () => void
 }) => {
+  const [points, setPoints] = useState(
+    gameState.rounds[gameState.rounds.length - 1].answers.map(() => 0)
+  )
+
+  useEffect(() => {
+    console.log('gameState', gameState)
+  }, [gameState])
+
   const titleRef = useRef(null)
   const [titleTargetPosition, setTitleTargetPosition] = useState({ x: 0, y: 0 })
 
@@ -344,6 +380,7 @@ export const Outro = ({
   return (
     <GradientBackground>
       <StarburstBackground></StarburstBackground>
+
       <AnimationCenter>
         <AnimatedTitle targetPosition={titleTargetPosition}>
           {gameState.rounds[gameState.rounds.length - 1].prompt}
@@ -371,6 +408,9 @@ export const Outro = ({
                 <AnswerText fontSize={getAdaptiveFontSize(answer.answer)}>
                   {answer.answer}
                 </AnswerText>
+                <PointsContainer>
+                  <PointsText>{points[index]}</PointsText>
+                </PointsContainer>
                 <AvatarContainer>
                   {answer.votes.map((vote) => {
                     const player = gameState.players.find((player) => player.userId === vote.userId)
@@ -384,7 +424,7 @@ export const Outro = ({
                           type: 'spring',
                           stiffness: 260,
                           damping: 20,
-                          delay: 4 + (index + 1) * 1 + totalVotesShown * 0.3
+                          delay: 5 + totalVotesShown * 0.3
                         }}
                       >
                         <Avatar avatarId={player?.avatarId} size={60} />

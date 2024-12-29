@@ -92,6 +92,7 @@ const Points = styled.p`
 
 export function GameOver(): JSX.Element {
   const { gameState } = useGameContext()
+  console.log(gameState)
   const { playSound } = useSoundContext()
 
   useEffect(() => {
@@ -127,6 +128,9 @@ export function GameOver(): JSX.Element {
 
   return (
     <GradientBackground>
+      <div className="firework"></div>
+      <div className="firework"></div>
+      <div className="firework"></div>
       <Container>
         <TitleContainer
           initial={{ opacity: 0, y: -50 }}

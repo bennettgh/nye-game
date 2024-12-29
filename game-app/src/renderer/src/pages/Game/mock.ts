@@ -237,3 +237,177 @@ export const mockGameState3: Game = {
   ],
   scores: {}
 }
+
+export const mockGameStateGameOver: Game = {
+  roomCode: 'ITFF',
+  players: [
+    {
+      userId: '9',
+      socketId: 'IpLRBK5k1fDOi4uwAAAT',
+      roomCode: 'ITFF',
+      nickname: 'ANDREW',
+      avatarId: '1'
+    },
+    {
+      userId: '10',
+      socketId: 'CMcxyaasF0j-L7-rAAAV',
+      roomCode: 'ITFF',
+      nickname: 'BEAN',
+      avatarId: '9'
+    },
+    {
+      userId: '11',
+      socketId: 'wWmbY7mMQL-XMZSAAAAX',
+      roomCode: 'ITFF',
+      nickname: 'BRUNO',
+      avatarId: '5'
+    },
+    {
+      userId: '12',
+      socketId: 'Kvkpsd2oraZSlaYdAAAZ',
+      roomCode: 'ITFF',
+      nickname: 'BUZZ',
+      avatarId: '3'
+    }
+  ],
+  gameMaster: {
+    userId: '8',
+    socketId: 'KcS2xf1ALDY6nt_5AAAR',
+    roomCode: 'ITFF'
+  },
+  started: true,
+  gameOver: true,
+  rounds: [
+    {
+      roundNumber: 1,
+      phase: 'outro',
+      prompt:
+        'The person sitting furthest on the left started calling their significant other ______',
+      answers: [
+        {
+          answer: 'TEST1',
+          userId: '12',
+          votes: [
+            {
+              userId: '9'
+            }
+          ]
+        },
+        {
+          answer: 'TEST2 TEST2 TEST2',
+          userId: '11',
+          votes: []
+        },
+        {
+          answer: 'TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 ',
+          userId: '10',
+          votes: []
+        },
+        {
+          answer:
+            'TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 ',
+          userId: '9',
+          votes: [
+            {
+              userId: '10'
+            },
+            {
+              userId: '11'
+            },
+            {
+              userId: '12'
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  scores: {}
+}
+
+export const mockGameState4: Game = {
+  roomCode: 'ITFF',
+  players: [
+    {
+      userId: '9',
+      socketId: 'IpLRBK5k1fDOi4uwAAAT',
+      roomCode: 'ITFF',
+      nickname: 'ANDREW',
+      avatarId: '1'
+    },
+    {
+      userId: '10',
+      socketId: 'CMcxyaasF0j-L7-rAAAV',
+      roomCode: 'ITFF',
+      nickname: 'BEAN',
+      avatarId: '9'
+    },
+    {
+      userId: '11',
+      socketId: 'wWmbY7mMQL-XMZSAAAAX',
+      roomCode: 'ITFF',
+      nickname: 'BRUNO',
+      avatarId: '5'
+    },
+    {
+      userId: '12',
+      socketId: 'Kvkpsd2oraZSlaYdAAAZ',
+      roomCode: 'ITFF',
+      nickname: 'BUZZ',
+      avatarId: '3'
+    }
+  ],
+  gameMaster: {
+    userId: '8',
+    socketId: 'KcS2xf1ALDY6nt_5AAAR',
+    roomCode: 'ITFF'
+  },
+  started: true,
+  gameOver: false,
+  rounds: [
+    {
+      roundNumber: 1,
+      phase: 'outro',
+      prompt:
+        'The person sitting furthest on the left started calling their significant other ______',
+      answers: [
+        {
+          answer: 'TEST1',
+          userId: '12',
+          votes: [
+            {
+              userId: '9'
+            }
+          ]
+        },
+        {
+          answer: 'TEST2 TEST2 TEST2',
+          userId: '11',
+          votes: []
+        },
+        {
+          answer: 'TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 ',
+          userId: '10',
+          votes: []
+        },
+        {
+          answer:
+            'TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 ',
+          userId: '9',
+          votes: [
+            {
+              userId: '10'
+            },
+            {
+              userId: '11'
+            },
+            {
+              userId: '12'
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  scores: {}
+}
