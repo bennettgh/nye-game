@@ -11,7 +11,13 @@ import Applause3 from '../assets/sfx/applause/applause3.wav'
 import Applause4 from '../assets/sfx/applause/applause4.wav'
 import Applause5 from '../assets/sfx/applause/applause5.wav'
 import Boing from '../assets/sfx/boing.wav'
-import Boing1 from '../assets/sfx/boing1.wav'
+import Boing1 from '../assets/sfx/boings/boing1.wav'
+import Boing2 from '../assets/sfx/boings/boing2.wav'
+import Boing3 from '../assets/sfx/boings/boing3.wav'
+import Boing4 from '../assets/sfx/boings/boing4.wav'
+import Boing5 from '../assets/sfx/boings/boing5.wav'
+import Boing6 from '../assets/sfx/boings/boing6.wav'
+import Boing7 from '../assets/sfx/boings/boing7.wav'
 import Boo from '../assets/sfx/boo.mp3'
 import CaChing from '../assets/sfx/cashregister.wav'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
@@ -89,10 +95,7 @@ const sounds = {
     src: [Boing],
     volume: 0.4
   }),
-  boing1: new Howl({
-    src: [Boing1],
-    volume: 0.4
-  }),
+
   woo1: new Howl({
     src: [Woo1],
     volume: 0.4
@@ -132,10 +135,38 @@ const sounds = {
   applause5: new Howl({
     src: [Applause5],
     volume: 0.6
+  }),
+  boing1: new Howl({
+    src: [Boing1],
+    volume: 0.4
+  }),
+  boing2: new Howl({
+    src: [Boing2],
+    volume: 0.4
+  }),
+  boing3: new Howl({
+    src: [Boing3],
+    volume: 0.4
+  }),
+  boing4: new Howl({
+    src: [Boing4],
+    volume: 0.4
+  }),
+  boing5: new Howl({
+    src: [Boing5],
+    volume: 0.4
+  }),
+  boing6: new Howl({
+    src: [Boing6],
+    volume: 0.4
+  }),
+  boing7: new Howl({
+    src: [Boing7],
+    volume: 0.4
   })
 }
 
-export type SoundKey = keyof typeof sounds | 'woo' | 'applause'
+export type SoundKey = keyof typeof sounds | 'woo' | 'applause' | 'boings'
 
 interface SoundContextType {
   isMuted: boolean
@@ -165,6 +196,9 @@ export const SoundProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       } else if (key === 'applause') {
         const randomApplause = Math.floor(Math.random() * 5) + 1
         sounds[`applause${randomApplause}`].play()
+      } else if (key === 'boings') {
+        const randomBoing = Math.floor(Math.random() * 7) + 1
+        sounds[`boing${randomBoing}`].play()
       } else {
         sounds[key].play()
       }

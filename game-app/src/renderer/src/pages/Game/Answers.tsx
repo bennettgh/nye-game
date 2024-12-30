@@ -145,7 +145,7 @@ export const Answers = ({
             useEffect(() => {
               const timeout = setTimeout(
                 () => {
-                  playSound('boing')
+                  playSound('boings')
                 },
                 (5 + index * 2) * 1000
               ) // Convert seconds to milliseconds
