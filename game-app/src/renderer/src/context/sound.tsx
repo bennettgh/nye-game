@@ -5,7 +5,11 @@ import Outro from '../assets/music/outro-song.mp3'
 import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited loop.mp3'
 import MusicStartGame from '../assets/music/start-game-screen.mp3'
 import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
-import Applause from '../assets/sfx/applause.wav'
+import Applause1 from '../assets/sfx/applause/applause1.wav'
+import Applause2 from '../assets/sfx/applause/applause2.wav'
+import Applause3 from '../assets/sfx/applause/applause3.wav'
+import Applause4 from '../assets/sfx/applause/applause4.wav'
+import Applause5 from '../assets/sfx/applause/applause5.wav'
 import Boing from '../assets/sfx/boing.wav'
 import Boing1 from '../assets/sfx/boing1.wav'
 import Boo from '../assets/sfx/boo.mp3'
@@ -109,13 +113,29 @@ const sounds = {
     src: [CaChing],
     volume: 0.4
   }),
-  applause: new Howl({
-    src: [Applause],
-    volume: 0.4
+  applause1: new Howl({
+    src: [Applause1],
+    volume: 0.6
+  }),
+  applause2: new Howl({
+    src: [Applause2],
+    volume: 0.6
+  }),
+  applause3: new Howl({
+    src: [Applause3],
+    volume: 0.6
+  }),
+  applause4: new Howl({
+    src: [Applause4],
+    volume: 0.6
+  }),
+  applause5: new Howl({
+    src: [Applause5],
+    volume: 0.6
   })
 }
 
-export type SoundKey = keyof typeof sounds | 'woo'
+export type SoundKey = keyof typeof sounds | 'woo' | 'applause'
 
 interface SoundContextType {
   isMuted: boolean
@@ -142,6 +162,9 @@ export const SoundProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       if (key === 'woo') {
         const randomWoo = Math.floor(Math.random() * 5) + 1
         sounds[`woo${randomWoo}`].play()
+      } else if (key === 'applause') {
+        const randomApplause = Math.floor(Math.random() * 5) + 1
+        sounds[`applause${randomApplause}`].play()
       } else {
         sounds[key].play()
       }

@@ -72,7 +72,7 @@ const AnimatingTitle = styled(motion.div)`
   font-weight: bold;
   font-family: 'Arvo', sans-serif;
   color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   text-align: center;
   line-height: 1.2;
   width: 100%;
@@ -193,7 +193,7 @@ export const Outro = ({
           const totalVotesSoFar = currentRoundAnswers
             .slice(0, answerIndex)
             .reduce((acc, curr) => acc + curr.votes.length, 0)
-          const delay = 5 + (totalVotesSoFar + voteIndex) * 0.3
+          const delay = 5 + (totalVotesSoFar + voteIndex) * 0.4
           setTimeout(() => {
             setPoints((prev) => {
               const newPoints = [...prev]
@@ -220,7 +220,7 @@ export const Outro = ({
     const totalVotesSoFar = currentRoundAnswers
       .slice(0, answerIndex)
       .reduce((acc, curr) => acc + curr.votes.length, 0)
-    const lastVoteDelay = 5 + (totalVotesSoFar + answer.votes.length - 1) * 0.3
+    const lastVoteDelay = 5 + (totalVotesSoFar + answer.votes.length - 1) * 0.4
     return Math.max(maxDelay, lastVoteDelay)
   }, 0)
 
@@ -235,7 +235,7 @@ export const Outro = ({
         playSound('caChing')
         playSound('applause')
       },
-      (maxVoteDelay + 1) * 1000
+      (maxVoteDelay + 2) * 1000
     )
 
     return () => {
@@ -284,7 +284,7 @@ export const Outro = ({
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
                     duration: 0.5,
-                    delay: maxVoteDelay + 1
+                    delay: maxVoteDelay + 2
                   }}
                 >
                   <PointsText>+{(points[index] * 100).toLocaleString()}</PointsText>
@@ -296,7 +296,7 @@ export const Outro = ({
                       .slice(0, index)
                       .reduce((acc, curr) => acc + curr.votes.length, 0)
                     const voteIndex = answer.votes.findIndex((v) => v.userId === vote.userId)
-                    const delay = 5 + (totalVotesSoFar + voteIndex) * 0.3
+                    const delay = 5 + (totalVotesSoFar + voteIndex) * 0.4
 
                     useEffect(() => {
                       const timeout = setTimeout(() => {
