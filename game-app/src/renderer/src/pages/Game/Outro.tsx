@@ -3,12 +3,13 @@ import { Avatar } from '@renderer/components/Avatar'
 import { StarburstBackground } from '@renderer/components/backgrounds/Starburst1'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
+import { useSoundContext } from '@renderer/context/sound'
 import { Game } from '@renderer/context/types'
 import { calculateTargetPosition, getAdaptiveFontSize } from '@renderer/utils'
 import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { mockGameState4 } from './mock'
+import { mgsOutro } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -97,7 +98,7 @@ const AnimatedAvatar = styled(motion.div)`
   transform-origin: center;
 `
 
-const PointsContainer = styled.div`
+const VotesContainer = styled.div`
   position: absolute;
   top: -20px;
   left: 50%;
@@ -114,11 +115,27 @@ const PointsContainer = styled.div`
   background-color: black;
 `
 
-const PointsText = styled.p`
+const VotesText = styled.p`
   font-size: 1.2rem;
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+`
+
+const PointsContainer = styled(motion.div)`
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const PointsText = styled.p`
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00a0f0;
 `
 
 const AnimatedTitle = ({
@@ -146,7 +163,7 @@ const AnimatedTitle = ({
   )
 }
 
-const gameState = mockGameState4
+const gameState = mgsOutro
 
 export const Outro = ({
   gameState: gs,
@@ -155,9 +172,10 @@ export const Outro = ({
   gameState: Game
   handleEndPhase: () => void
 }) => {
-  // useEffect(() => {
-  //   console.log('gameState', gameState)
-  // })
+  const { playSound } = useSoundContext()
+  useEffect(() => {
+    console.log('gameState', gameState)
+  })
 
   const [points, setPoints] = useState(
     gameState.rounds[gameState.rounds.length - 1].answers.map(() => 0)
@@ -171,7 +189,7 @@ export const Outro = ({
       setAnimationStarted(true)
 
       currentRoundAnswers.forEach((answer, answerIndex) => {
-        answer.votes.forEach((vote, voteIndex) => {
+        answer.votes.forEach((_vote, voteIndex) => {
           const totalVotesSoFar = currentRoundAnswers
             .slice(0, answerIndex)
             .reduce((acc, curr) => acc + curr.votes.length, 0)
@@ -197,6 +215,35 @@ export const Outro = ({
     setTitleTargetPosition(position)
   }, [])
 
+  // Calculate the maximum delay for all votes
+  const maxVoteDelay = currentRoundAnswers.reduce((maxDelay, answer, answerIndex) => {
+    const totalVotesSoFar = currentRoundAnswers
+      .slice(0, answerIndex)
+      .reduce((acc, curr) => acc + curr.votes.length, 0)
+    const lastVoteDelay = 5 + (totalVotesSoFar + answer.votes.length - 1) * 0.3
+    return Math.max(maxDelay, lastVoteDelay)
+  }, 0)
+
+  useEffect(() => {
+    // Answers are animated in
+    const timeoutAnswersIn = setTimeout(() => {
+      playSound('boing')
+    }, 4 * 1000)
+
+    const timeoutPoints = setTimeout(
+      () => {
+        playSound('caChing')
+        playSound('applause')
+      },
+      (maxVoteDelay + 1) * 1000
+    )
+
+    return () => {
+      clearTimeout(timeoutAnswersIn)
+      clearTimeout(timeoutPoints)
+    }
+  }, [])
+
   return (
     <GradientBackground>
       <StarburstBackground></StarburstBackground>
@@ -212,6 +259,7 @@ export const Outro = ({
         <AnswersContainer numAnswers={currentRoundAnswers.length}>
           {currentRoundAnswers.map((answer, index) => {
             const user = gameState.players.find((player) => player.userId === answer.userId)
+
             return (
               <Answer
                 key={index}
@@ -228,8 +276,18 @@ export const Outro = ({
                 <AnswerText fontSize={getAdaptiveFontSize(answer.answer)}>
                   {answer.answer}
                 </AnswerText>
-                <PointsContainer>
-                  <PointsText>{points[index]}</PointsText>
+                <VotesContainer>
+                  <VotesText>{points[index]}</VotesText>
+                </VotesContainer>
+                <PointsContainer
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: maxVoteDelay + 1
+                  }}
+                >
+                  <PointsText>+{(points[index] * 100).toLocaleString()}</PointsText>
                 </PointsContainer>
                 <AvatarContainer>
                   {answer.votes.map((vote) => {
@@ -239,6 +297,14 @@ export const Outro = ({
                       .reduce((acc, curr) => acc + curr.votes.length, 0)
                     const voteIndex = answer.votes.findIndex((v) => v.userId === vote.userId)
                     const delay = 5 + (totalVotesSoFar + voteIndex) * 0.3
+
+                    useEffect(() => {
+                      const timeout = setTimeout(() => {
+                        playSound('boing')
+                      }, delay * 1000) // Convert seconds to milliseconds
+
+                      return () => clearTimeout(timeout)
+                    }, [])
 
                     return (
                       <AnimatedAvatar

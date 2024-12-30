@@ -6,9 +6,9 @@ import { Avatar } from '@renderer/components/Avatar'
 import { Heart } from '@renderer/components/backgrounds/Heart1'
 import { Game, Player } from '@renderer/context/types'
 import { motion } from 'motion/react'
-import { useEffect } from 'react'
 import styled from 'styled-components'
-import { mockGameState3 } from './mock'
+import { mgsVoting } from './mock'
+
 const Container = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -35,7 +35,7 @@ const AvatarRow = styled(motion.div)`
   gap: 40px;
 `
 
-const gameState = mockGameState3
+const gameState = mgsVoting
 
 export const Voting = ({
   gameState: gs,
@@ -44,9 +44,7 @@ export const Voting = ({
   gameState: Game
   handleEndPhase: () => void
 }) => {
-  useEffect(() => {
-    console.log('gameState', gameState)
-  }, [gs])
+  console.log('gameState', gameState)
 
   let voted: Player[] = []
   gameState.rounds[gameState.rounds.length - 1].answers.forEach((answer) => {

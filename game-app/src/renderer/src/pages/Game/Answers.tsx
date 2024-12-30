@@ -2,11 +2,13 @@ import { AnimationCenter } from '@renderer/components/animation/Center'
 import { StarburstBackground } from '@renderer/components/backgrounds/Starburst1'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
+import { useSoundContext } from '@renderer/context/sound'
 import { Game } from '@renderer/context/types'
 import { calculateTargetPosition, getAdaptiveFontSize } from '@renderer/utils'
 import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
+import { mgsAnswers } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -98,13 +100,17 @@ const AnimatedTitle = ({
   )
 }
 
+const gameState = mgsAnswers
+
 export const Answers = ({
-  gameState,
+  gameState: gs,
   handleEndPhase
 }: {
   gameState: Game
   handleEndPhase: () => void
 }) => {
+  const { playSound } = useSoundContext()
+
   const titleRef = useRef(null)
   const [titleTargetPosition, setTitleTargetPosition] = useState({ x: 0, y: 0 })
 
@@ -112,6 +118,13 @@ export const Answers = ({
     // Calculate target positions for all elements after layout is rendered
     const position = calculateTargetPosition(titleRef)
     setTitleTargetPosition(position)
+  }, [])
+
+  // useEffect(() => {
+  //   playSound('pop')
+  // }, [])
+  useEffect(() => {
+    console.log('gameState', gameState)
   }, [])
 
   const currentRoundAnswers = gameState.rounds[gameState.rounds.length - 1].answers
@@ -128,21 +141,36 @@ export const Answers = ({
       <Container>
         <TitleEndPosition ref={titleRef} />
         <AnswersContainer numAnswers={currentRoundAnswers.length}>
-          {currentRoundAnswers.map((answer, index) => (
-            <Answer
-              key={index}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-                delay: 5 + index * 2 // 2 second initial delay, then 3 seconds between each answer
-              }}
-            >
-              <AnswerText fontSize={getAdaptiveFontSize(answer.answer)}>{answer.answer}</AnswerText>
-            </Answer>
-          ))}
+          {currentRoundAnswers.map((answer, index) => {
+            useEffect(() => {
+              const timeout = setTimeout(
+                () => {
+                  playSound('boing')
+                },
+                (5 + index * 2) * 1000
+              ) // Convert seconds to milliseconds
+
+              return () => clearTimeout(timeout)
+            }, [])
+
+            return (
+              <Answer
+                key={index}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 5 + index * 2
+                }}
+              >
+                <AnswerText fontSize={getAdaptiveFontSize(answer.answer)}>
+                  {answer.answer}
+                </AnswerText>
+              </Answer>
+            )
+          })}
         </AnswersContainer>
       </Container>
       <DevButton onClick={handleEndPhase}>End phase</DevButton>

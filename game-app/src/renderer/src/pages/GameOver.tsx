@@ -166,7 +166,7 @@ export function GameOver(): JSX.Element {
                 />
                 <LabelContainer>
                   <Label>{name}</Label>
-                  <Points>{votes} points</Points>
+                  <Points>{(votes * 100).toLocaleString()} points</Points>
                 </LabelContainer>
               </ResultCard>
             </ResultCardWrapper>

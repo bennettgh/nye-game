@@ -5,6 +5,7 @@ import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Question as QuestionComponent } from '@renderer/components/Question'
 import { Game, Player } from '@renderer/context/types'
 import styled from 'styled-components'
+import { mgsQuestion } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -24,13 +25,16 @@ const QuestionContainer = styled.div`
   margin-bottom: 40px;
 `
 
+const gameState = mgsQuestion
+
 export const Question = ({
-  gameState,
+  gameState: gs,
   handleEndPhase
 }: {
   gameState: Game
   handleEndPhase: () => void
 }) => {
+  console.log('gameState', gameState)
   let answered: Player[] = []
   gameState.rounds[gameState.rounds.length - 1].answers.forEach((answer) => {
     const user = gameState.players.find((player) => player.userId === answer.userId)
@@ -47,7 +51,7 @@ export const Question = ({
           <QuestionContainer>
             <QuestionComponent text={gameState.rounds[gameState.rounds.length - 1].prompt} />
           </QuestionContainer>
-          <AvatarRow active={answered} />
+          <AvatarRow active={answered} gameState={gameState} />
         </div>
       </Container>
       <DevButton onClick={handleEndPhase}>End phase</DevButton>

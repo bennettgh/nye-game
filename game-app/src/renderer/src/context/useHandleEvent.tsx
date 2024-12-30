@@ -14,7 +14,7 @@ export const useHandleEvent = () => {
         playSound('sfxCrow1')
         break
       case EventType.PLAYER_VOTED:
-        playSound('pop')
+        playSound('woo')
         break
       case EventType.PLAYER_ANSWERED:
         playSound('pop')

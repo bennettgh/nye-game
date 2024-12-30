@@ -1,6 +1,5 @@
 import { Avatar } from '@renderer/components/Avatar'
-import { useGameContext } from '@renderer/context/game'
-import { Player } from '@renderer/context/types'
+import { Game, Player } from '@renderer/context/types'
 import styled from 'styled-components'
 
 const AvatarsContainer = styled.div`
@@ -12,9 +11,7 @@ const AvatarsContainer = styled.div`
   height: 250px;
 `
 
-export const AvatarRow = ({ active }: { active: Player[] }) => {
-  const { gameState } = useGameContext()
-
+export const AvatarRow = ({ active, gameState }: { active: Player[]; gameState: Game }) => {
   return (
     <AvatarsContainer>
       {gameState.players.map((player) => {

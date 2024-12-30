@@ -61,7 +61,7 @@ export function Lobby(): JSX.Element {
       <Container>
         <Gif src={dog} />
         <RoomCode>{gameState?.roomCode}</RoomCode>
-        <AvatarRow active={gameState.players} />
+        <AvatarRow active={gameState.players} gameState={gameState} />
         {!gameState.players.length && <p>Waiting for players...</p>}
         {gameState.players.length > 0 && (
           <StyledButton onClick={handleStartGame}>Start Game</StyledButton>

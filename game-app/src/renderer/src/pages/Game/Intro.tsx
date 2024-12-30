@@ -1,14 +1,14 @@
+import { Bars } from '@renderer/components/backgrounds/Bars1'
 import { StarburstBackground } from '@renderer/components/backgrounds/Starburst1'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { TriColorTitle } from '@renderer/components/titles/Tricolor'
-import { Bars } from '@renderer/components/backgrounds/Bars1'
 import { useSoundContext } from '@renderer/context/sound'
 import { Game } from '@renderer/context/types'
+import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import poodleGif from '../../assets/gifs/poodle-dancing.gif'
-import { motion } from 'motion/react'
 
 const Container = styled.div`
   display: flex;
