@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import abby1 from "../assets/avatars/abby.png";
+import andrej1 from "../assets/avatars/andrej1.png";
 import cat_1 from "../assets/avatars/avatar_cat.png";
 import avatar_frog from "../assets/avatars/avatar_frog.png";
 import zoonie from "../assets/avatars/avatar_zoonie.png";
@@ -7,6 +9,7 @@ import bean1 from "../assets/avatars/bean1.png";
 import doni1 from "../assets/avatars/doni1.png";
 import frog1 from "../assets/avatars/frog1.png";
 import gilly1 from "../assets/avatars/gilly1.png";
+import jelena1 from "../assets/avatars/jelena.png";
 import mobin1 from "../assets/avatars/mobin1.png";
 import pipoca1 from "../assets/avatars/pipoca1.png";
 import { GradientBackground } from "../components/GradientBackground";
@@ -23,6 +26,9 @@ const avatars = [
   { id: "7", avatar: avatar_frog },
   { id: "8", avatar: zoonie },
   { id: "9", avatar: cat_1 },
+  { id: "10", avatar: andrej1 },
+  { id: "11", avatar: jelena1 },
+  { id: "12", avatar: abby1 },
 ];
 
 const Container = styled.div`
