@@ -7,10 +7,10 @@ import { GradientBackground } from '@renderer/components/GradientBackground'
 // import { Title } from '@renderer/components/Title'
 import { Avatar } from '@renderer/components/Avatar'
 import { Heart } from '@renderer/components/backgrounds/Heart1'
+import { Timer } from '@renderer/components/Timer'
 import { Game, Player } from '@renderer/context/types'
 import { motion } from 'motion/react'
 import styled from 'styled-components'
-import { mgsVoting } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -38,10 +38,8 @@ const AvatarRow = styled(motion.div)`
   gap: 40px;
 `
 
-const gameState = mgsVoting
-
 export const Voting = ({
-  gameState: gs,
+  gameState,
   handleEndPhase
 }: {
   gameState: Game
@@ -70,6 +68,7 @@ export const Voting = ({
 
   return (
     <GradientBackground>
+      <Timer time={30} onTimeUp={handleEndPhase} />
       <Heart />
       <Container>
         <div></div>

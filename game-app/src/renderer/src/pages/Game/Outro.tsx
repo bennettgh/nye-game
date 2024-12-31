@@ -9,7 +9,6 @@ import { calculateTargetPosition, getAdaptiveFontSize } from '@renderer/utils'
 import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { mgsOutro } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -163,19 +162,14 @@ const AnimatedTitle = ({
   )
 }
 
-const gameState = mgsOutro
-
 export const Outro = ({
-  gameState: gs,
+  gameState,
   handleEndPhase
 }: {
   gameState: Game
   handleEndPhase: () => void
 }) => {
   const { playSound, stopSound } = useSoundContext()
-  useEffect(() => {
-    console.log('gameState', gameState)
-  })
 
   useEffect(() => {
     playSound('musicAnswers')
@@ -250,6 +244,17 @@ export const Outro = ({
       clearTimeout(timeoutAnswersIn)
       clearTimeout(timeoutPoints)
     }
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => {
+        handleEndPhase()
+      },
+      (maxVoteDelay + 6) * 1000
+    )
+
+    return () => clearTimeout(timer)
   }, [])
 
   return (

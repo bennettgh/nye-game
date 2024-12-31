@@ -8,7 +8,6 @@ import { calculateTargetPosition, getAdaptiveFontSize } from '@renderer/utils'
 import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { mgsAnswers } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -100,10 +99,8 @@ const AnimatedTitle = ({
   )
 }
 
-const gameState = mgsAnswers
-
 export const Answers = ({
-  gameState: gs,
+  gameState,
   handleEndPhase
 }: {
   gameState: Game
@@ -128,14 +125,18 @@ export const Answers = ({
     }
   }, [])
 
-  // useEffect(() => {
-  //   playSound('pop')
-  // }, [])
-  useEffect(() => {
-    console.log('gameState', gameState)
-  }, [])
-
   const currentRoundAnswers = gameState.rounds[gameState.rounds.length - 1].answers
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => {
+        handleEndPhase()
+      },
+      (8 + currentRoundAnswers.length * 2) * 1000
+    )
+
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <GradientBackground>

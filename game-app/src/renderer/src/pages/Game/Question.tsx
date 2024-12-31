@@ -3,11 +3,11 @@ import { Bars } from '@renderer/components/backgrounds/Bars1'
 import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Question as QuestionComponent } from '@renderer/components/Question'
-import { Game, Player } from '@renderer/context/types'
+import { Timer } from '@renderer/components/Timer'
 import { useSoundContext } from '@renderer/context/sound'
+import { Game, Player } from '@renderer/context/types'
 import { useEffect } from 'react'
 import styled from 'styled-components'
-import { mgsQuestion } from './mock'
 
 const Container = styled.div`
   display: grid;
@@ -27,10 +27,8 @@ const QuestionContainer = styled.div`
   margin-bottom: 40px;
 `
 
-const gameState = mgsQuestion
-
 export const Question = ({
-  gameState: gs,
+  gameState,
   handleEndPhase
 }: {
   gameState: Game
@@ -57,6 +55,7 @@ export const Question = ({
 
   return (
     <GradientBackground>
+      <Timer time={60} onTimeUp={handleEndPhase} />
       <Bars />
       <Container>
         <div>

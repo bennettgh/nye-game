@@ -86,6 +86,14 @@ const FirstRoundIntro = ({
     return () => clearTimeout(timer)
   }, [])
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleEndPhase()
+    }, 9500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <GradientBackground>
       <Bars>
@@ -131,6 +139,14 @@ const NormalRoundIntro = ({
   gameState: Game
   handleEndPhase: () => void
 }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleEndPhase()
+    }, 4000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <GradientBackground>
       <StarburstBackground />

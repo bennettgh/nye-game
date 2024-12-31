@@ -69,7 +69,7 @@ export function nextPhase(socket: Socket) {
   const game = games[roomCode];
   const currentPhase = game.rounds[game.rounds.length - 1].phase;
 
-  if (game.rounds.length === 1 && currentPhase === RoundPhase.OUTRO) {
+  if (game.rounds.length === 3 && currentPhase === RoundPhase.OUTRO) {
     handleEndGame(game);
   } else if (currentPhase === RoundPhase.INTRO) {
     handleIntroPhaseOver(game);

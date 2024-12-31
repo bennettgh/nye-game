@@ -120,7 +120,7 @@ export function GameOver(): JSX.Element {
     .map(([name, votes]) => ({ name, votes }))
 
   useEffect(() => {
-    setTimeout(() => setIsCredits(true), (5.5 + sortedPlayers.length * 2) * 1000)
+    setTimeout(() => setIsCredits(true), 63000)
   }, [])
 
   useEffect(() => {
@@ -138,7 +138,7 @@ export function GameOver(): JSX.Element {
   }, [playSound]) // Dependency array to ensure it runs only once
 
   // if (isCredits) {
-  //   stopSound('outro')
+  //   stopSound('outroMusic')
 
   //   return <Credits />
   // }
