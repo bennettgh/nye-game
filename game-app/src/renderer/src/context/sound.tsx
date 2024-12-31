@@ -1,14 +1,19 @@
 import { Howler } from 'howler'
 import React, { ReactNode, createContext, useCallback, useContext, useState } from 'react'
-import ExplanationMusic from '../assets/music/game-explanation.mp3'
-import Outro from '../assets/music/outro-song.mp3'
-import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited loop.mp3'
-import MusicExplanation from '../assets/music/game-explanation.mp3'
-import MusicJeopardy from '../assets/music/jeopardy-theme.mp3'
+import AnswerReveal from '../assets/music/answer-reveal.mp3'
 import MusicAnswers from '../assets/music/answers-music.mp3'
-import MusicVote from '../assets/music/vote-music.mp3'
+import {
+  default as ExplanationMusic,
+  default as MusicExplanation
+} from '../assets/music/game-explanation.mp3'
+import MusicJeopardy from '../assets/music/jeopardy-theme.mp3'
+import LetTheVotingBegin from '../assets/music/let-the-voting-begin.mp3'
+import Outro from '../assets/music/outro-song.mp3'
 import MusicOutro from '../assets/music/outro.mp3'
+import QuestionSong from '../assets/music/question-song.mp3'
+import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited loop.mp3'
 import MusicStartGame from '../assets/music/start-game-screen.mp3'
+import MusicVote from '../assets/music/vote-music.mp3'
 import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
 import Applause1 from '../assets/sfx/applause/applause1.wav'
 import Applause2 from '../assets/sfx/applause/applause2.wav'
@@ -26,6 +31,7 @@ import Boing7 from '../assets/sfx/boings/boing7.wav'
 import Boo from '../assets/sfx/boo.mp3'
 import CaChing from '../assets/sfx/cashregister.wav'
 import SfxCrow1 from '../assets/sfx/crow-fx-1.wav'
+import LongApplause from '../assets/sfx/long-applause.wav'
 import MarioBoing from '../assets/sfx/mario-boing.mp3'
 import Pop from '../assets/sfx/pop.mp3'
 import Ribbet from '../assets/sfx/ribbet-sfx.mp3'
@@ -193,6 +199,26 @@ const sounds = {
   boing7: new Howl({
     src: [Boing7],
     volume: 0.4
+  }),
+  letTheVotingBegin: new Howl({
+    src: [LetTheVotingBegin],
+    volume: 0.5,
+    loop: true
+  }),
+  longApplause: new Howl({
+    src: [LongApplause],
+    volume: 0.5,
+    loop: true
+  }),
+  questionSong: new Howl({
+    src: [QuestionSong],
+    volume: 0.5,
+    loop: true
+  }),
+  answerReveal: new Howl({
+    src: [AnswerReveal],
+    volume: 0.5,
+    loop: true
   })
 }
 

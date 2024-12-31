@@ -23,6 +23,7 @@ const SocketProvider = ({ children }: { children: React.ReactNode }): JSX.Elemen
 
   const openSocketConnection = (cb?: (socket: Socket) => void) => {
     const newSocket = openNewSocketConnection()
+    console.log('openSocketConnection', newSocket)
     setSocket(newSocket)
     cb && cb(newSocket)
   }

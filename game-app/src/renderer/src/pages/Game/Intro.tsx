@@ -1,6 +1,5 @@
 import { Bars } from '@renderer/components/backgrounds/Bars1'
 import { StarburstBackground } from '@renderer/components/backgrounds/Starburst1'
-import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { TriColorTitle } from '@renderer/components/titles/Tricolor'
 import { useSoundContext } from '@renderer/context/sound'
@@ -126,7 +125,7 @@ const FirstRoundIntro = ({
           <GifLeft src={poodleGif} style={{ transform: 'scaleX(-1)' }} />
           <GifRight src={poodleGif} />
         </Container>
-        <DevButton onClick={handleEndPhase}>End phase</DevButton>
+        {/* <DevButton onClick={handleEndPhase}>End phase</DevButton> */}
       </Bars>
     </GradientBackground>
   )
@@ -139,6 +138,16 @@ const NormalRoundIntro = ({
   gameState: Game
   handleEndPhase: () => void
 }) => {
+  const { playSound, stopSound } = useSoundContext()
+
+  useEffect(() => {
+    playSound('longApplause')
+
+    return () => {
+      stopSound('longApplause')
+    }
+  }, [])
+
   useEffect(() => {
     const timer = setTimeout(() => {
       handleEndPhase()
@@ -153,7 +162,7 @@ const NormalRoundIntro = ({
       <TriColorTitle>ROUND {gameState.rounds.length}!</TriColorTitle>
       <GifLeft src={poodleGif} style={{ transform: 'scaleX(-1)' }} />
       <GifRight src={poodleGif} />
-      <DevButton onClick={handleEndPhase}>End phase</DevButton>
+      {/* <DevButton onClick={handleEndPhase}>End phase</DevButton> */}
     </GradientBackground>
   )
 }

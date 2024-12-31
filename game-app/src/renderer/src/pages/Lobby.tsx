@@ -8,6 +8,7 @@ import { useSoundContext } from '@renderer/context/sound'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import dog from '../assets/gifs/dog-walking.gif'
+import qr from '../assets/images/qr.png'
 
 const RoomCode = styled.p`
   font-family: 'Arvo';
@@ -37,6 +38,14 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `
 
+const StyledImage = styled.img`
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  height: 200px;
+  z-index: 10;
+`
+
 export function Lobby(): JSX.Element {
   const { gameState } = useGameContext()
   const { startGame } = useEvents()
@@ -59,6 +68,7 @@ export function Lobby(): JSX.Element {
     <GradientBackground>
       <Stripes />
       <Container>
+        <StyledImage src={qr} />
         <Gif src={dog} />
         <RoomCode>{gameState?.roomCode}</RoomCode>
         <AvatarRow active={gameState.players} gameState={gameState} />

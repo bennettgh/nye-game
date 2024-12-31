@@ -1,5 +1,4 @@
 // import { AvatarRow } from '@renderer/components/AvatarRow'
-import { DevButton } from '@renderer/components/DevButton'
 import { useSoundContext } from '@renderer/context/sound'
 import { useEffect } from 'react'
 
@@ -49,10 +48,10 @@ export const Voting = ({
   const { playSound, stopSound } = useSoundContext()
 
   useEffect(() => {
-    playSound('musicVote')
+    playSound('letTheVotingBegin')
 
     return () => {
-      stopSound('musicVote')
+      stopSound('letTheVotingBegin')
     }
   }, [])
 
@@ -108,7 +107,7 @@ export const Voting = ({
           })}
         </AvatarRow>
       </Container>
-      <DevButton onClick={handleEndPhase}>End phase</DevButton>
+      {/* <DevButton onClick={handleEndPhase}>End phase</DevButton> */}
     </GradientBackground>
   )
 }

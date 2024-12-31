@@ -1,7 +1,6 @@
 import { AnimationCenter } from '@renderer/components/animation/Center'
 import { Avatar } from '@renderer/components/Avatar'
 import { StarburstBackground } from '@renderer/components/backgrounds/Starburst1'
-import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { useSoundContext } from '@renderer/context/sound'
 import { Game } from '@renderer/context/types'
@@ -341,7 +340,7 @@ export const Outro = ({
           })}
         </AnswersContainer>
       </Container>
-      <DevButton onClick={handleEndPhase}>End phase</DevButton>
+      {/* <DevButton onClick={handleEndPhase}>End phase</DevButton> */}
     </GradientBackground>
   )
 }

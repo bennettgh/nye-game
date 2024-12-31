@@ -1,6 +1,5 @@
 import { AnimationCenter } from '@renderer/components/animation/Center'
 import { StarburstBackground } from '@renderer/components/backgrounds/Starburst1'
-import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { useSoundContext } from '@renderer/context/sound'
 import { Game } from '@renderer/context/types'
@@ -49,6 +48,7 @@ const Answer = styled(motion.div)`
   font-size: 1.2rem;
   font-weight: bold;
   min-height: 160px;
+  min-width: 250px;
 `
 
 const AnswerText = styled.p<{ fontSize: string }>`
@@ -182,7 +182,7 @@ export const Answers = ({
           })}
         </AnswersContainer>
       </Container>
-      <DevButton onClick={handleEndPhase}>End phase</DevButton>
+      {/* <DevButton onClick={handleEndPhase}>End phase</DevButton> */}
     </GradientBackground>
   )
 }

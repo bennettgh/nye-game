@@ -1,6 +1,5 @@
 import { AvatarRow } from '@renderer/components/AvatarRow'
 import { Bars } from '@renderer/components/backgrounds/Bars1'
-import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Question as QuestionComponent } from '@renderer/components/Question'
 import { Timer } from '@renderer/components/Timer'
@@ -38,10 +37,10 @@ export const Question = ({
   const { playSound, stopSound } = useSoundContext()
 
   useEffect(() => {
-    playSound('musicJeopardy')
+    playSound('questionSong')
 
     return () => {
-      stopSound('musicJeopardy')
+      stopSound('questionSong')
     }
   }, [])
 
@@ -65,7 +64,7 @@ export const Question = ({
           <AvatarRow active={answered} gameState={gameState} />
         </div>
       </Container>
-      <DevButton onClick={handleEndPhase}>End phase</DevButton>
+      {/* <DevButton onClick={handleEndPhase}>End phase</DevButton> */}
     </GradientBackground>
   )
 }
