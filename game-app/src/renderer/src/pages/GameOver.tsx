@@ -6,7 +6,6 @@ import { useSoundContext } from '@renderer/context/sound'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Credits } from './Credits'
 import { mgsOutro } from './Game/mock'
 
 const Container = styled.div`
@@ -121,7 +120,7 @@ export function GameOver(): JSX.Element {
     .map(([name, votes]) => ({ name, votes }))
 
   useEffect(() => {
-    setTimeout(() => setIsCredits(true), (7.5 + sortedPlayers.length * 2) * 1000)
+    setTimeout(() => setIsCredits(true), (5.5 + sortedPlayers.length * 2) * 1000)
   }, [])
 
   useEffect(() => {
@@ -138,11 +137,11 @@ export function GameOver(): JSX.Element {
     }
   }, [playSound]) // Dependency array to ensure it runs only once
 
-  if (isCredits) {
-    stopSound('outro')
+  // if (isCredits) {
+  //   stopSound('outro')
 
-    return <Credits />
-  }
+  //   return <Credits />
+  // }
 
   return (
     <GradientBackground>
