@@ -7,7 +7,6 @@ export function Router(): JSX.Element {
   const { gameState } = useGameContext()
 
   const renderView = (): JSX.Element => {
-    // return <Credits />
     if (gameState.gameOver) {
       return <GameOver />
     }

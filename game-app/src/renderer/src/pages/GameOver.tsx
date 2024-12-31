@@ -4,8 +4,10 @@ import { Title } from '@renderer/components/Title'
 import { useGameContext } from '@renderer/context/game'
 import { useSoundContext } from '@renderer/context/sound'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Credits } from './Credits'
+import { mgsOutro } from './Game/mock'
 
 const Container = styled.div`
   display: grid;
@@ -90,22 +92,14 @@ const Points = styled.p`
   padding: 2px 10px;
 `
 
+const gameState = mgsOutro
+
 export function GameOver(): JSX.Element {
-  const { gameState } = useGameContext()
+  const { gameState: gs } = useGameContext()
   console.log(gameState)
-  const { playSound } = useSoundContext()
+  const { playSound, stopSound } = useSoundContext()
 
-  useEffect(() => {
-    playSound('outro')
-
-    const timers = [
-      setTimeout(() => playSound('boo'), 1500),
-      setTimeout(() => playSound('wee'), 2000),
-      setTimeout(() => playSound('sfxWinning'), 3000)
-    ]
-
-    return () => timers.forEach((timer) => clearTimeout(timer)) // Cleanup all timers on component unmount
-  }, [playSound]) // Dependency array to ensure it runs only once
+  const [isCredits, setIsCredits] = useState(false)
 
   // Calculate total votes for each player
   const totalVotes = gameState.players.reduce(
@@ -125,6 +119,30 @@ export function GameOver(): JSX.Element {
   const sortedPlayers = Object.entries(totalVotes)
     .sort(([, a], [, b]) => b - a)
     .map(([name, votes]) => ({ name, votes }))
+
+  useEffect(() => {
+    setTimeout(() => setIsCredits(true), (7.5 + sortedPlayers.length * 2) * 1000)
+  }, [])
+
+  useEffect(() => {
+    playSound('outro')
+
+    const timers = [
+      setTimeout(() => playSound('boo'), 1500),
+      setTimeout(() => playSound('wee'), 2000),
+      setTimeout(() => playSound('sfxWinning'), 3000)
+    ]
+
+    return () => {
+      timers.forEach((timer) => clearTimeout(timer)) // Cleanup all timers on component unmount
+    }
+  }, [playSound]) // Dependency array to ensure it runs only once
+
+  if (isCredits) {
+    stopSound('outro')
+
+    return <Credits />
+  }
 
   return (
     <GradientBackground>

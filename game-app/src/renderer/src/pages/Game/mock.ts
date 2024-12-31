@@ -673,85 +673,93 @@ export const mgsVoting: Game = {
 }
 
 export const mgsOutro: Game = {
-  roomCode: 'ITFF',
+  roomCode: 'IDZB',
   players: [
     {
-      userId: '9',
-      socketId: 'IpLRBK5k1fDOi4uwAAAT',
-      roomCode: 'ITFF',
-      nickname: 'ANDREW',
-      avatarId: '1'
-    },
-    {
-      userId: '10',
-      socketId: 'CMcxyaasF0j-L7-rAAAV',
-      roomCode: 'ITFF',
-      nickname: 'BEAN',
-      avatarId: '9'
-    },
-    {
-      userId: '11',
-      socketId: 'wWmbY7mMQL-XMZSAAAAX',
-      roomCode: 'ITFF',
-      nickname: 'BRUNO',
+      userId: '25',
+      socketId: '37ddhiRaDiIx9X9BAAAx',
+      roomCode: 'IDZB',
+      nickname: 'GILLY',
       avatarId: '5'
     },
     {
-      userId: '12',
-      socketId: 'Kvkpsd2oraZSlaYdAAAZ',
-      roomCode: 'ITFF',
-      nickname: 'BUZZ',
+      userId: '26',
+      socketId: 'IMmm3q0LjJW80DwSAAAz',
+      roomCode: 'IDZB',
+      nickname: 'MOBIN',
+      avatarId: '4'
+    },
+    {
+      userId: '27',
+      socketId: 'Lae2y9vqzCPHJNEGAAA1',
+      roomCode: 'IDZB',
+      nickname: 'BEANO',
       avatarId: '3'
+    },
+    {
+      userId: '28',
+      socketId: 'piV5wk1kw7gjUC9QAAA3',
+      roomCode: 'IDZB',
+      nickname: 'FROGGER',
+      avatarId: '6'
+    },
+    {
+      userId: '29',
+      socketId: 'fS1_qgJLg2f7ooufAAA5',
+      roomCode: 'IDZB',
+      nickname: 'ZOONIE',
+      avatarId: '8'
+    },
+    {
+      userId: '30',
+      socketId: 'xADi3pktrdwag0duAAA7',
+      roomCode: 'IDZB',
+      nickname: 'ABBY',
+      avatarId: '1'
     }
   ],
   gameMaster: {
-    userId: '8',
-    socketId: 'KcS2xf1ALDY6nt_5AAAR',
-    roomCode: 'ITFF'
+    userId: '24',
+    socketId: 'VVleAnOJKPdAZi85AAAv',
+    roomCode: 'IDZB'
   },
   started: true,
   gameOver: false,
   rounds: [
     {
       roundNumber: 1,
-      phase: 'outro',
-      prompt:
-        'The person sitting furthest on the left started calling their significant other ______',
+      phase: 'answers',
+      prompt: 'Fil watched a new documentary. What lifestyle changes is he making?',
       answers: [
         {
-          answer: 'TEST1',
-          userId: '12',
-          votes: [
-            {
-              userId: '9'
-            }
-          ]
-        },
-        {
-          answer: 'TEST2 TEST2 TEST2',
-          userId: '11',
+          answer: 'NO MORE PIZZA',
+          userId: '30',
           votes: []
         },
         {
-          answer: 'TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 TEST3 ',
-          userId: '10',
+          answer: 'EATING WAY MORE PIZZA',
+          userId: '25',
+          votes: [{ userId: '30' }]
+        },
+        {
+          answer: 'DONI DEE = WIFE',
+          userId: '26',
           votes: []
         },
         {
-          answer:
-            'TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 TEST4 ',
-          userId: '9',
-          votes: [
-            {
-              userId: '10'
-            },
-            {
-              userId: '11'
-            },
-            {
-              userId: '12'
-            }
-          ]
+          answer: 'HE AINT TAKING ANY MORE HOT SHOWERS',
+          userId: '27',
+          votes: [{ userId: '29' }]
+        },
+        {
+          answer: 'WELL WHEN ZOONIE WAS BORN A LONG TIME AGO WE LEARNED HE HAD A GREEN HOG',
+          userId: '29',
+          votes: [{ userId: '25' }, { userId: '26' }, { userId: '27' }, { userId: '28' }]
+        },
+        {
+          answer: 'POODLES',
+          userId: '28',
+          votes: []
         }
       ]
     }
