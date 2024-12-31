@@ -71,10 +71,10 @@ const FirstRoundIntro = ({
   const [showGameExplanation, setShowGameExplanation] = useState(false)
 
   useEffect(() => {
-    playSound('musicLobby')
+    playSound('musicExplanation')
 
     return () => {
-      stopSound('musicLobby')
+      stopSound('musicExplanation')
     }
   }, [])
 
@@ -110,7 +110,7 @@ const FirstRoundIntro = ({
             transition={{
               duration: 1,
               ease: 'easeInOut',
-              delay: 1.5
+              delay: 3.2
             }}
           >
             Answer the prompt, vote for your favourite answer

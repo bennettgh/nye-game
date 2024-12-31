@@ -172,10 +172,18 @@ export const Outro = ({
   gameState: Game
   handleEndPhase: () => void
 }) => {
-  const { playSound } = useSoundContext()
+  const { playSound, stopSound } = useSoundContext()
   useEffect(() => {
     console.log('gameState', gameState)
   })
+
+  useEffect(() => {
+    playSound('musicAnswers')
+
+    return () => {
+      stopSound('musicAnswers')
+    }
+  }, [])
 
   const [points, setPoints] = useState(
     gameState.rounds[gameState.rounds.length - 1].answers.map(() => 0)

@@ -109,7 +109,7 @@ export const Answers = ({
   gameState: Game
   handleEndPhase: () => void
 }) => {
-  const { playSound } = useSoundContext()
+  const { playSound, stopSound } = useSoundContext()
 
   const titleRef = useRef(null)
   const [titleTargetPosition, setTitleTargetPosition] = useState({ x: 0, y: 0 })
@@ -118,6 +118,14 @@ export const Answers = ({
     // Calculate target positions for all elements after layout is rendered
     const position = calculateTargetPosition(titleRef)
     setTitleTargetPosition(position)
+  }, [])
+
+  useEffect(() => {
+    playSound('musicAnswers')
+
+    return () => {
+      stopSound('musicAnswers')
+    }
   }, [])
 
   // useEffect(() => {

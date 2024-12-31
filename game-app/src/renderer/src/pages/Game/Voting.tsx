@@ -1,5 +1,8 @@
 // import { AvatarRow } from '@renderer/components/AvatarRow'
 import { DevButton } from '@renderer/components/DevButton'
+import { useSoundContext } from '@renderer/context/sound'
+import { useEffect } from 'react'
+
 import { GradientBackground } from '@renderer/components/GradientBackground'
 // import { Title } from '@renderer/components/Title'
 import { Avatar } from '@renderer/components/Avatar'
@@ -45,6 +48,15 @@ export const Voting = ({
   handleEndPhase: () => void
 }) => {
   console.log('gameState', gameState)
+  const { playSound, stopSound } = useSoundContext()
+
+  useEffect(() => {
+    playSound('musicVote')
+
+    return () => {
+      stopSound('musicVote')
+    }
+  }, [])
 
   let voted: Player[] = []
   gameState.rounds[gameState.rounds.length - 1].answers.forEach((answer) => {

@@ -3,6 +3,11 @@ import React, { ReactNode, createContext, useCallback, useContext, useState } fr
 import ExplanationMusic from '../assets/music/game-explanation.mp3'
 import Outro from '../assets/music/outro-song.mp3'
 import MusicLobby from '../assets/music/Roie Sphigler - Karma Obscura - edited loop.mp3'
+import MusicExplanation from '../assets/music/game-explanation.mp3'
+import MusicJeopardy from '../assets/music/jeopardy-theme.mp3'
+import MusicAnswers from '../assets/music/answers-music.mp3'
+import MusicVote from '../assets/music/vote-music.mp3'
+import MusicOutro from '../assets/music/outro.mp3'
 import MusicStartGame from '../assets/music/start-game-screen.mp3'
 import MusicWaitingForPlayers from '../assets/music/waiting-for-players.mp3'
 import Applause1 from '../assets/sfx/applause/applause1.wav'
@@ -36,6 +41,31 @@ import Yap from '../assets/sfx/yap-sfx.mp3'
 const sounds = {
   musicStartGame: new Howl({
     src: [MusicStartGame],
+    volume: 0.5,
+    loop: true
+  }),
+  musicExplanation: new Howl({
+    src: [MusicExplanation],
+    volume: 0.5,
+    loop: false
+  }),
+  musicJeopardy: new Howl({
+    src: [MusicJeopardy],
+    volume: 0.5,
+    loop: true
+  }),
+  musicAnswers: new Howl({
+    src: [MusicAnswers],
+    volume: 0.4,
+    loop: true
+  }),
+  musicVote: new Howl({
+    src: [MusicVote],
+    volume: 0.5,
+    loop: true
+  }),
+  outroMusic: new Howl({
+    src: [MusicOutro],
     volume: 0.5,
     loop: true
   }),

@@ -4,6 +4,8 @@ import { DevButton } from '@renderer/components/DevButton'
 import { GradientBackground } from '@renderer/components/GradientBackground'
 import { Question as QuestionComponent } from '@renderer/components/Question'
 import { Game, Player } from '@renderer/context/types'
+import { useSoundContext } from '@renderer/context/sound'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { mgsQuestion } from './mock'
 
@@ -35,6 +37,16 @@ export const Question = ({
   handleEndPhase: () => void
 }) => {
   console.log('gameState', gameState)
+  const { playSound, stopSound } = useSoundContext()
+
+  useEffect(() => {
+    playSound('musicJeopardy')
+
+    return () => {
+      stopSound('musicJeopardy')
+    }
+  }, [])
+
   let answered: Player[] = []
   gameState.rounds[gameState.rounds.length - 1].answers.forEach((answer) => {
     const user = gameState.players.find((player) => player.userId === answer.userId)
