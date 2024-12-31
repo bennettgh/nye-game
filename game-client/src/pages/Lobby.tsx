@@ -19,16 +19,16 @@ import { useGameContext } from "../context/game";
 const avatars = [
   { id: "1", avatar: pipoca1 },
   { id: "2", avatar: doni1 },
-  { id: "3", avatar: bean1 },
+  { id: "3", avatar: abby1 },
   { id: "4", avatar: mobin1 },
-  { id: "5", avatar: gilly1 },
-  { id: "6", avatar: frog1 },
-  { id: "7", avatar: avatar_frog },
-  { id: "8", avatar: zoonie },
-  { id: "9", avatar: cat_1 },
-  { id: "10", avatar: andrej1 },
-  { id: "11", avatar: jelena1 },
-  { id: "12", avatar: abby1 },
+  { id: "5", avatar: zoonie },
+  { id: "6", avatar: gilly1 },
+  { id: "7", avatar: frog1 },
+  { id: "8", avatar: bean1 },
+  { id: "9", avatar: andrej1 },
+  { id: "10", avatar: jelena1 },
+  { id: "11", avatar: avatar_frog },
+  { id: "12", avatar: cat_1 },
 ];
 
 const Container = styled.div`
